@@ -1,0 +1,279 @@
+
+$violet:        #5C5DB1;
+$red:           #D16978;
+$yellow:        #F6D37E;
+$black-violet:  #525375;
+$white:         #fff;
+$grey-bg:       #FCFCFF;
+//$grey-light:
+
+@font-face {
+  font-family: "Inconsolata";
+  font-weight: 900;
+  src: url("../fonts/Inconsolata-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  font-weight: 700;
+  src: url("../fonts/Inconsolata-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  font-weight: 400;
+  src: url("../fonts/Inconsolata-Regular.ttf") format("truetype");
+}
+
+body{
+  font-family: "Inconsolata";
+  color: $black-violet;
+  background: $grey-bg;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.scrollbar-thumb{
+  background: $black-violet;
+}
+
+h1,h2,p{
+  margin: 0;
+}
+h1{
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 130%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  max-width: 800px;
+}
+h2{
+  font-weight: bold;
+  font-size: 120px;
+  line-height: 80%;
+  text-transform: uppercase;
+  text-align: center;
+  overflow: hidden;
+  display: block;
+  span{
+    display: block;
+  }
+  &.small{
+    font-size: 80px;
+  }
+  &.mb{
+    margin-bottom: 50px;
+    & + p{
+      text-align: center;
+    }
+  }
+}
+p{
+  font-weight: 400;
+  line-height: 140%;
+  margin: 0;
+  max-width: 475px;
+  font-size: 16px;
+  &.big{
+    font-size: 26px;
+  }
+  &.center{
+    text-align: center;
+  }
+}
+img.mb{
+  margin-bottom: 60px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+section.welcome{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../imgs/welcome-bg.svg');
+  background-repeat: no-repeat;
+  background-size: 495px;
+  background-position: bottom 20vh right 145px;
+  a{
+    color: $red;
+    text-decoration: none;
+    border-bottom: solid $red 4px;
+  }
+}
+
+section.what-we-do{
+  height: 100vh;
+  .grid{
+    height: 70vh;
+    background: url("../imgs/wwd/wwd-bg.svg"), linear-gradient(0deg, $grey-bg 0%, $grey-bg 15px, $violet 15px, $violet 100%);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    color: $white;
+
+    h2{
+      //position: relative;
+      max-width: 277px;
+      //display: block;
+      margin: 0 auto;
+
+      &:before{
+        //content: '';
+        display: block;
+        background: url("../imgs/wwd/outline.svg");
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+      }
+    }
+  }
+  .row{
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+section.webdev{
+  //height: 95vh;
+  //background: url("../imgs/wwd/outline.svg");
+  //background-size: contain;
+  //background-position: center;
+  //background-repeat: no-repeat;
+
+  .grid{
+    //justify-items: center;
+    height: 95vh;
+
+    .col1, .col2{
+      display: flex;
+      flex-direction: column;
+    }
+    .col1{
+      justify-self: flex-end;
+      align-items: center;
+      padding-right: 36px;
+    }
+    .col2{
+      align-items: center;
+    }
+  }
+  h2{
+    max-width: 277px;
+  }
+  p{
+    max-width: 377px;
+    b{
+      font-weight: 800;
+    }
+    span{
+      font-weight: 700;
+      &.red{
+        color: $red;
+      }
+      &.violet{
+        color: $violet;
+      }
+      &.yellow{
+        color: $yellow;
+      }
+    }
+  }
+}
+
+
+.circle{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  border-radius: 100vh 100vh 0 0;
+  //border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  .anchor-arrow{
+    width: 40px;
+    height: 5vh;
+    margin: 0 auto;
+    background: url("../imgs/anchor-arrow.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+
+section.design{
+  .circle{
+    background-color: $yellow;
+  }
+  .container{
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h2{
+      max-width: 500px;
+    }
+  }
+}
+
+
+section.mobdev{
+  background-color: $yellow;
+  color:$white;
+
+  .circle{
+    background-color: $red;
+  }
+  .grid{
+    height: 80vh;
+    padding-bottom: 15vh;
+    align-items: flex-end;
+    justify-items: center;
+    .col1{
+      justify-self: flex-end;
+      padding-right: 36px;
+    }
+    .col2{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2,p{
+      max-width: 375px;
+    }
+  }
+}
+
+
+section.whyCCL{
+  height: 100vh;
+  background:
+          url("../imgs/whyCCL/top.svg"),
+          url("../imgs/whyCCL/bottom.svg"),
+          linear-gradient(180deg,
+                  $red 0%, $red 30px,
+                  $violet 30px, $violet calc(100% - 15px),
+                  $grey-bg calc(100% - 15px),  $grey-bg 100%);
+  background-position: top, bottom;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  color: $white;
+  .grid{
+    height: 100vh;
+
+  }
+}
