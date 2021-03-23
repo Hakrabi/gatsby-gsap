@@ -30,12 +30,19 @@ body{
   color: $black-violet;
   background: $grey-bg;
   margin: 0;
+  overflow-x: hidden;
   overflow: hidden;
   height: 100vh;
 }
 
+.scroller{
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
 .scrollbar-thumb{
-  background: $black-violet;
+  background: $black-violet !important;
 }
 
 h1,h2,p{
@@ -59,6 +66,10 @@ h2{
   display: block;
   span{
     display: block;
+    height: 96px;
+    .vertical{
+      overflow: hidden;
+    }
   }
   &.small{
     font-size: 80px;
@@ -87,21 +98,49 @@ img.mb{
   margin-bottom: 60px;
 }
 
+
+
+section{
+  max-height: 70vw;
+  height: 100vh;
+}
+
 .grid{
   display: grid;
+  height: 100%;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+
+  &.mw900{
+    max-width: 900px;
+    grid-gap: 140px;
+    margin: 0 auto;
+  }
+
+  .col1, .col2{
+    display: flex;
+    flex-direction: column;
+    &.col-center{
+      align-items: center;
+    }
+  }
+}
+
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 section.welcome{
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url('../imgs/welcome-bg.svg');
   background-repeat: no-repeat;
   background-size: 495px;
-  background-position: bottom 20vh right 145px;
+  background-position: bottom 20% right 145px;
   a{
     color: $red;
     text-decoration: none;
@@ -110,37 +149,46 @@ section.welcome{
 }
 
 section.what-we-do{
-  height: 100vh;
   .grid{
-    height: 70vh;
-    background: url("../imgs/wwd/wwd-bg.svg"), linear-gradient(0deg, $grey-bg 0%, $grey-bg 15px, $violet 15px, $violet 100%);
-    background-position: bottom;
+    height: 70%;
+    background:
+            url("../imgs/wwd/bottom-mask.svg"),
+            url("../imgs/wwd/bottom.svg"),
+            linear-gradient(0deg, $grey-bg 0%, $grey-bg 15px, $violet 15px, $violet 100%);
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: 130.76% auto, 100% auto;
     color: $white;
 
     h2{
-      //position: relative;
       max-width: 277px;
       //display: block;
       margin: 0 auto;
-
-      &:before{
-        //content: '';
-        display: block;
-        background: url("../imgs/wwd/outline.svg");
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: 1;
-      }
+    }
+    .col1{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      //position: relative;
+    }
+    .outline{
+      display: block;
+      //background: url("../imgs/wwd/outline.svg");
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 30px;
+      text-align: center;
+      height: 334px;
+      width: 390px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
     }
   }
   .row{
-    height: 30vh;
+    height: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,21 +204,7 @@ section.webdev{
   //background-repeat: no-repeat;
 
   .grid{
-    //justify-items: center;
-    height: 95vh;
-
-    .col1, .col2{
-      display: flex;
-      flex-direction: column;
-    }
-    .col1{
-      justify-self: flex-end;
-      align-items: center;
-      padding-right: 36px;
-    }
-    .col2{
-      align-items: center;
-    }
+    height: 95%;
   }
   h2{
     max-width: 277px;
@@ -198,32 +232,28 @@ section.webdev{
 
 .circle{
   width: 100%;
-  height: 100vh;
+  height: 100.1%;
   position: relative;
   border-radius: 100vh 100vh 0 0;
+  margin-bottom: -1px;
   //border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  .anchor-arrow{
-    width: 40px;
-    height: 5vh;
-    margin: 0 auto;
-    background: url("../imgs/anchor-arrow.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 }
-
+.anchor-arrow{
+  width: 40px;
+  height: 5%;
+  margin: 0 auto;
+  background: url("../imgs/anchor-arrow.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 section.design{
   .circle{
     background-color: $yellow;
   }
   .container{
-    height: 95vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    height: 95%;
     h2{
       max-width: 500px;
     }
@@ -239,19 +269,10 @@ section.mobdev{
     background-color: $red;
   }
   .grid{
-    height: 80vh;
-    padding-bottom: 15vh;
+    height: 80%;
+    padding-bottom: 15%;
     align-items: flex-end;
     justify-items: center;
-    .col1{
-      justify-self: flex-end;
-      padding-right: 36px;
-    }
-    .col2{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
     h2,p{
       max-width: 375px;
     }
@@ -260,20 +281,95 @@ section.mobdev{
 
 
 section.whyCCL{
-  height: 100vh;
   background:
           url("../imgs/whyCCL/top.svg"),
           url("../imgs/whyCCL/bottom.svg"),
           linear-gradient(180deg,
-                  $red 0%, $red 30px,
-                  $violet 30px, $violet calc(100% - 15px),
-                  $grey-bg calc(100% - 15px),  $grey-bg 100%);
-  background-position: top, bottom;
+                  $red 0%, $red 10%,
+                  $violet 10%, $violet 88%,
+                  $grey-bg 88%,  $grey-bg 100%);
+  background-position: top center, center bottom;
   background-repeat: no-repeat;
   background-size: 100% auto;
   color: $white;
-  .grid{
-    height: 100vh;
 
+  .question{
+    display: inline-block;
+  }
+}
+
+section.team{
+}
+
+.oval{
+  width: 110%;
+  margin-left: -5%;
+  height: 100%;
+  position: relative;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+
+
+section.clients{
+  .oval{
+    background-color: $yellow;
+  }
+  .container{
+    height: 95%;
+  }
+}
+
+section.tech{
+  background: $red;
+  color: $white;
+  background:
+          url("../imgs/tech/left.svg"),
+          url("../imgs/tech/bottom.svg"),
+          linear-gradient(180deg,
+                  $red 0%, $red 88%,
+                  $violet 88%,  $violet 100%);
+  background-position: center left, center bottom;
+  background-repeat: no-repeat;
+  background-size: auto,100% auto;
+  p{
+    max-width: 375px;
+  }
+}
+
+section.still-reading{
+  background: $violet;
+  color: $white;
+
+  .container{
+    height: 100%;
+  }
+
+  .cool-button{
+    position: relative;
+    height: 160px;
+    width: 508px;
+    cursor: pointer;
+
+    div{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .border{
+      border: 1px solid $white;
+    }
+    .fill{
+      border: 1px solid transparent;
+      background: #6C6DB9;
+    }
+    .text{
+      font-weight: bold;
+      font-size: 60px;
+      line-height: 160px;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
   }
 }
