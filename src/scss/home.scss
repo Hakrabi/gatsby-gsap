@@ -1,0 +1,224 @@
+@import '../scss/vars';
+@import '../scss/main.scss';
+
+
+#home {
+  section.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../imgs/home/welcome-bg.svg');
+    background-repeat: no-repeat;
+    background-size: 495px;
+    background-position: bottom 20% right 145px;
+
+    a {
+      color: $red;
+      text-decoration: none;
+      border-bottom: solid $red 4px;
+    }
+  }
+
+  section.what-we-do {
+    .grid {
+      height: 70%;
+      background: url("../imgs/home/wwd/bottom-mask.svg"),
+      url("../imgs/home/wwd/bottom.svg"),
+      linear-gradient(0deg, $grey-bg 0%, $grey-bg 15px, $violet 15px, $violet 100%);
+      background-repeat: no-repeat;
+      background-size: 130.76% auto, 100% auto;
+      color: $white;
+
+      h2 {
+        max-width: 277px;
+        //display: block;
+        margin: 0 auto;
+      }
+
+      .col1 {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        //position: relative;
+      }
+
+      .outline {
+        display: block;
+        //background: url("../imgs/home/wwd/outline.svg");
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 30px;
+        text-align: center;
+        height: 334px;
+        width: 390px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+      }
+    }
+
+    .row {
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+
+  section.webdev {
+    //height: 100vh;
+    .grid {
+      height: 95%;
+    }
+
+    h2 {
+      max-width: 277px;
+    }
+
+    p {
+      max-width: 377px;
+
+      b {
+        font-weight: 800;
+      }
+
+      span {
+        font-weight: 700;
+
+        &.red {
+          color: $red;
+        }
+
+        &.violet {
+          color: $violet;
+        }
+
+        &.yellow {
+          color: $yellow;
+        }
+      }
+    }
+
+    .img-cont {
+      height: 138px;
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+
+  section.design {
+    .circle {
+      background-color: $yellow;
+    }
+
+    .container {
+      height: 95%;
+
+      h2 {
+        max-width: 500px;
+      }
+    }
+
+    .star {
+      width: 127px;
+      height: 127px;
+      position: absolute;
+      background: url("../imgs/home/design/star.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 3;
+      top: 40vh;
+      right: 20vw;
+    }
+  }
+
+
+  section.mobdev {
+    background-color: $yellow;
+    color: $white;
+
+    .circle {
+      position: relative;
+      background-color: $red;
+    }
+
+    .grid {
+      height: 80%;
+      padding-bottom: 15%;
+      align-items: flex-end;
+      justify-items: center;
+    }
+
+    //.smile{
+    //  width: 139px;
+    //  height: 139px;
+    //  position: absolute;
+    //  background: url("../imgs/home/design/star.svg");
+    //  background-size: contain;
+    //  background-repeat: no-repeat;
+    //  z-index: 3;
+    //}
+  }
+
+
+  section.whyCCL {
+    background: url("../imgs/home/whyCCL/top.svg"),
+    url("../imgs/home/whyCCL/bottom.svg"),
+    linear-gradient(180deg,
+                    $red 0%, $red 10%,
+                    $violet 10%, $violet 88%,
+                    $grey-bg 88%, $grey-bg 100%);
+    background-position: top center, center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    color: $white;
+
+    .question {
+      display: inline-block;
+    }
+  }
+
+  section.team {
+  }
+
+
+  section.clients {
+    overflow-x: hidden;
+
+    .oval {
+      background-color: $yellow;
+    }
+
+    .container {
+      height: 95%;
+    }
+
+    .row{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40vh;
+      width: 1000px;
+    }
+  }
+
+  section.tech {
+    background: $red;
+    color: $white;
+    background: url("../imgs/home/tech/left.svg"),
+    url("../imgs/home/tech/bottom.svg"),
+    linear-gradient(180deg,
+                    $red 0%, $red 88%,
+                    $violet 88%, $violet 100%);
+    background-position: center left, center bottom;
+    background-repeat: no-repeat;
+    background-size: auto, 100% auto;
+    margin-bottom: -1px;
+  }
+}
