@@ -1,0 +1,118 @@
+@import '../scss/vars';
+
+section.contact-form{
+  position: relative;
+  & > .grid{
+    grid-template-columns: 300px auto;
+    max-width: 1000px;
+    padding: 0 143px;
+    margin: 0 auto;
+    grid-gap: 120px;
+    .col1{
+      h1,p{
+        text-align: left;
+      }
+      h1{
+        line-height: 100%;
+        margin-bottom: 26px;
+        span{
+          display: inline-block;
+        }
+      }
+      p{
+        margin-bottom: 56px;
+        max-width: 270px;
+      }
+    }
+  }
+  form{
+    width: 100%;
+    label{
+      line-height: 140%;
+      margin-bottom: 3px;
+      span{
+        color: $red;
+        margin-left: 5px;
+      }
+    }
+    input{
+      width: 100%;
+      box-sizing: border-box;
+      height: 50px;
+      padding: 0 15px;
+      border: 0;
+      border-bottom: 2px solid $yellow;
+      font-size: 22px;
+      outline: none;
+      color: $black-violet;
+    }
+
+    textarea{
+      width: 100%;
+      box-sizing: border-box;
+      border: 0;
+      background-attachment:local;
+      background-image: linear-gradient(white 50px, $yellow 50px, $yellow 52px, white 52px);
+      background-size: 100% 52px;
+      line-height: 52px;
+      padding: 8px;
+      outline: none;
+      font-size: 22px;
+      color: $black-violet;
+      resize: none;
+      height: 180px;
+      &::-webkit-scrollbar {
+        width: 6px;
+        background-color: $white
+      }
+
+      &::-webkit-scrollbar-thumb {
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: $black-violet
+      }
+    }
+    .grid{
+      grid-gap: 30px;
+      margin-bottom: 32px;
+    }
+    .row{
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .cool-button {
+    height: 55px;
+    width: 190px;
+    //cursor: pointer;
+    //margin-bottom: 30px;
+
+    .border {
+      border: 1px solid $black-violet;
+    }
+
+    .fill {
+      //border: 1px solid $grey-footer;
+      background: $grey-footer;
+    }
+
+    .text {
+      font-weight: bold;
+      font-size: 26px;
+      line-height: 55px;
+    }
+  }
+
+  .paint{
+    width: 100vw;
+    height: 4vw;
+    position: absolute;
+    background: url("../imgs/contact/paint.svg");
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    z-index: 30;
+    bottom: -3.9vw;
+  }
+}

@@ -1,0 +1,33 @@
+@import '../scss/vars';
+
+.cool-button{
+  position: relative;
+  height: 160px;
+  width: 508px;
+  cursor: pointer;
+  margin-bottom: 30px;
+
+  div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .border{
+    border: 2px solid $white;
+    transform: rotate(2deg);
+  }
+  .fill{
+    //border: 2px solid #6C6DB9;
+    background: #6C6DB9;
+    transform: rotate(0.5deg);
+  }
+  .text{
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 160px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+}

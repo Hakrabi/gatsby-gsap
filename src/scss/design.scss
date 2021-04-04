@@ -1,5 +1,4 @@
 @import '../scss/vars';
-@import '../scss/main.scss';
 
 #design{
 
@@ -11,6 +10,23 @@
     background-repeat: no-repeat;
     background-position: center left 110px;
     position: relative;
+
+    h1 {
+      position: relative;
+      &:after {
+        content: '';
+        width: 80px;
+        height: 101px;
+        right: -110px;
+        top: -5px;
+
+        display: block;
+        position: absolute;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('../imgs/design/welcome/pen.svg');
+      }
+    }
     .bottom-text{
       position: absolute;
       margin: auto;
@@ -32,26 +48,106 @@
     }
   }
 
+  section.illustrations{
+    background-color: $yellow;
+    height: 90vh;
+    .col2{
+      align-items: flex-start;
+    }
+    img{
+      margin-left: 85px;
+    }
+  }
+
+  .gallery {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    transform: translateY(-20vh);
+    padding: 0 146px;
+
+    .grid {
+      height: auto;
+    }
+  }
+
+  section.illustrations-gallery{
+    background-color: $grey-bg;
+    height: auto;
+    max-height: initial;
+    .gallery{
+      transform: translateY(-15vh);
+      .grid{
+        grid-template-columns: auto auto auto auto auto auto auto auto auto;
+        grid-gap: 40px;
+        &:first-child{
+          grid-template-rows: 326px;
+          margin-bottom: 40px;
+        }
+        &:last-child{
+          grid-template-rows:263px;
+
+        }
+      }
+    }
+    .mini-contact{
+      height: 100%;
+      width: 440px;
+      border-radius: 10px;
+      background: $violet;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color:$white;
+      p{
+        font-weight: bold;
+        font-size: 60px;
+        line-height: 80%;
+        max-width: 300px;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .cool-button {
+        height: 80px;
+        width: 211px;
+        margin-bottom: 0;
+
+        .border {
+          border: 1px solid $white;
+        }
+
+        .text {
+          font-weight: bold;
+          font-size: 30px;
+          line-height: 80px;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+  }
+
+
   section.webdesign{
     background-color: $yellow;
-    height: 80vh;
+    height: 90vh;
     .col2{
       align-items: flex-start;
     }
   }
 
-  section.webdesign-sub{
+  section.webdesign-gallery{
     background-color: $grey-bg;
-    .imgs-grid{
-      height: 100vh;
-      display: grid;
-      grid-template-columns: 685px 685px 685px 685px;
-      grid-gap: 90px;
-      transform: translateY(-10vh);
-      overflow-x: scroll;
-      padding-left: 146px;
-      img{
-        width: 100%;
+    height: auto;
+    max-height: initial;
+    .gallery{
+      .grid{
+        grid-template-columns: 685px 685px 685px 685px;
+        grid-gap: 90px;
+        img{
+          width: 100%;
+        }
       }
     }
   }
@@ -60,6 +156,7 @@
     background-color: transparent;
     overflow-x: hidden;
     color: $white;
+    margin-bottom: -1px;
 
     .oval{
       background-color: $red;

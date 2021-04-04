@@ -64,14 +64,20 @@ h2{
   line-height: 80%;
   text-transform: uppercase;
   text-align: center;
-  overflow: hidden;
   display: block;
   span{
     display: block;
-    height: 96px;
-    .vertical{
-      overflow: hidden;
+  }
+  &.vertical-move{
+    span{
+      height: 96px;
+      span{
+        overflow: hidden;
+      }
     }
+  }
+  &.side-move{
+    overflow: hidden;
   }
   &.small{
     font-size: 80px;
@@ -176,4 +182,13 @@ section{
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.img-cont{
+  display: flex;
+  margin-bottom: 60px;
+  align-items: center;
+  img{
+    height: 100%;
+  }
 }

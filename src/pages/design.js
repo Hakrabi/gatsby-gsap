@@ -4,8 +4,30 @@ import { gsap } from "gsap";
 import { TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin  } from "gsap/all";
 import Scrollbar from 'smooth-scrollbar';
 
-import Footer from '../parts/footer'
+import LayoutDefault from "../parts/LayoutDefault";
+import CoolButton from "../parts/CoolButton";
 import '../scss/design.scss'
+
+import IllustrationImg from "../imgs/design/illustrations/img.svg"
+
+import Ill1 from "../imgs/design/illustrations-gallery/1.png"
+import Ill2 from "../imgs/design/illustrations-gallery/2.png"
+import Ill3 from "../imgs/design/illustrations-gallery/3.png"
+import Ill4 from "../imgs/design/illustrations-gallery/4.png"
+import Ill5 from "../imgs/design/illustrations-gallery/5.png"
+import Ill6 from "../imgs/design/illustrations-gallery/6.png"
+import Ill7 from "../imgs/design/illustrations-gallery/7.png"
+import Ill8 from "../imgs/design/illustrations-gallery/8.png"
+import Ill10 from "../imgs/design/illustrations-gallery/10.png"
+import Ill11 from "../imgs/design/illustrations-gallery/11.png"
+import Ill12 from "../imgs/design/illustrations-gallery/12.png"
+import Ill13 from "../imgs/design/illustrations-gallery/13.png"
+import Ill14 from "../imgs/design/illustrations-gallery/14.png"
+import Ill15 from "../imgs/design/illustrations-gallery/15.png"
+import Ill16 from "../imgs/design/illustrations-gallery/16.png"
+import Ill17 from "../imgs/design/illustrations-gallery/17.png"
+import Ill18 from "../imgs/design/illustrations-gallery/18.png"
+
 
 import webdesignPanels from "../imgs/design/web-design/panels.svg"
 import webdesignImg1 from "../imgs/design/web-design/1.png"
@@ -29,6 +51,7 @@ import wwuArr2 from "../imgs/design/what-we-use/2.svg"
 import wwuArr3 from "../imgs/design/what-we-use/3.svg"
 import wwuArr4 from "../imgs/design/what-we-use/4.svg"
 
+let Illustrations = [[Ill1, Ill2, Ill3, Ill4, Ill5, Ill6, Ill7, Ill8], [Ill10, Ill11, Ill12, Ill13, Ill14, Ill15, Ill16, Ill17, Ill18]]
 
 let webdesignArr =[webdesignImg1,webdesignImg2,webdesignImg3,webdesignImg4]
 let wwuArr =[wwuArr1,wwuArr2,wwuArr3,wwuArr4]
@@ -40,6 +63,14 @@ gsap.registerPlugin(TimelineLite,TweenLite,ScrollTrigger,ScrollToPlugin);
 class Design extends Component{
     constructor(props) {
         super(props);
+
+        this.WebDesing ={
+            gallery: null,
+        }
+        this.Illustrations ={
+            gallery: null,
+        }
+
     }
     componentDidMount() {
         // Smooth Scroll
@@ -72,15 +103,77 @@ class Design extends Component{
         //         delay: 0
         //     }
         // });
+        let container = this.Illustrations.gallery
+        gsap.to(container, {
+            x: () => -(container.scrollWidth - document.documentElement.clientWidth) - 146 + "px",
+            ease: "none",
+            scrollTrigger: {
+                trigger: container,
+                invalidateOnRefresh: true,
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + container.offsetWidth
+            }
+        })
+
+        let container1 = this.WebDesing.gallery
+        gsap.to(container1, {
+            x: () => -(container1.scrollWidth - document.documentElement.clientWidth) - 146 + "px",
+            ease: "none",
+            scrollTrigger: {
+                trigger: container1,
+                invalidateOnRefresh: true,
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + container1.offsetWidth
+            }
+        })
     }
 
     render(){
         return (
-            <div className="scroller">
+            <LayoutDefault pageName="design">
                 <main id="design">
                     <section className="welcome">
                         <h1>Design & Art</h1>
                         <p className="big bottom-text">What we do?</p>
+                    </section>
+
+                    <section className="illustrations">
+                        <div className="grid">
+                            <div className="col1">
+                                <h2>
+                                    <span ref={span => this.webdesign1 = span}>ILLUS</span>
+                                    <span ref={span => this.webdesign2 = span}>TRATI</span>
+                                    <span ref={span => this.webdesign3 = span}>ONS</span>
+                                </h2>
+                            </div>
+                            <div className="col2">
+                                <img className='mb' src={IllustrationImg} alt=""/>
+                                <p className="big mw444">
+                                    No more stock photos and boring diagrams, all the visuals are made to broadcast your specific values and your brand personality, tell your story and be simply great.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="illustrations-gallery">
+                        <div className="gallery"  ref={div => this.Illustrations.gallery = div}>
+                            <div className="grid">
+                                {Illustrations[0].map((e,index)=>{
+                                    return <img key={index} src={e} alt=""/>
+                                })}
+                                <div className="mini-contact">
+                                    <p>DO YOU LIKE IT?</p>
+                                    <CoolButton to='/contact'>CONTACT US</CoolButton>
+                                </div>
+                            </div>
+                            <div className="grid">
+                                {Illustrations[1].map((e,index)=>{
+                                    return <img key={index} src={e} alt=""/>
+                                })}
+                            </div>
+                        </div>
                     </section>
 
                     <section className="webdesign">
@@ -101,11 +194,13 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="webdesign-sub">
-                        <div className="imgs-grid">
-                            {webdesignArr.map(e=>{
-                                return <img src={e} alt=""/>
-                            })}
+                    <section className="webdesign-gallery">
+                        <div className="gallery"  ref={div => this.WebDesing.gallery = div}>
+                            <div className="grid">
+                                {webdesignArr.map((e,index)=>{
+                                    return <img key={index} src={e} alt=""/>
+                                })}
+                            </div>
                         </div>
                     </section>
 
@@ -177,8 +272,7 @@ class Design extends Component{
                     </section>
 
                 </main>
-                <Footer/>
-            </div>
+            </LayoutDefault>
         )
     }
 }
