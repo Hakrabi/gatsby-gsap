@@ -1,6 +1,6 @@
 import React, {Component} from "react"
-import { Link } from "gatsby";
 import { gsap } from "gsap";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 class FooterLink extends Component{
     constructor(props) {
@@ -29,12 +29,12 @@ class FooterLink extends Component{
     render() {
         return (
             <div ref={div => this.linkRef = div}>
-                <Link
+                <AniLink paintDrip hex="#525375"
                     to={this.props.to}
                     onMouseOver = {this.runAnim}
                     onMouseLeave = {this.runAnim}>
                     {this.props.children}
-                </Link>
+                </AniLink>
             </div>
         );
     }

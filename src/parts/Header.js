@@ -1,11 +1,11 @@
 import React, {Component} from "react"
-import { Link } from "gatsby";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 
 import '../scss/header.scss'
 import Scrollbar from "smooth-scrollbar";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +14,7 @@ class Header extends Component{
     constructor(props) {
         super(props);
 
-        this.logo = null;
+        this.trigger = null;
         this.header = null;
 
     }
@@ -33,11 +33,11 @@ class Header extends Component{
         bodyScrollBar.addListener(ScrollTrigger.update);
         ScrollTrigger.defaults({ scroller: scroller });
 
-        gsap.to(this.logo,
+        gsap.to(this.header,
             {y: -100,
                 ease:"power3.easeOut",
                 scrollTrigger: {
-                    trigger: this.header,
+                    trigger: this.trigger,
                     start: 100,
                     toggleActions: 'play none none reverse'
                     // scrub: true
@@ -49,9 +49,9 @@ class Header extends Component{
     render() {
         return (
             <>
-               <div ref={div => this.header = div}/>
-               <header>
-                   <Link className="logo" to="/" ref={Link => this.logo = Link}/>
+               <div ref={div => this.trigger = div}/>
+               <header ref={header => this.header = header}>
+                   <AniLink paintDrip hex="#525375" className="logo" to="/"/>
                    {/*<div className="nav-toggle">*/}
                    {/*    /!*<span/>*!/*/}
                    {/*    /!*<span/>*!/*/}

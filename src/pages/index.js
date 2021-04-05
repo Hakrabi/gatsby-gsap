@@ -4,6 +4,8 @@ import { gsap } from "gsap";
 import { TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin  } from "gsap/all";
 import Scrollbar from 'smooth-scrollbar';
 
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 import LayoutDefault from '../parts/LayoutDefault'
 import '../scss/home.scss'
 
@@ -95,7 +97,7 @@ class Home extends Component{
             head: [],
             img: [],
         }
-
+        this.moveSection = this.moveSection.bind(this)
     }
 
     componentDidMount(){
@@ -117,16 +119,40 @@ class Home extends Component{
         // gsap.utils.toArray("section").forEach((panel, i) => {
         //     ScrollTrigger.create({
         //         trigger: panel,
+        //         onEnter: () => goToSection(i)
+        //     });
+        //
+        //     ScrollTrigger.create({
+        //         trigger: panel,
+        //         start: "bottom bottom",
+        //         onEnterBack: () => goToSection(i),
+        //     });
+        // });
+        //
+        // function goToSection(i, anim) {
+        //     gsap.to(window, {
+        //         scrollTo: {y: i*innerHeight, autoKill: false},
+        //         duration: 1
+        //     });
+        //
+        //     if(anim) {
+        //         anim.restart();
+        //     }
+        // }
+
+        // gsap.utils.toArray("section").forEach((panel, i) => {
+        //     ScrollTrigger.create({
+        //         trigger: panel,
         //         start: "top top",
-        //         pin: true,
-                // pinSpacing: false
-            // });
+        //         // pin: true,
+        //         pinSpacing: false
+        //     });
         // });
         //
         // ScrollTrigger.create({
         //     snap: {
         //         snapTo : 1 / 10,
-        //         duration: {min: 0, max: 1},
+        //         duration: {min: 0, max: 0.1},
         //         delay: 0
         //     }
         // });
@@ -257,17 +283,31 @@ class Home extends Component{
         })
         .from(this.WhyCCL.head, 0.5, {height: 0} )
         .from(this.WhyCCL.text, 0.5, {x:'60vw'},"-=0.5")
+    }
 
+    moveSection(event){
+        if(this.state.lastScrollPos > event.currentTarget.scrollTop) {
+            this.setState({
+                direction:'top',
+                lastScrollPos:event.currentTarget.scrollTop
+            });
+            console.log('scrolling up');
 
-
+        } else if(this.state.lastScrollPos < event.currentTarget.scrollTop) {
+            this.setState({
+                direction:'bottom',
+                lastScrollPos:event.currentTarget.scrollTop
+            });
+            console.log('scrolling down');
+        }
     }
 
     render(){
     return (
-        <LayoutDefault pageName="home">
+        <LayoutDefault pageName="home" onScroll={e => this.moveSection(e)}>
             <main id="home">
                 <section className="welcome">
-                    <h1>We build the best brands and websites in the world. Just <Link to='/contact'>ask us</Link>.</h1>
+                    <h1>We build the best brands and websites in the world. Just <AniLink paintDrip hex="#525375" to='/contact'>ask us</AniLink>.</h1>
                 </section>
 
                 <section className="what-we-do">

@@ -1,8 +1,8 @@
 import React, {Component} from "react"
-import { Link } from "gatsby";
 import { gsap } from "gsap";
 
 import '../scss/CoolButton.scss'
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 class CoolButton extends Component{
     constructor(props) {
@@ -57,7 +57,7 @@ class CoolButton extends Component{
 
     render() {
         return (
-            <Link
+            <AniLink paintDrip hex="#525375"
                 to={this.props.to}>
                 <div className="cool-button">
                     <div className="fill" ref={div => this.fill = div}/>
@@ -69,7 +69,7 @@ class CoolButton extends Component{
                         {this.props.children}
                     </div>
                 </div>
-            </Link>
+            </AniLink>
         );
     }
 }
