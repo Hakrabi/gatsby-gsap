@@ -28,38 +28,14 @@ class FooterContact extends Component{
     }
 
     componentDidMount() {
-        // const scroller = document.querySelector('.scroller');
-        // const bodyScrollBar = Scrollbar.init(scroller, {damping: 0.05, delegateTo: document, alwaysShowTracks: false});
-        // ScrollTrigger.scrollerProxy(".scroller", {
-        //     scrollTop(value) {
-        //         if (arguments.length) {
-        //             bodyScrollBar.scrollTop = value;
-        //         }
-        //         return bodyScrollBar.scrollTop;
-        //     }
-        // });
-        // bodyScrollBar.addListener(ScrollTrigger.update);
-        // ScrollTrigger.defaults({scroller: scroller});
 
-        // gsap.from(this.HeadRefs,
-        //     {height: 0,
-        //         ease: "power3.easeOut",
-        //         scrollTrigger: {
-        //             trigger: this.Section,
-        //             start: "bottom bottom+=40px",
-        //             end: "top top",
-        //             openActions: 'play none none reverse'
-        //             // scrub: true
-        //         }
-        //     }
-        // );
     }
 
 
     render() {
         if(this.Visability){
             return (
-                <section className="still-reading" ref={section => this.Section = section}>
+                <section className="still-reading" ref={this.props.inputRef}>
                     <div className="container flex-center">
                         <h2 className="mb vertical-move">
                             {this.Head.map((text,index)=>{

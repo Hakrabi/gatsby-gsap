@@ -20,18 +20,18 @@ class Header extends Component{
     }
 
     componentDidMount() {
-        const scroller = document.querySelector('.scroller');
-        const bodyScrollBar = Scrollbar.init(scroller, { damping: 0.05, delegateTo: document, alwaysShowTracks: false });
-        ScrollTrigger.scrollerProxy(".scroller", {
-            scrollTop(value) {
-                if (arguments.length) {
-                    bodyScrollBar.scrollTop = value;
-                }
-                return bodyScrollBar.scrollTop;
-            }
-        });
-        bodyScrollBar.addListener(ScrollTrigger.update);
-        ScrollTrigger.defaults({ scroller: scroller });
+        // const scroller = document.querySelector('.scroller');
+        // const bodyScrollBar = Scrollbar.init(scroller, { damping: 0.05, delegateTo: document, alwaysShowTracks: false });
+        // ScrollTrigger.scrollerProxy(".scroller", {
+        //     scrollTop(value) {
+        //         if (arguments.length) {
+        //             bodyScrollBar.scrollTop = value;
+        //         }
+        //         return bodyScrollBar.scrollTop;
+        //     }
+        // });
+        // bodyScrollBar.addListener(ScrollTrigger.update);
+        // ScrollTrigger.defaults({ scroller: scroller });
 
         gsap.to(this.header,
             {y: -100,

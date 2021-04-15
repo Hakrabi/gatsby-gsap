@@ -7,6 +7,7 @@ import "../scss/contact.scss"
 
 
 import Img from "../imgs/contact/hello.svg"
+import FooterMenu from "../parts/Footer/FooterMenu";
 
 class Contact extends Component{
     constructor(props) {
@@ -18,6 +19,8 @@ class Contact extends Component{
             email: '',
             msg: '',
         }
+        this.MainContact = null
+        this.FooterMenu = null;
 
         this.question = null
 
@@ -26,6 +29,10 @@ class Contact extends Component{
 
     componentDidMount() {
         gsap.to(this.question, {opacity: 0, yoyo: true, duration: 0.6, repeat:-1})
+        this.Sections = [
+            this.MainContact,
+            this.FooterMenu
+        ]
     }
 
     handleChange(event) {
@@ -38,9 +45,9 @@ class Contact extends Component{
     }
     render() {
         return (
-            <LayoutDefault pageName="contact">
+            <LayoutDefault Sections={this.Sections}>
                 <main id="contact">
-                    <section className="contact-form">
+                    <section className="contact-form" ref={section => this.MainContact = section}>
                         <div className="grid">
                             <div className="col1">
                                 <h1>WHY NOT SAY HELLO<span ref={span => this.question = span}>?</span></h1>
@@ -89,6 +96,9 @@ class Contact extends Component{
                         <div className="paint"/>
                     </section>
                 </main>
+                <footer>
+                    <FooterMenu inputRef={el => this.FooterMenu = el}/>
+                </footer>
             </LayoutDefault>
         );
     }

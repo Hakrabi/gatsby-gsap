@@ -4,17 +4,15 @@ import {TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin} from "gsap/all";
 import Scrollbar from "smooth-scrollbar";
 
 import FooterLink from "./FooterLink";
-import FooterContact from "./FooterContact"
+// import FooterContact from "./FooterContact"
 
 import '../../scss/footer.scss'
 
 gsap.registerPlugin(TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin);
 
-class Footer extends Component {
+class FooterMenu extends Component {
     constructor(props) {
         super(props);
-
-        this.linksSection = null;
 
         this.Menu = {
             anim: null,
@@ -33,20 +31,6 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        const scroller = document.querySelector('.scroller');
-        const bodyScrollBar = Scrollbar.init(scroller, {damping: 0.05, delegateTo: document, alwaysShowTracks: false});
-        ScrollTrigger.scrollerProxy(".scroller", {
-            scrollTop(value) {
-                if (arguments.length) {
-                    bodyScrollBar.scrollTop = value;
-                }
-                return bodyScrollBar.scrollTop;
-            }
-        });
-        bodyScrollBar.addListener(ScrollTrigger.update);
-        ScrollTrigger.defaults({scroller: scroller});
-
-
         gsap.set(this.Menu.block, {
             zIndex: 3,
             borderRadius: '50% 0 0 50% ',
@@ -54,9 +38,7 @@ class Footer extends Component {
             height: 200,
             right: -100,
         })
-        // gsap.set([this.socialController,this.social], {
-        //     left: -200,
-        // })
+
     }
 
     overSocial = () =>{
@@ -128,47 +110,42 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer>
-                <FooterContact pageName={this.props.pageName}/>
-
-                <section className="links" ref={section => this.linksSection = section}>
-                    <div className="social wrapper" ref={div => this.Social.block = div}>
-                        <div className="link-block">
-                            <FooterLink to=''>FACEBOOK</FooterLink>
-                            <FooterLink to=''>INSTAGRAM</FooterLink>
-                            <FooterLink to=''>LINKEDIN</FooterLink>
-                            <FooterLink to=''>BEHANCE</FooterLink>
-                            <FooterLink to=''>EMAIL</FooterLink>
-                        </div>
+            <section className="links" ref={this.props.inputRef}>
+                <div className="social wrapper" ref={div => this.Social.block = div}>
+                    <div className="link-block">
+                        <FooterLink to='/'>FACEBOOK</FooterLink>
+                        <FooterLink to='/'>INSTAGRAM</FooterLink>
+                        <FooterLink to='/'>LINKEDIN</FooterLink>
+                        <FooterLink to='/'>BEHANCE</FooterLink>
+                        <FooterLink to='/'>EMAIL</FooterLink>
                     </div>
-                    <div className="controller left" ref={div => this.Social.controller = div}
-                         onMouseOver={this.overSocial}
-                         onMouseLeave={this.outSocial}
-                         onClick={this.openSocial}>
-                        <div className="text">SOCIAL</div>
-                        <div className="arrow" ref={div => this.Social.arrow = div}/>
+                </div>
+                <div className="controller left" ref={div => this.Social.controller = div}
+                     onMouseOver={this.overSocial}
+                     onMouseLeave={this.outSocial}
+                     onClick={this.openSocial}>
+                    <div className="text">SOCIAL</div>
+                    <div className="arrow" ref={div => this.Social.arrow = div}/>
+                </div>
+                <div className="menu wrapper closed" ref={div => this.Menu.block = div}>
+                    <div className="link-block">
+                        <FooterLink to='/'>Home</FooterLink>
+                        <FooterLink to='/'>Our Work</FooterLink>
+                        <FooterLink to='/'>Services</FooterLink>
+                        <FooterLink to='/'>About Us</FooterLink>
+                        <FooterLink to='/'>Contact</FooterLink>
                     </div>
-                    <div className="menu wrapper closed" ref={div => this.Menu.block = div}>
-                        <div className="link-block">
-                            <FooterLink to=''>Home</FooterLink>
-                            <FooterLink to=''>Our Work</FooterLink>
-                            <FooterLink to=''>Services</FooterLink>
-                            <FooterLink to=''>About Us</FooterLink>
-                            <FooterLink to=''>Contact</FooterLink>
-                        </div>
-                    </div>
-                    <div className="controller right closed" ref={div => this.Menu.controller = div}
-                         onMouseOver ={this.overMenu}
-                         onMouseLeave ={this.outMenu}
-                         onClick={this.openMenu}>
-                        <div className="arrow" ref={div => this.Menu.arrow = div} />
-                        <div className="text">MENU</div>
-                    </div>
-                </section>
-
-            </footer>
+                </div>
+                <div className="controller right closed" ref={div => this.Menu.controller = div}
+                     onMouseOver ={this.overMenu}
+                     onMouseLeave ={this.outMenu}
+                     onClick={this.openMenu}>
+                    <div className="arrow" ref={div => this.Menu.arrow = div} />
+                    <div className="text">MENU</div>
+                </div>
+            </section>
         );
     }
 }
 
-export default Footer
+export default FooterMenu

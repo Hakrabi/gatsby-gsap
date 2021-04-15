@@ -50,8 +50,11 @@ import wwuArr1 from "../imgs/design/what-we-use/1.svg"
 import wwuArr2 from "../imgs/design/what-we-use/2.svg"
 import wwuArr3 from "../imgs/design/what-we-use/3.svg"
 import wwuArr4 from "../imgs/design/what-we-use/4.svg"
+import FooterContact from "../parts/Footer/FooterContact";
+import FooterMenu from "../parts/Footer/FooterMenu";
 
-let Illustrations = [[Ill1, Ill2, Ill3, Ill4, Ill5, Ill6, Ill7, Ill8], [Ill10, Ill11, Ill12, Ill13, Ill14, Ill15, Ill16, Ill17, Ill18]]
+let Illustrations = [[Ill1, Ill2, Ill3, Ill4, Ill5, Ill6, Ill7, Ill8],
+                        [Ill10, Ill11, Ill12, Ill13, Ill14, Ill15, Ill16, Ill17, Ill18]]
 
 let webdesignArr =[webdesignImg1,webdesignImg2,webdesignImg3,webdesignImg4]
 let wwuArr =[wwuArr1,wwuArr2,wwuArr3,wwuArr4]
@@ -64,46 +67,87 @@ class Design extends Component{
     constructor(props) {
         super(props);
 
-        this.WebDesing ={
-            gallery: null,
+        this.Welcome ={
+            section: null,
         }
+
         this.Illustrations ={
-            gallery: null,
+            anim: null,
+            section: null,
+            text: null,
+            head: []
         }
+
+        this.IllustrationsGallery ={
+            anim: null,
+            section: null,
+            gallery: null,
+            circle: null,
+            text: null,
+            head: [],
+            img: [],
+            star: null,
+        }
+
+        this.WebDesign ={
+            anim: null,
+            section: null,
+            circle: null,
+            text: null,
+            head: [],
+            img: [],
+        }
+
+        this.WebDesignGallery ={
+            anim: null,
+            section: null,
+            gallery: null,
+            text: null,
+            head: [],
+        }
+
+        this.Page404 ={
+            anim: null,
+            section: null,
+            text: null,
+            head: [],
+            img: [],
+        }
+        this.Presentation ={
+            anim: null,
+            section: null,
+            text: null,
+            head: [],
+            img: [],
+        }
+        this.WWU ={
+            anim: null,
+            section: null,
+            text: null,
+            head: [],
+            img: [],
+        }
+
+        this.FooterContact = null;
+        this.FooterMenu = null;
 
     }
     componentDidMount() {
         // Smooth Scroll
-        const scroller = document.querySelector('.scroller');
-        const bodyScrollBar = Scrollbar.init(scroller, { damping: 0.05, delegateTo: document, alwaysShowTracks: false });
-        ScrollTrigger.scrollerProxy(".scroller", {
-            scrollTop(value) {
-                if (arguments.length) {
-                    bodyScrollBar.scrollTop = value;
-                }
-                return bodyScrollBar.scrollTop;
-            }
-        });
-        bodyScrollBar.addListener(ScrollTrigger.update);
-        ScrollTrigger.defaults({ scroller: scroller });
-
-        // gsap.utils.toArray("section").forEach((panel, i) => {
-        //     ScrollTrigger.create({
-        //         trigger: panel,
-        //         start: "top top",
-        //         // pin: true,
-        //         pinSpacing: false
-        //     });
-        // });
-        //
-        // ScrollTrigger.create({
-        //     snap: {
-        //         snapTo : 1 / 6,
-        //         duration: {min: 0, max: 1},
-        //         delay: 0
+        // const scroller = document.querySelector('.scroller');
+        // const bodyScrollBar = Scrollbar.init(scroller, { damping: 0.05, delegateTo: document, alwaysShowTracks: false });
+        // ScrollTrigger.scrollerProxy(".scroller", {
+        //     scrollTop(value) {
+        //         if (arguments.length) {
+        //             bodyScrollBar.scrollTop = value;
+        //         }
+        //         return bodyScrollBar.scrollTop;
         //     }
         // });
-        let container = this.Illustrations.gallery
+        // bodyScrollBar.addListener(ScrollTrigger.update);
+        // ScrollTrigger.defaults({ scroller: scroller });
+
+        let container = this.IllustrationsGallery.gallery
         gsap.to(container, {
             x: () => -(container.scrollWidth - document.documentElement.clientWidth) - 146 + "px",
             ease: "none",
@@ -116,7 +160,7 @@ class Design extends Component{
             }
         })
 
-        let container1 = this.WebDesing.gallery
+        let container1 = this.WebDesignGallery.gallery
         gsap.to(container1, {
             x: () => -(container1.scrollWidth - document.documentElement.clientWidth) - 146 + "px",
             ease: "none",
@@ -128,18 +172,32 @@ class Design extends Component{
                 end: () => "+=" + container1.offsetWidth
             }
         })
+
+        this.Sections = [
+            this.Welcome.section,
+            this.Illustrations.section,
+            this.IllustrationsGallery.section,
+            this.WebDesign.section,
+            this.WebDesignGallery.section,
+            this.Page404.section,
+            this.Presentation.section,
+            this.WWU.section,
+            this.FooterContact,
+            this.FooterMenu
+        ]
+
     }
 
     render(){
         return (
-            <LayoutDefault pageName="design">
+            <LayoutDefault pageName="design" Sections={this.Sections}>
                 <main id="design">
-                    <section className="welcome">
+                    <section className="welcome" ref={section => this.Welcome.section = section}>
                         <h1>Design & Art</h1>
                         <p className="big bottom-text">What we do?</p>
                     </section>
 
-                    <section className="illustrations">
+                    <section className="illustrations" ref={section => this.Illustrations.section = section}>
                         <div className="grid">
                             <div className="col1">
                                 <h2>
@@ -157,8 +215,8 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="illustrations-gallery">
-                        <div className="gallery"  ref={div => this.Illustrations.gallery = div}>
+                    <section className="illustrations-gallery" ref={section => this.IllustrationsGallery.section = section} onScroll={e => e.default}>
+                        <div className="gallery"  ref={div => this.IllustrationsGallery.gallery = div}>
                             <div className="grid">
                                 {Illustrations[0].map((e,index)=>{
                                     return <img key={index} src={e} alt=""/>
@@ -176,7 +234,7 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="webdesign">
+                    <section className="webdesign" ref={section => this.WebDesign.section = section}>
                         <div className="grid">
                             <div className="col1">
                                 <h2>
@@ -194,8 +252,8 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="webdesign-gallery">
-                        <div className="gallery"  ref={div => this.WebDesing.gallery = div}>
+                    <section className="webdesign-gallery" ref={section => this.WebDesignGallery.section = section}>
+                        <div className="gallery"  ref={div => this.WebDesignGallery.gallery = div}>
                             <div className="grid">
                                 {webdesignArr.map((e,index)=>{
                                     return <img key={index} src={e} alt=""/>
@@ -204,7 +262,7 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="page-404">
+                    <section className="page-404" ref={section => this.Page404.section = section}>
                         <div className="oval">
                             <div className="grid">
                                 <div className="col1 col-center">
@@ -228,7 +286,7 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="presentation">
+                    <section className="presentation" ref={section => this.Presentation.section = section}>
                         <div className="oval">
                             <div className="grid mw900">
                                 <div className="col1 col-center">
@@ -249,7 +307,7 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="what-we-use">
+                    <section className="what-we-use" ref={section => this.WWU.section = section}>
                         <div className="grid">
                             <div className="col1">
                                 <h2>
@@ -270,8 +328,11 @@ class Design extends Component{
                             </div>
                         </div>
                     </section>
-
                 </main>
+                <footer>
+                    <FooterContact inputRef={el => this.FooterContact = el} pageName="home"/>
+                    <FooterMenu inputRef={el => this.FooterMenu = el}/>
+                </footer>
             </LayoutDefault>
         )
     }

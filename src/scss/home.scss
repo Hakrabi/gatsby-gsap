@@ -70,10 +70,10 @@
 
 
   section.webdev {
-    //height: 100vh;
-    .grid {
-      height: 95%;
-    }
+    height: 95vh;
+    //.grid {
+    //  height: 95%;
+    //}
 
     h2 {
       max-width: 277px;
@@ -111,13 +111,12 @@
 
   section.design {
     height: calc(100vh + 50px);
+    position: relative;
     .circle {
       background-color: $yellow;
     }
-
     .container {
-      height: 95%;
-
+      height: 95vh;
       h2 {
         max-width: 500px;
       }
@@ -145,17 +144,21 @@
     background-color: $yellow;
     color: $white;
     height: calc(100vh + 50px);
+    position: relative;
 
     .circle {
-      position: relative;
       background-color: $red;
     }
 
+    .container{
+      height: 100vh;
+    }
+
     .grid {
-      height: 80%;
-      padding-bottom: 15%;
-      align-items: flex-end;
-      justify-items: center;
+      //height: 80%;
+      //padding-bottom: 15%;
+      //align-items: flex-end;
+      //justify-items: center;
     }
     .img-cont{
       height: 156px;
@@ -227,3 +230,4 @@
     margin-bottom: -1px;
   }
 }
+

@@ -29,6 +29,8 @@ import designImg2 from "../imgs/home/design/desing2.svg"
 import mobdevImg from "../imgs/home/mobdev/mobdev.svg"
 
 import techImg from "../imgs/home/tech/tech.svg"
+import FooterContact from "../parts/Footer/FooterContact";
+import FooterMenu from "../parts/Footer/FooterMenu";
 
 
 let clientsArr =[client1,client2,client3,client4,client5]
@@ -43,9 +45,11 @@ class Home extends Component{
     constructor(props) {
         super(props);
 
-        this.body = null;
-
         this.scrollTo = null;
+
+        this.Welcome ={
+            section: null,
+        }
 
         this.WWD ={
             anim: null,
@@ -53,7 +57,6 @@ class Home extends Component{
             text: null,
             head: []
         }
-
 
         this.webdevAnim = null;
         this.webdevSection = null;
@@ -97,65 +100,27 @@ class Home extends Component{
             head: [],
             img: [],
         }
-        this.moveSection = this.moveSection.bind(this)
+        this.Clients ={
+            anim: null,
+            section: null,
+            text: null,
+            head: [],
+            img: [],
+        }
+        this.Tech ={
+            anim: null,
+            section: null,
+            text: null,
+            head: [],
+            img: [],
+        }
+
+        this.FooterContact = null;
+        this.FooterMenu = null;
+
     }
 
     componentDidMount(){
-
-        // Smooth Scroll
-        const scroller = document.querySelector('.scroller');
-        const bodyScrollBar = Scrollbar.init(scroller, { damping: 0.05, delegateTo: document, alwaysShowTracks: false });
-        ScrollTrigger.scrollerProxy(".scroller", {
-            scrollTop(value) {
-                if (arguments.length) {
-                    bodyScrollBar.scrollTop = value;
-                }
-                return bodyScrollBar.scrollTop;
-            }
-        });
-        bodyScrollBar.addListener(ScrollTrigger.update);
-        ScrollTrigger.defaults({ scroller: scroller });
-
-        // gsap.utils.toArray("section").forEach((panel, i) => {
-        //     ScrollTrigger.create({
-        //         trigger: panel,
-        //         onEnter: () => goToSection(i)
-        //     });
-        //
-        //     ScrollTrigger.create({
-        //         trigger: panel,
-        //         start: "bottom bottom",
-        //         onEnterBack: () => goToSection(i),
-        //     });
-        // });
-        //
-        // function goToSection(i, anim) {
-        //     gsap.to(window, {
-        //         scrollTo: {y: i*innerHeight, autoKill: false},
-        //         duration: 1
-        //     });
-        //
-        //     if(anim) {
-        //         anim.restart();
-        //     }
-        // }
-
-        // gsap.utils.toArray("section").forEach((panel, i) => {
-        //     ScrollTrigger.create({
-        //         trigger: panel,
-        //         start: "top top",
-        //         // pin: true,
-        //         pinSpacing: false
-        //     });
-        // });
-        //
-        // ScrollTrigger.create({
-        //     snap: {
-        //         snapTo : 1 / 10,
-        //         duration: {min: 0, max: 0.1},
-        //         delay: 0
-        //     }
-        // });
 
         //What We Do Section
         this.WWD.anim = new TimelineLite({
@@ -207,14 +172,13 @@ class Home extends Component{
         this.webdevAnim.to(this.webdev3,0.4,{ ease:"power3.easeOut", x:'0%'}, "-=0.2");
         this.webdevAnim.to(this.webdev4,0.4,{ ease:"power3.easeOut", x:'0%'}, "-=0.2");
 
-
-
         //Design
         this.Design.anim = new TimelineLite({
             ease:"power3.easeOut",
             scrollTrigger: {
                 trigger: this.Design.section,
-                start: "center 40% top",
+                // start: "center 40% top",
+                start: "bottom bottom+=40px",
                 // end:"top top",
                 toggleActions: 'play none none reverse',
                 // scrub: true
@@ -226,18 +190,19 @@ class Home extends Component{
         .from(this.Design.head[1], 0.4, {opacity: 0, y: 500,rotate:-40},  "-=0.4")
         .from(this.Design.text, 0.3, {opacity: 0, y: 500}, "-=0.2")
         .from(this.Design.star, 0.8, {ease:"elastic.out", scale:0}, "+=0.5");
-
         gsap.to(this.Design.circle, {
-            borderRadius: 0,
+            // borderRadius: 0,
+            height:"140vh",
+            width:"140vw",
             ease:"power3.easeOut",
+            duration: 1,
             scrollTrigger: {
                 trigger: this.Design.section,
-                start: "top top-=50px",
-                pin: true,
+                start: "center top",
                 toggleActions: 'play none none reverse',
-                scrub: true
             }
         });
+
 
         //Mobdev
         this.Mobdev.anim = new TimelineLite({
@@ -245,7 +210,7 @@ class Home extends Component{
             scrollTrigger: {
                 trigger: this.Mobdev.section,
                 start: "bottom bottom+=40px",
-                end:"top top",
+                // end:"top top",
                 toggleActions: 'play none none reverse'
                 // scrub: true
             }
@@ -257,15 +222,14 @@ class Home extends Component{
         .from(this.Mobdev.img[0], 0.3, {height: 0}, "-=0.5")
 
         gsap.to(this.Mobdev.circle, {
-            borderRadius: 0,
+            height:"140vh",
+            width:"140vw",
             ease:"power3.easeOut",
+            duration: 1,
             scrollTrigger: {
                 trigger: this.Mobdev.section,
-                start: "top top-=50px",
-                pin: true,
-                // end:"bottom bottom",
+                start: "center top",
                 toggleActions: 'play none none reverse',
-                scrub: true
             }
         });
 
@@ -283,30 +247,28 @@ class Home extends Component{
         })
         .from(this.WhyCCL.head, 0.5, {height: 0} )
         .from(this.WhyCCL.text, 0.5, {x:'60vw'},"-=0.5")
-    }
 
-    moveSection(event){
-        if(this.state.lastScrollPos > event.currentTarget.scrollTop) {
-            this.setState({
-                direction:'top',
-                lastScrollPos:event.currentTarget.scrollTop
-            });
-            console.log('scrolling up');
+        this.Sections = [
+            this.Welcome.section,
+            this.WWD.section,
+            this.webdevSection,
+            this.Design.section,
+            this.Mobdev.section,
+            this.WhyCCL.section,
+            this.Team.section,
+            this.Clients.section,
+            this.Tech.section,
+            this.FooterContact,
+            this.FooterMenu
+        ]
 
-        } else if(this.state.lastScrollPos < event.currentTarget.scrollTop) {
-            this.setState({
-                direction:'bottom',
-                lastScrollPos:event.currentTarget.scrollTop
-            });
-            console.log('scrolling down');
-        }
     }
 
     render(){
     return (
-        <LayoutDefault pageName="home" onScroll={e => this.moveSection(e)}>
+        <LayoutDefault Sections={this.Sections}>
             <main id="home">
-                <section className="welcome">
+                <section className="welcome" ref={section => this.Welcome.section = section}>
                     <h1>We build the best brands and websites in the world. Just <AniLink paintDrip hex="#525375" to='/contact'>ask us</AniLink>.</h1>
                 </section>
 
@@ -370,10 +332,10 @@ class Home extends Component{
                     </div>
                 </section>
 
-                <section className="design" ref={section => this.Design.section = section}>
+                <section className="design">
                     <div className="circle" ref={div => this.Design.circle = div}>
                         <div className="anchor-arrow"/>
-                        <div className="container flex-center">
+                        <div className="container flex-center" ref={div => this.Design.section = div}>
                             <div className="img-cont">
                                 <img src={designImg1} ref={img => this.Design.img[0] = img} alt=""/>
                                 <img src={designImg2} ref={img => this.Design.img[1] = img} alt=""/>
@@ -393,38 +355,40 @@ class Home extends Component{
                                 will remember at first sight and forever.
                             </p>
                         </div>
-                        <div className="star" ref={div => this.Design.star = div}/>
                     </div>
+                    <div className="star" ref={div => this.Design.star = div}/>
                 </section>
 
-                <section className="mobdev" ref={section => this.Mobdev.section = section}>
+                <section className="mobdev">
                     <div className="circle" ref={div => this.Mobdev.circle = div}>
                         <div className="anchor-arrow"/>
-                        <div className="grid mw900">
-                            <div className="col1">
-                                <p className='mw375' ref={p => this.Mobdev.text = p}>
-                                    Mobile apps are a new trend in user interaction with content. Therefore, we make
-                                    mobile-friendly projects.<br/><br/>
-                                    But sometimes a company needs a full-fledged mobile application, not a mobile
-                                    version
-                                    of the site. And then we make applications that you want to open even for no reason
-                                    and put them in the most prominent place on the screen.<br/><br/>
-                                    Our mobile applications give a new status to your business and become a convenient,
-                                    beautiful solution for the client. But the main thing is that our applications
-                                    really
-                                    solve user’s problems promptly and efficiently.<br/><br/>
-                                    This is a key advantage...
-                                </p>
-                            </div>
-                            <div className="col2 col-center">
-                                <div className="img-cont">
-                                    <img className="mb" src={mobdevImg} ref={img => this.Mobdev.img[0] = img} alt=""/>
+                        <div className="container" ref={div => this.Mobdev.section = div}>
+                            <div className="grid mw900">
+                                <div className="col1">
+                                    <p className='mw375' ref={p => this.Mobdev.text = p}>
+                                        Mobile apps are a new trend in user interaction with content. Therefore, we make
+                                        mobile-friendly projects.<br/><br/>
+                                        But sometimes a company needs a full-fledged mobile application, not a mobile
+                                        version
+                                        of the site. And then we make applications that you want to open even for no reason
+                                        and put them in the most prominent place on the screen.<br/><br/>
+                                        Our mobile applications give a new status to your business and become a convenient,
+                                        beautiful solution for the client. But the main thing is that our applications
+                                        really
+                                        solve user’s problems promptly and efficiently.<br/><br/>
+                                        This is a key advantage...
+                                    </p>
                                 </div>
-                                <h2 className="side-move">
-                                    <span ref={span => this.Mobdev.head[0] = span}>MOBILE</span>
-                                    <span ref={span => this.Mobdev.head[1] = span}>DEVELO</span>
-                                    <span ref={span => this.Mobdev.head[2] = span}>PMENT</span>
-                                </h2>
+                                <div className="col2 col-center">
+                                    <div className="img-cont">
+                                        <img className="mb" src={mobdevImg} ref={img => this.Mobdev.img[0] = img} alt=""/>
+                                    </div>
+                                    <h2 className="side-move">
+                                        <span ref={span => this.Mobdev.head[0] = span}>MOBILE</span>
+                                        <span ref={span => this.Mobdev.head[1] = span}>DEVELO</span>
+                                        <span ref={span => this.Mobdev.head[2] = span}>PMENT</span>
+                                    </h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -476,7 +440,7 @@ class Home extends Component{
                     </div>
                 </section>
 
-                <section className="clients">
+                <section className="clients" ref={section => this.Clients.section = section}>
                     <div className="oval">
                         <div className="anchor-arrow"/>
                         <div className="container flex-center">
@@ -499,7 +463,7 @@ class Home extends Component{
                     </div>
                 </section>
 
-                <section className="tech">
+                <section className="tech" ref={section => this.Tech.section = section}>
                     <div className="grid mw900">
                         <div className="col1">
                             <h2>
@@ -524,6 +488,10 @@ class Home extends Component{
                     </div>
                 </section>
             </main>
+            <footer>
+                <FooterContact inputRef={el => this.FooterContact = el} pageName="home"/>
+                <FooterMenu inputRef={el => this.FooterMenu = el}/>
+            </footer>
         </LayoutDefault>
     )
   }
