@@ -42,16 +42,22 @@ class LayoutDefault extends Component{
     componentDidMount() {
         // gsap.to(window, {duration: 1, scrollTo: 0});
         window.addEventListener('keydown', this.handleKey,{passive: false});
+        window.addEventListener('wheel', this.handleWheel,{passive: false});
     }
     //
     componentWillUnmount() {
         window.removeEventListener('keydown', this.handleKey,{passive: false});
+        window.removeEventListener('wheel', this.handleWheel,{passive: false});
+
     }
 
     goToPrevSlide() {
         let index = this.state.currentSection
 
-        if(index > 0){
+        if(this.state.scrollActive && index > 0){
+            this.setState({
+                scrollActive:false
+            });
             gsap.to(window, {duration: 1, scrollTo:{y: this.props.Sections[index - 1]},
                 onComplete:()=>{
                     this.setState({
@@ -60,17 +66,16 @@ class LayoutDefault extends Component{
                     })
                 }
             });
-        }else{
-            this.setState({
-                scrollActive:true,
-            })
         }
     }
 
     goToNextSlide() {
         let index = this.state.currentSection
 
-        if(this.props.Sections.length-1 > index){
+        if(this.state.scrollActive && this.props.Sections.length-1 > index){
+            this.setState({
+                scrollActive:false
+            });
             gsap.to(window, {duration: 1, scrollTo:{y: this.props.Sections[index + 1]},
                 onComplete:()=>{
                     this.setState({
@@ -79,49 +84,33 @@ class LayoutDefault extends Component{
                     })
                 }
             });
-        }else{
-            this.setState({
-                scrollActive:true,
-            })
         }
     }
 
     handleKey(event){
-        if(this.state.scrollActive) {
-            this.setState({
-                scrollActive: false
-            });
+        var PRESSED_KEY = event.keyCode;
 
-            var PRESSED_KEY = event.keyCode;
-
-            if (PRESSED_KEY === this.keyCodes.UP) {
-                this.goToPrevSlide();
-                event.preventDefault();
-            } else if (PRESSED_KEY === this.keyCodes.DOWN) {
-                this.goToNextSlide();
-                event.preventDefault();
-            }
+        if (PRESSED_KEY === this.keyCodes.UP) {
+            this.goToPrevSlide();
+            event.preventDefault();
+        } else if (PRESSED_KEY === this.keyCodes.DOWN) {
+            this.goToNextSlide();
+            event.preventDefault();
         }
-
     }
     handleWheel(event){
-        if(this.state.scrollActive){
-            this.setState({
-                scrollActive:false
-            });
-            if(event.deltaY > 0) {
-                //down
-                this.goToNextSlide()
-            } else{
-                //up
-                this.goToPrevSlide();
-            }
+        if(event.deltaY > 0) {
+            //down
+            this.goToNextSlide()
+            event.preventDefault();
+        } else{
+            //up
+            this.goToPrevSlide();
+            event.preventDefault();
         }
     }
 
     render() {
-
-
         return(
             <>
                 <Helmet>
@@ -129,7 +118,7 @@ class LayoutDefault extends Component{
                     <title>Clever Code Lab</title>
                 </Helmet>
                 <Header/>
-                <div className="scroller" onWheel={this.handleWheel}>
+                <div className="scroller">
                     {this.props.children}
                 </div>
             </>
