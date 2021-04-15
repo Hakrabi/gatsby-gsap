@@ -34,13 +34,7 @@ class LayoutDefault extends Component{
         this.goToPrevSlide = this.goToPrevSlide.bind(this)
     }
 
-    // componentDidReceiveProps(){
-    //     this.Sections = this.props.Sections
-    //     console.log(this.props.Sections)
-    // }
-
     componentDidMount() {
-        // gsap.to(window, {duration: 1, scrollTo: 0});
         window.addEventListener('keydown', this.handleKey,{passive: false});
         window.addEventListener('wheel', this.handleWheel,{passive: false});
     }
@@ -99,15 +93,14 @@ class LayoutDefault extends Component{
         }
     }
     handleWheel(event){
-        if(event.deltaY > 0) {
-            //down
-            this.goToNextSlide()
-            event.preventDefault();
-        } else{
-            //up
+        var delta = event.deltaY / 30 || -event.detail;
+        if(delta < -1) {
             this.goToPrevSlide();
-            event.preventDefault();
         }
+        else if(delta > 1) {
+            this.goToNextSlide();
+        }
+        event.preventDefault();
     }
 
     render() {

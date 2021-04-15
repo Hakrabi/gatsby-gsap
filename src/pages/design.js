@@ -215,7 +215,7 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="illustrations-gallery" ref={section => this.IllustrationsGallery.section = section} onScroll={e => e.default}>
+                    <section className="illustrations-gallery" ref={section => this.IllustrationsGallery.section = section} onWheel={console.log("ss")}>
                         <div className="gallery"  ref={div => this.IllustrationsGallery.gallery = div}>
                             <div className="grid">
                                 {Illustrations[0].map((e,index)=>{
@@ -318,8 +318,8 @@ class Design extends Component{
                             </div>
                             <div className="col2">
                                 <div className="img-row">
-                                    {wwuArr.map(e=>{
-                                        return <img src={e} alt=""/>
+                                    {wwuArr.map((e,index)=>{
+                                        return <img key={index} src={e} alt=""/>
                                     })}
                                 </div>
                                 <p className="big mw444">
