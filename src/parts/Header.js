@@ -4,6 +4,12 @@ import { ScrollTrigger } from "gsap/all";
 
 
 import '../scss/header.scss'
+
+import colorLogo from "../imgs/header/logo/color.svg"
+import text1 from "../imgs/header/logo/text/1.svg"
+import text2 from "../imgs/header/logo/text/2.svg"
+import text3 from "../imgs/header/logo/text/3.svg"
+
 import Scrollbar from "smooth-scrollbar";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 
@@ -33,17 +39,17 @@ class Header extends Component{
         // bodyScrollBar.addListener(ScrollTrigger.update);
         // ScrollTrigger.defaults({ scroller: scroller });
 
-        gsap.to(this.header,
-            {y: -100,
-                ease:"power3.easeOut",
-                scrollTrigger: {
-                    trigger: this.trigger,
-                    start: 100,
-                    toggleActions: 'play none none reverse'
-                    // scrub: true
-                }
-            }
-        );
+        // gsap.to(this.header,
+        //     {y: -100,
+        //         ease:"power3.easeOut",
+        //         scrollTrigger: {
+        //             trigger: this.trigger,
+        //             start: 100,
+        //             toggleActions: 'play none none reverse'
+        //             scrub: true
+                // }
+            // }
+        // );
     }
 
     render() {
@@ -51,7 +57,14 @@ class Header extends Component{
             <>
                <div ref={div => this.trigger = div}/>
                <header ref={header => this.header = header}>
-                   <AniLink paintDrip hex="#525375" className="logo" to="/"/>
+                   <AniLink paintDrip hex="#525375" className="logo" to="/">
+                       <img className="color" src={colorLogo} ref={img => this.props.innerRefs.logo = img}/>
+                       <div className="text">
+                           <img src={text1} ref={img => this.props.innerRefs.text[0] = img}/>
+                           <img src={text2} ref={img => this.props.innerRefs.text[1] = img} className="center"/>
+                           <img src={text3} ref={img => this.props.innerRefs.text[2] = img}/>
+                       </div>
+                   </AniLink>
                    {/*<div className="nav-toggle">*/}
                    {/*    /!*<span/>*!/*/}
                    {/*    /!*<span/>*!/*/}

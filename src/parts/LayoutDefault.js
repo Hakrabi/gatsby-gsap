@@ -35,6 +35,7 @@ class LayoutDefault extends Component{
     }
 
     componentDidMount() {
+        // window.scrollTop = 0
         window.addEventListener('keydown', this.handleKey,{passive: false});
         window.addEventListener('wheel', this.handleWheel,{passive: false});
     }
@@ -52,7 +53,8 @@ class LayoutDefault extends Component{
             this.setState({
                 scrollActive:false
             });
-            gsap.to(window, {duration: 1, scrollTo:{y: this.props.Sections[index - 1]},
+            console.log(document.documentElement.clientHeight)
+            gsap.to(window, {duration: 1,ease: "power3.inOut", scrollTo:{y: this.props.Sections[index - 1]},
                 onComplete:()=>{
                     this.setState({
                         scrollActive:true,
@@ -60,6 +62,7 @@ class LayoutDefault extends Component{
                     })
                 }
             });
+
         }
     }
 
@@ -69,8 +72,16 @@ class LayoutDefault extends Component{
         if(this.state.scrollActive && this.props.Sections.length-1 > index){
             this.setState({
                 scrollActive:false
-            });
-            gsap.to(window, {duration: 1, scrollTo:{y: this.props.Sections[index + 1]},
+            })
+            // gsap.to(window, {duration: 1, scrollTo:{y: window.scrollTop+window.innerHeight},
+            //     onComplete:()=>{
+            //         this.setState({
+            //             scrollActive:true,
+            //             currentSection: this.state.currentSection + 1
+            //         })
+            //     }
+            // });
+            gsap.to(window, {duration: 1, ease: "power3.inOut", scrollTo:{y: this.props.Sections[index + 1]},
                 onComplete:()=>{
                     this.setState({
                         scrollActive:true,
@@ -110,7 +121,7 @@ class LayoutDefault extends Component{
                     <meta charSet="utf-8"/>
                     <title>Clever Code Lab</title>
                 </Helmet>
-                <Header/>
+
                 <div className="scroller">
                     {this.props.children}
                 </div>

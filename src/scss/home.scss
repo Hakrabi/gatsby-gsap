@@ -1,21 +1,70 @@
 @import '../scss/vars';
 //@import '../scss/main.scss';
 
+body{
+  background: $red;
+}
 
 #home {
   section.welcome {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../imgs/home/welcome-bg.svg');
-    background-repeat: no-repeat;
-    background-size: 495px;
-    background-position: bottom 20% right 145px;
+    position: relative;
 
+    .wrapper{
+      width: 100vw;
+      height: 100vh;
+      color: $white;
+      background: $red;
+      position: absolute;
+      right: 0;
+      overflow: hidden;
+      z-index: 20;
+      .block{
+        height: 100%;
+        width: 100vw;
+        right: 0;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .white-logo{
+          opacity: 0;
+          position: absolute;
+          top: 26px;
+          left: 143px;
+        }
+        h1 {
+          &.vertical-move {
+            span {
+              display: flex;
+              align-items: flex-end;
+              justify-content: center;
+              height: 78px;
+              span {
+                height: 0;
+                display: block;
+                overflow: hidden;
+              }
+            }
+          }
+        }
+      }
+    }
+    h1{
+      transform: translateX(-5%);
+    }
     a {
       color: $red;
       text-decoration: none;
       border-bottom: solid $red 4px;
+    }
+    .bottom-text{
+      position: absolute;
+      bottom: 20%;
+      right: 145px;
     }
   }
 
@@ -39,23 +88,20 @@
         height: 100%;
         display: flex;
         justify-content: center;
-        //position: relative;
+        position: relative;
       }
 
       .outline {
         display: block;
-        //background: url("../imgs/home/wwd/outline.svg");
         position: absolute;
+        margin-bottom: 10px;
         margin-left: auto;
         margin-right: auto;
         left: 0;
         right: 30px;
-        text-align: center;
+        //text-align: center;
         height: 334px;
         width: 390px;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
         z-index: 1;
       }
     }
@@ -103,6 +149,18 @@
       }
     }
 
+    .col2 {
+      position: relative;
+    }
+
+    .outline {
+      position: absolute;
+      margin: auto;
+      right:  40px;
+      bottom: -25px;
+      z-index: 1;
+    }
+
     .img-cont {
       height: 138px;
     }
@@ -110,7 +168,7 @@
 
 
   section.design {
-    height: calc(100vh + 50px);
+    //height: calc(100vh + 50px);
     position: relative;
     .circle {
       background-color: $yellow;
@@ -126,7 +184,7 @@
       width: 127px;
       height: 127px;
       position: absolute;
-      background: url("../imgs/home/design/star.svg");
+      //background: url("../imgs/home/design/star.svg");
       background-size: contain;
       background-repeat: no-repeat;
       z-index: 3;
@@ -143,7 +201,7 @@
   section.mobdev {
     background-color: $yellow;
     color: $white;
-    height: calc(100vh + 50px);
+    height: 105vh;
     position: relative;
 
     .circle {
