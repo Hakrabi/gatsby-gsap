@@ -8,7 +8,7 @@ import FooterContact from "./Footer/FooterContact";
 
 import '../scss/main.scss'
 import {gsap} from "gsap";
-import {ScrollToPlugin} from "gsap/all";
+import { ScrollToPlugin } from "gsap/all";
 gsap.registerPlugin(ScrollToPlugin);
 
 class LayoutDefault extends Component{

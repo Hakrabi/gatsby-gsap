@@ -1,9 +1,8 @@
 import React, {Component} from "react"
 import {Link} from "gatsby";
 import {gsap} from "gsap";
-import {TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin} from "gsap/all";
+import {TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin, DrawSVGPlugin} from "gsap/all";
 import Scrollbar from 'smooth-scrollbar';
-import DrawSVGPlugin from "gsap/src/all";
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import LayoutDefault from '../parts/LayoutDefault'
@@ -54,6 +53,8 @@ class Home extends Component {
         super(props);
 
         this.scrollTo = null;
+
+        this.Sections = []
 
         this.Header = {
             logo: null,
@@ -363,7 +364,7 @@ class Home extends Component {
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path ref={path => this.WWD.outline = path} opacity="0.5"
                                               d="M1.30005 207.2C19.8 175.5 79 84.3003 188.8 55.6003C225.3 46.1003 292.3 28.6003 343.1 69.2003C387.1 104.3 398.9 166.9 387 214.2C366.3 297 268.2 352.5 180.9 331.9C122.8 318.2 70.4001 271.1 57.2001 210.2C35.5 110 130.2 18.0003 212.8 4.10031C225.8 1.90031 268.5 -5.29968 306 21.2003C358.5 58.2003 355.8 129.1 355.4 135.5"
-                                              stroke="white" stroke-width="3" stroke-miterlimit="10"/>
+                                              stroke="white" strokeWidth="3" strokeMiterlimit="10"/>
                                     </svg>
                                 </div>
                             </div>
@@ -508,7 +509,7 @@ class Home extends Component {
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path ref={path => this.Mobdev.outline = path}
                                                           d="M1 14.9998C70.7 16.2998 122.1 11.4998 156.6 6.69983C169.4 4.89983 187.7 2.09983 213.4 1.59983C254.6 0.799831 288.2 6.59983 310.3 11.6998"
-                                                          stroke="#5C5DB1" stroke-width="3" stroke-miterlimit="10"/>
+                                                          stroke="#5C5DB1" strokeWidth="3" strokeMiterlimit="10"/>
                                                 </svg>
                                             </div>
                                         </h2>
