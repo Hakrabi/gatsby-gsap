@@ -52,6 +52,7 @@ import wwuArr3 from "../imgs/design/what-we-use/3.svg"
 import wwuArr4 from "../imgs/design/what-we-use/4.svg"
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
+import Header from "../parts/Header";
 
 let Illustrations = [[Ill1, Ill2, Ill3, Ill4, Ill5, Ill6, Ill7, Ill8],
                         [Ill10, Ill11, Ill12, Ill13, Ill14, Ill15, Ill16, Ill17, Ill18]]
@@ -66,6 +67,11 @@ gsap.registerPlugin(TimelineLite,TweenLite,ScrollTrigger,ScrollToPlugin);
 class Design extends Component{
     constructor(props) {
         super(props);
+
+        this.Header = {
+            logo: null,
+            text: []
+        };
 
         this.Welcome ={
             section: null,
@@ -128,7 +134,13 @@ class Design extends Component{
             img: [],
         }
 
-        this.FooterContact = null;
+        this.Contact ={
+            anim: null,
+            section: null,
+            head: [],
+            bottom: [],
+        }
+
         this.FooterMenu = null;
 
     }
@@ -173,6 +185,25 @@ class Design extends Component{
             }
         })
 
+        this.Contact.anim = new TimelineLite({
+            ease:"power3.easeOut",
+            scrollTrigger: {
+                trigger: this.Contact.section,
+                start: "bottom bottom+=40px",
+                end:"top top",
+                toggleActions: 'play none none reverse'
+            }
+        })
+            .from(this.Contact.head[0], 0.5, {height: 0}, )
+            .from(this.Contact.head[1], 0.5, {height: 0}, "-=0.4")
+            .to(this.Contact.wrapper, 0.5, {width: 0}, "+=0.5")
+            .from(this.Contact.realH2, 0.5, {x: '-5%'}, "-=0.4")
+            .from(this.Contact.wrapperH2, 0.5, {x: '-5%'}, "-=0.5")
+            .from(this.Contact.cont, 0.3, {height:0}, )
+            .from(this.Contact.bottom[0], 0.3, {opacity: 0, y: 50}, "-=0.1")
+            .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
+            .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
+
         this.Sections = [
             this.Welcome.section,
             this.Illustrations.section,
@@ -182,7 +213,7 @@ class Design extends Component{
             this.Page404.section,
             this.Presentation.section,
             this.WWU.section,
-            this.FooterContact,
+            this.Contact.section,
             this.FooterMenu
         ]
 
@@ -191,6 +222,7 @@ class Design extends Component{
     render(){
         return (
             <LayoutDefault pageName="design" Sections={this.Sections}>
+                <Header innerRefs={this.Header}/>
                 <main id="design">
                     <section className="welcome" ref={section => this.Welcome.section = section}>
                         <h1>Design & Art</h1>
@@ -330,7 +362,7 @@ class Design extends Component{
                     </section>
                 </main>
                 <footer>
-                    <FooterContact inputRef={el => this.FooterContact = el} pageName="home"/>
+                    <FooterContact Contact={this.Contact} pageName="design"/>
                     <FooterMenu inputRef={el => this.FooterMenu = el}/>
                 </footer>
             </LayoutDefault>

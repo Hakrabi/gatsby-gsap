@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {gsap} from "gsap";
-import AniLink from "gatsby-plugin-transition-link/AniLink";
 import {TimelineLite} from "gsap/all";
 
 class LisaSimpson extends Component {
@@ -8,7 +7,7 @@ class LisaSimpson extends Component {
     constructor(props) {
         super(props);
 
-        this.mainAnim = null;
+        this.realAnim = null;
         this.hoverAnim = null;
 
         this.onOver = this.onOver.bind(this);
@@ -19,13 +18,13 @@ class LisaSimpson extends Component {
         gsap.set(".reg", {drawSVG: "0%"})
         gsap.set(".star", {rotation: -18})
 
-        this.mainAnim = gsap.to(".star", {rotation: 18, ease:'sine.inOut', yoyo: true, transformOrigin:"50% 50%", duration: 4, repeat:-1})
+        this.realAnim = gsap.to(".star", {rotation: 18, ease:'sine.inOut', yoyo: true, transformOrigin:"50% 50%", duration: 4, repeat:-1})
 
         this.hoverAnim = new TimelineLite()
             .to(".real", 1, {drawSVG:"50% 50%"})
             .to(".reg1", 1, {drawSVG: "100%"})
             .to(".reg2", 1, {drawSVG: "100%"})
-            .to(".reg3", 1, {drawSVG: "100%", onReverseComplete:() => {this.mainAnim.play() }})
+            .to(".reg3", 1, {drawSVG: "100%", onReverseComplete:() => {this.realAnim.play() }})
             .reversed(true);
 
         // this.leaveAnim = new TimelineLite()
@@ -34,7 +33,7 @@ class LisaSimpson extends Component {
     }
 
     onOver(){
-        this.mainAnim.pause()
+        this.realAnim.pause()
         this.hoverAnim.reversed(!this.hoverAnim.reversed())
         // this.overAnim.restart()
     }

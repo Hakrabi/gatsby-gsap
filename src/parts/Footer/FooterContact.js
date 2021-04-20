@@ -2,18 +2,17 @@ import React, {Component} from "react"
 import { gsap } from "gsap";
 
 import CoolButton from "../CoolButton";
-import {ScrollTrigger} from "gsap/all";
+import {ScrollTrigger, TimelineLite} from "gsap/all";
+import BottomText from "../../imgs/home/whyCCl/text.svg";
 // import Scrollbar from "smooth-scrollbar";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger,TimelineLite);
 
 class FooterContact extends Component{
     constructor(props) {
         super(props);
 
         let path = this.props.pageName
-        this.Section = null;
-        this.HeadRefs = [];
         this.HeadText = {
             "home":        ["WHY YOU STILL","READING THIS?"],
             "design":   ['DO YOU LIKE IT?', 'SO WHY NOT'],
@@ -21,36 +20,36 @@ class FooterContact extends Component{
         }
         this.Head = this.HeadText[path];
 
-        this.Visability = true;
-
-        if(path === 'contact') this.Visability = false
 
     }
-
-    componentDidMount() {
-
-    }
-
 
     render() {
-        if(this.Visability){
-            return (
-                <section className="still-reading" ref={this.props.inputRef}>
-                    <div className="container flex-center">
-                        <h2 className="mb vertical-move">
-                            {this.Head.map((text,index)=>{
-                                return <span key={index}><span ref={span => this.HeadRefs[index] = span}>{text}</span></span>
-                            })}
+        return (
+            <section className="still-reading" ref={section => this.props.Contact.section = section}>
+                <div className="wrapper" ref={div => this.props.Contact.wrapper = div}>
+                    <div className="block">
+                        <h2 className="vertical-bottom-move" ref={h1 => this.props.Contact.wrapperH2 = h1}>
+                            <span><span ref={span => this.props.Contact.head[0] = span}>{this.Head[0]}</span></span>
+                            <span><span ref={span => this.props.Contact.head[1] = span}>{this.Head[1]}</span></span>
                         </h2>
-                        <CoolButton to="/contact">CONTACT US</CoolButton>
-                        <p className="sub">and let’s make WEB beautiful together</p>
-                        <div className="paint"/>
                     </div>
-                </section>
-            );
-        }else{
-            return null;
-        }
+                </div>
+                <div className="container flex-center">
+                    <h2 ref={h1 => this.props.Contact.realH2 = h1}>
+                        <span>{this.Head[0]}</span>
+                        <span>{this.Head[1]}</span>
+                    </h2>
+                    <div ref={div => this.props.Contact.cont = div}>
+                        <div ref={div => this.props.Contact.bottom[0] = div}>
+                            <CoolButton to="/contact">CONTACT US</CoolButton>
+                        </div>
+                        <p ref={p => this.props.Contact.bottom[1] = p} className="sub">and let’s make WEB beautiful together</p>
+                        <img ref={img => this.props.Contact.bottom[2] = img} className='bottom-text' src={BottomText} alt="" />
+                    </div>
+                    <div className="paint"/>
+                </div>
+            </section>
+        );
     }
 }
 

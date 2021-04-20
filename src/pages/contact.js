@@ -8,6 +8,7 @@ import "../scss/contact.scss"
 
 import Img from "../imgs/contact/hello.svg"
 import FooterMenu from "../parts/Footer/FooterMenu";
+import Header from "../parts/Header";
 
 class Contact extends Component{
     constructor(props) {
@@ -19,6 +20,12 @@ class Contact extends Component{
             email: '',
             msg: '',
         }
+
+        this.Header = {
+            logo: null,
+            text: []
+        };
+
         this.MainContact = null
         this.FooterMenu = null;
 
@@ -46,6 +53,7 @@ class Contact extends Component{
     render() {
         return (
             <LayoutDefault Sections={this.Sections}>
+                <Header innerRefs={this.Header}/>
                 <main id="contact">
                     <section className="contact-form" ref={section => this.MainContact = section}>
                         <div className="grid">

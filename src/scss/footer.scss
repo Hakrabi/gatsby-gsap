@@ -1,17 +1,45 @@
 @import '../scss/vars';
-//@import '../scss/main.scss';
 
 section.still-reading{
   color: $white;
   position: relative;
-  background: url("../imgs/footer/text.svg"),$violet;
-  background-repeat: no-repeat;
-  background-position: center bottom 5vh;
-
+  background:$violet;
   .container{
     height: 100%;
   }
-
+  .wrapper{
+    width: 100vw;
+    height: 100vh;
+    color: $violet;
+    background: $white;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    z-index: 20;
+    .block{
+      height: 100%;
+      width: 100vw;
+      right: 0;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+  .cool-button{
+    margin-top: 50px;
+  }
+  .sub{
+    text-align: center;
+  }
+  .bottom-text{
+    position: absolute;
+    margin: auto;
+    bottom: 10%;
+    right: 0;
+    left: 0;
+  }
   .paint{
     width: 100vw;
     height: 2vw;

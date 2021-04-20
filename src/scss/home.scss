@@ -116,7 +116,9 @@ body{
 
 
   section.webdev {
-    height: 95vh;
+    padding-top: 8vh;
+    height: 92vh;
+    box-sizing: border-box;
     //.grid {
     //  height: 95%;
     //}
@@ -174,7 +176,7 @@ body{
       background-color: $yellow;
     }
     .container {
-      height: 95vh;
+      height: 92vh;
       h2 {
         max-width: 500px;
       }
@@ -184,12 +186,12 @@ body{
       width: 127px;
       height: 127px;
       position: absolute;
-      //background: url("../imgs/home/design/star.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
       z-index: 3;
       top: 40vh;
       right: 20vw;
+      svg{
+        overflow: visible;
+      }
     }
 
     .img-cont{
@@ -201,7 +203,7 @@ body{
   section.mobdev {
     background-color: $yellow;
     color: $white;
-    height: 105vh;
+    height: 110vh;
     position: relative;
 
     .circle {
@@ -221,6 +223,17 @@ body{
     .img-cont{
       height: 156px;
     }
+    h2{
+      position: relative;
+      .outline {
+        position: absolute;
+        margin: auto;
+        left: 0;
+        top: 20px;
+        z-index: 1;
+      }
+    }
+
     //.smile{
     //  width: 139px;
     //  height: 139px;
@@ -243,7 +256,14 @@ body{
     background-position: top center, center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
+    position: relative;
     color: $white;
+
+    .bottom-text{
+      position: absolute;
+      bottom: 10%;
+      left: 145px;
+    }
 
     .question {
       display: inline-block;
@@ -251,18 +271,21 @@ body{
   }
 
   section.team {
+    box-sizing: border-box;
+    padding-top: 8vh;
+    height: 92vh;
   }
 
 
   section.clients {
     overflow-x: hidden;
-
+    height: 108vh;
     .oval {
       background-color: $yellow;
     }
 
     .container {
-      height: 95%;
+      height: 100vh;
     }
 
     .row{
@@ -275,17 +298,24 @@ body{
   }
 
   section.tech {
-    background: $red;
     color: $white;
-    background: url("../imgs/home/tech/left.svg"),
-    url("../imgs/home/tech/bottom.svg"),
-    linear-gradient(180deg,
-                    $red 0%, $red 88%,
-                    $violet 88%, $violet 100%);
-    background-position: center left, center bottom;
+    position: relative;
+    background: url("../imgs/home/tech/left.svg"),$red;
+    background-position: center left;
     background-repeat: no-repeat;
-    background-size: auto, 100% auto;
-    margin-bottom: -1px;
+    background-size: auto;
+
+    .paint{
+      width: 100vw;
+      height: 4vw;
+      position: absolute;
+      background: url("../imgs/home/tech/bottom.svg");
+      background-size: 100vw;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      z-index: 30;
+      bottom: -4vw;
+    }
   }
 }
 

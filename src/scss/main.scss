@@ -75,6 +75,18 @@ h2{
       }
     }
   }
+  &.vertical-bottom-move {
+    span {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 96px;
+      span {
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
   &.side-move{
     overflow: hidden;
   }
@@ -193,7 +205,7 @@ section{
 
 .anchor-arrow{
   width: 40px;
-  height: 5%;
+  height: 8vh;
   margin: 0 auto;
   background: url("../imgs/home/anchor-arrow.svg");
   background-size: contain;
@@ -207,5 +219,24 @@ section{
   align-items: center;
   img{
     height: 100%;
+    margin-bottom: 0;
   }
+}
+
+.read-more{
+  transform: translateY(40px);
+  width: 100%;
+  &.center{
+    width: auto;
+  }
+  a{
+    font-weight: bold;
+    line-height: 120%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+}
+
+.overflow-hidden{
+  overflow: hidden;
 }
