@@ -108,6 +108,7 @@ class Contact extends Component{
                                 <form name="Contact Form"
                                       method="POST"
                                       data-netlify="true"
+                                      netlify
                                       ref={this.formRef}
                                       onSubmit={event => this.handleSubmit(event)}
                                 >
