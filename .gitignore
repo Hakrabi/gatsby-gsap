@@ -7,6 +7,8 @@
 node_modules/
 dist/
 .cache
+publick/
+package-lock.json
 yarn.lock
 
 # Compiled Java class files
