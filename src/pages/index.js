@@ -1,9 +1,9 @@
 import React, {Component} from "react"
 import {Link} from "gatsby";
 import {gsap} from "gsap";
-import {TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin, DrawSVGPlugin} from "gsap/all";
+import {TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin} from "gsap/all";
 import Scrollbar from 'smooth-scrollbar';
-
+import DrawSVGPlugin from "gsap/src/all";
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import LayoutDefault from '../parts/LayoutDefault'
