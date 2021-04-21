@@ -16,7 +16,7 @@ class LayoutDefault extends Component{
         super(props);
 
         this.state={
-            currentSection: 7,
+            currentSection: 0,
             scrollActive: true,
         }
 

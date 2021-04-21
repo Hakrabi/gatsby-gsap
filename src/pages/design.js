@@ -251,7 +251,7 @@ class Design extends Component{
                         </div>
                     </section>
 
-                    <section className="illustrations-gallery" ref={section => this.IllustrationsGallery.section = section} onWheel={console.log("ss")}>
+                    <section className="illustrations-gallery" ref={section => this.IllustrationsGallery.section = section}>
                         <Gallery innerRef={this.IllustrationsGallery}>
                             <div className="grid">
                                 {Illustrations[0].map((e,index)=>{
