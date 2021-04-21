@@ -25,6 +25,8 @@ import client2 from "../imgs/home/clients/2.svg"
 import client3 from "../imgs/home/clients/3.svg"
 import client4 from "../imgs/home/clients/4.svg"
 import client5 from "../imgs/home/clients/5.svg"
+import ClientSmileRight from "../imgs/home/clients/smile-right.svg"
+import ClientSmileLeft from "../imgs/home/clients/smile-left.svg"
 
 import designImg1 from "../imgs/home/design/desing1.svg"
 import designImg2 from "../imgs/home/design/desing2.svg"
@@ -129,9 +131,20 @@ class Home extends Component {
         }
         this.Clients = {
             anim: null,
+            rowAnim: null,
+            rowTrigger: null,
             section: null,
             text: null,
             head: [],
+            row: null,
+            left: {
+                rotate: null,
+                move: null,
+            },
+            right:{
+                rotate: null,
+                move: null,
+            },
             img: [],
             link: null,
         }
@@ -309,6 +322,32 @@ class Home extends Component {
             .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
             .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
 
+        this.Clients.anim
+            .from(this.Clients.head[0], 0.4, {opacity: 0, y: 100, rotate: 7}, "-=0.2")
+            .from(this.Clients.text, 0.3, {opacity: 0, y: 50}, "-=0.2")
+            .from(this.Clients.row, 0.3, {opacity: 0, y: 50}, "-=0.2")
+            .from(this.Clients.right.rotate, 0.5,{x: 200, rotate: 180})
+            .from(this.Clients.left.rotate, 0.5,{x: -200, rotate: -180}, "-=0.5")
+
+        this.Clients.rowAnim = new TimelineLite({
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: this.Clients.rowTrigger,
+                start: "top center",
+                end: "bottom top",
+                toggleActions: 'play none none reverse',
+                scrub: true,
+            }
+        })
+        this.Clients.rowAnim
+            .to(this.Clients.row, 0.4, {top:'100%'})
+            .fromTo(this.Clients.right.move, 1.6, {right:0}, {right: 'auto'}, 0.4)
+            .fromTo(this.Clients.left.move, 1.6,{left:0}, {left: 'auto'}, 0.4)
+            .fromTo(this.Clients.right.rotate, 1.6, {rotate: 0}, {rotate: -360}, 0.4)
+            .fromTo(this.Clients.left.rotate, 1.6,{rotate: 0}, {rotate: 360}, 0.4)
+
+
+
 
         this.Sections = [
             this.Welcome.section,
@@ -328,7 +367,7 @@ class Home extends Component {
 
     render() {
         return (
-            <LayoutDefault Sections={this.Sections}>
+            <LayoutDefault Sections={this.Sections} pageName='home'>
                 <Header innerRefs={this.Header}/>
                 <main id="home">
                     <section className="welcome" ref={section => this.Welcome.section = section}>
@@ -363,7 +402,7 @@ class Home extends Component {
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path ref={path => this.WWD.outline = path} opacity="0.5"
                                               d="M1.30005 207.2C19.8 175.5 79 84.3003 188.8 55.6003C225.3 46.1003 292.3 28.6003 343.1 69.2003C387.1 104.3 398.9 166.9 387 214.2C366.3 297 268.2 352.5 180.9 331.9C122.8 318.2 70.4001 271.1 57.2001 210.2C35.5 110 130.2 18.0003 212.8 4.10031C225.8 1.90031 268.5 -5.29968 306 21.2003C358.5 58.2003 355.8 129.1 355.4 135.5"
-                                              stroke="white" stroke-width="3" stroke-miterlimit="10"/>
+                                              stroke="white" strokeWidth="3" strokeMiterlimit="10"/>
                                     </svg>
                                 </div>
                             </div>
@@ -508,7 +547,7 @@ class Home extends Component {
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path ref={path => this.Mobdev.outline = path}
                                                           d="M1 14.9998C70.7 16.2998 122.1 11.4998 156.6 6.69983C169.4 4.89983 187.7 2.09983 213.4 1.59983C254.6 0.799831 288.2 6.59983 310.3 11.6998"
-                                                          stroke="#5C5DB1" stroke-width="3" stroke-miterlimit="10"/>
+                                                          stroke="#5C5DB1" strokeWidth="3" strokeMiterlimit="10"/>
                                                 </svg>
                                             </div>
                                         </h2>
@@ -576,8 +615,8 @@ class Home extends Component {
                         <div className="oval">
                             <div className="anchor-arrow"/>
                             <div className="container flex-center" ref={div => this.Clients.section = div}>
-                                <h2 className="small mb">HAPPY CLIENTS</h2>
-                                <p className='mw475'>
+                                <h2 className="small mb" ref={h2 => this.Clients.head[0] = h2}>HAPPY CLIENTS</h2>
+                                <p className='mw475' ref={p => this.Clients.text = p}>
                                     A successful company differs in that its customers are the happiest. They come back
                                     again
                                     and again, bringing in their friends. Therefore, our logic is simple.<br/><br/>
@@ -588,10 +627,27 @@ class Home extends Component {
                                     Clever
                                     Code Lab to your friends and partners.
                                 </p>
-                                <div className="row">
-                                    {clientsArr.map((e, index) => {
-                                        return <img key={index} src={e} alt=""/>
-                                    })}
+                            </div>
+
+                            <div className="row" ref={div => this.Clients.rowTrigger = div}>
+                                <div className="row-cont" ref={div => this.Clients.row = div}>
+                                    <div className="grid">
+                                        {clientsArr.map((e, index) => {
+                                            return (
+                                                <div key={index} className="item">
+                                                    <img src={e} alt=""/>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="smile left" ref={div => this.Clients.left.move  = div}>
+                                        <img src={ClientSmileLeft} ref={img => this.Clients.left.rotate = img} alt="" />
+                                        <div className="mask"/>
+                                    </div>
+                                    <div className="smile right"  ref={div => this.Clients.right.move = div}>
+                                        <img src={ClientSmileRight} ref={img => this.Clients.right.rotate = img} alt="" />
+                                        <div className="mask"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

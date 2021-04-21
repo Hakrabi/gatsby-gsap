@@ -184,7 +184,7 @@ section{
   margin-left: -5%;
   height: 100%;
   position: relative;
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  border-radius: 50% 50% 0 0 / 70% 70% 0 0;
 }
 
 .circle{
@@ -211,6 +211,9 @@ section{
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+.behance{
+  height: 8vh;
 }
 
 .img-cont{
@@ -239,4 +242,37 @@ section{
 
 .overflow-hidden{
   overflow: hidden;
+}
+
+.gallery {
+  height: 95vh;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  flex-direction: column;
+  //transform: translateY(-20vh);
+  position: relative;
+  .gallery-imgs{
+    overflow: hidden;
+  }
+  .grid {
+    width: max-content;
+    height: auto;
+    padding: 0 146px;
+  }
+  &-controls{
+    box-sizing: border-box;
+    position: absolute;
+    width: 100vw;
+    bottom: -5vh;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 10;
+    img{
+      cursor: pointer;
+    }
+  }
 }

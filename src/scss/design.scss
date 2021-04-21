@@ -50,7 +50,6 @@
 
   section.illustrations{
     background-color: $yellow;
-    height: 90vh;
     .col2{
       align-items: flex-start;
     }
@@ -59,26 +58,15 @@
     }
   }
 
-  .gallery {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    transform: translateY(-20vh);
-    padding: 0 146px;
 
-    .grid {
-      height: auto;
-      //min-height: 330vh;
-    }
-  }
 
   section.illustrations-gallery{
     background-color: $grey-bg;
     height: auto;
     max-height: initial;
     .gallery{
-      transform: translateY(-15vh);
+      //transform: translateY(-15vh);
+      //height: 400vh;
       .grid{
         grid-template-columns: auto auto auto auto auto auto auto auto auto;
         grid-gap: 40px;
@@ -129,10 +117,63 @@
     }
   }
 
+  section.animation{
+    overflow-x: hidden;
+    height: auto;
+    color: $white;
+    background: url("../imgs/design/animation/paint.svg") no-repeat, $grey-bg;
+    background-position: bottom 80% right;
+    position: relative;
+
+    .col1{
+      align-items: center;
+    }
+    .oval{
+      background: url("../imgs/design/animation/paint.svg") no-repeat;
+      background-position: bottom 80% right;
+      background-color: $violet;
+    }
+    .grid{
+      height: 100vh;
+    }
+    .bottom-text{
+      position: absolute;
+      margin: auto;
+      width: 130px;
+      text-align: center;
+      bottom: 10%;
+      left: 0;
+      right: 0;
+      .arrow{
+        background-image: url('../imgs/home/anchor-arrow.svg');
+        position: absolute;
+        bottom: -33px;
+        background-repeat: no-repeat;
+        margin: auto;
+        left: 0;
+        right: 0;
+        width: 40px;
+        height: 20px;
+      }
+    }
+  }
+
+  section.videos{
+    background: $violet;
+    color: $white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2{
+      margin-bottom: -8px;
+    }
+  }
 
   section.webdesign{
     background-color: $yellow;
-    height: 90vh;
     .col2{
       align-items: flex-start;
     }
@@ -154,7 +195,7 @@
   }
 
   section.page-404{
-    background-color: transparent;
+    //background-color: transparent;
     overflow-x: hidden;
     color: $white;
     margin-bottom: -1px;
@@ -163,6 +204,7 @@
       background-color: $red;
     }
     .grid{
+      height: 92vh;
       grid-template-columns: 1fr 1.3fr;
       max-width: 1200px;
       margin: 0 auto;
@@ -202,9 +244,13 @@
   section.presentation{
     background-color: $red;
     overflow-x: hidden;
+    height: auto;
 
     .oval{
       background-color: $yellow;
+    }
+    .grid{
+      height: 100vh;
     }
   }
 

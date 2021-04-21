@@ -19,6 +19,7 @@ body{
       background: $red;
       position: absolute;
       right: 0;
+      top: 0;
       overflow: hidden;
       z-index: 20;
       .block{
@@ -282,18 +283,68 @@ body{
     height: 108vh;
     .oval {
       background-color: $yellow;
+      overflow: hidden;
     }
 
     .container {
-      height: 100vh;
+      height: calc(80vh - 200px);
     }
-
     .row{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 40vh;
-      width: 1000px;
+      height: 20vh;
+      position: relative;
+      width: 100%;
+      margin-bottom: 200px;
+      .row-cont{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0% ;
+        height: 200px;
+        width: 100%;
+
+        .grid{
+          display: grid;
+          grid-template-columns: repeat(5, 152px);
+          grid-gap: 36px;
+        }
+        .item{
+          width: 152px;
+          height: 152px;
+          background: $white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .smile{
+          position: absolute;
+          img{
+            width: 200px;
+            position: relative;
+            z-index: 5;
+          }
+          .mask{
+            position: absolute;
+            height: 100%;
+            width: 50vw;
+            top: 0;
+            background: $yellow;
+          }
+          &.right,.mask{
+            right: 0;
+            .mask{
+              left: 100px;
+            }
+          }
+          &.left{
+            left: 0;
+            .mask{
+              right: 100px;
+            }
+          }
+        }
+      }
     }
   }
 
