@@ -22,7 +22,7 @@ class Contact extends Component{
             subject: '',
             email: '',
             msg: '',
-            feedbackMsg: null
+            feedbackMsg: null,
         }
         this.formRef = React.createRef();
 
@@ -37,6 +37,8 @@ class Contact extends Component{
         this.question = null
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleServerResponse = this.handleServerResponse.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
@@ -51,44 +53,37 @@ class Contact extends Component{
         const value = event.target.value;
         const name  = event.target.name;
 
-        this.setState({
-            [name]: value
-        });
+        if(!value.trim().length) this.setState({
+            handleErrors: 'Please fill the form!'
+        })
+
     }
+
+    handleServerResponse (ok, msg, form) {
+        this.setState({
+            feedbackMsg: msg,
+        })
+        if (ok) {
+            form.reset();
+        }
+    };
 
     handleSubmit(event) {
         // Do not submit form via HTTP, since we're doing that via XHR request.
         event.preventDefault()
-        // Loop through this component's refs (the fields) and add them to the
-        // formData object. What we're left with is an object of key-value pairs
-        // that represent the form data we want to send to Netlify.
-        const formData = {}
-        Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
 
-        // Set options for axios. The URL we're submitting to
-        // (this.props.location.pathname) is the current page.
-        const axiosOptions = {
-            url: this.props.location.pathname,
+        const form = event.target;
+        axios({
             method: "post",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            data: qs.stringify(formData),
-        }
-
-        // Submit to Netlify. Upon success, set the feedback message and clear all
-        // the fields within the form. Upon failure, keep the fields as they are,
-        // but set the feedback message to show the error state.
-        axios(axiosOptions)
-            .then(response => {
-                this.setState({
-                    feedbackMsg: "Form submitted successfully!",
-                })
-                this.domRef.current.reset()
+            url: "https://getform.io/f/22fcd7a7-f019-448e-a2b5-0d2574429d8d",
+            data: new FormData(form)
+        })
+            .then(r => {
+                this.handleServerResponse(true, "Form submitted successfully!", form)
             })
-            .catch(err =>
-                this.setState({
-                    feedbackMsg: "Form could not be submitted.",
-                })
-            )
+            .catch(r => {
+                this.handleServerResponse(false, "Form could not be submitted.", form)
+            });
     }
 
     render() {
@@ -105,10 +100,9 @@ class Contact extends Component{
                             </div>
                             <div className="col2">
                                 {this.state.feedbackMsg && <p style={{color: "green"}}>{this.state.feedbackMsg}</p>}
-                                <form name="Contact Form"
+                                <form
                                       method="POST"
-                                      data-netlify="true"
-                                      netlify
+                                      action="https://getform.io/f/22fcd7a7-f019-448e-a2b5-0d2574429d8d" method="POST"
                                       ref={this.formRef}
                                       onSubmit={event => this.handleSubmit(event)}
                                 >
@@ -119,7 +113,7 @@ class Contact extends Component{
                                                    name="name"
                                                    ref="name"
                                                    // value={this.state.name}
-                                                   // onChange={this.handleChange}
+                                                   onChange={this.handleChange}
                                             />
                                         </div>
                                         <div>
@@ -128,7 +122,7 @@ class Contact extends Component{
                                                    name="email"
                                                    ref="email"
                                                    // value={this.state.email}
-                                                   // onChange={this.handleChange}
+                                                   onChange={this.handleChange}
                                             />
                                         </div>
                                     </div>
@@ -139,7 +133,7 @@ class Contact extends Component{
                                                name="subject"
                                                ref="subject"
                                                // value={this.state.subject}
-                                               // onChange={this.handleChange}
+                                               onChange={this.handleChange}
                                         />
                                     </div>
 
@@ -152,8 +146,7 @@ class Contact extends Component{
                                             // onChange={this.handleChange}
                                         />
                                     </div>
-
-                                    <CoolButton to="">Send Email</CoolButton>
+                                    <CoolButton type="submit">Send Email</CoolButton>
                                 </form>
                             </div>
                         </div>

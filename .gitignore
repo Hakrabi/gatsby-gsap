@@ -7,7 +7,6 @@
 node_modules/
 dist/
 .cache
-public/
 package-lock.json
 yarn.lock
 

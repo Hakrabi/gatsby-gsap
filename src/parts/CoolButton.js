@@ -7,7 +7,7 @@ import AniLink from "gatsby-plugin-transition-link/AniLink";
 class CoolButton extends Component{
     constructor(props) {
         super(props);
-
+        this.type = props.type || 'link';
         this.border = null;
         this.fill = null;
 
@@ -57,7 +57,23 @@ class CoolButton extends Component{
 
     render() {
         return (
-            <AniLink paintDrip hex="#525375"
+            this.type == 'submit' ? (
+                    <button type={"submit"} className="form-btn">
+                        <div className="cool-button">
+                            <div className="fill" ref={div => this.fill = div}/>
+                            <div className="border" ref={div => this.border = div} />
+                            <div className="text"
+                                 role = "button"
+                                 onMouseOver = {this.animOn}
+                                 onMouseLeave = {this.animOff}>
+                                {this.props.children}
+                            </div>
+                        </div>
+                    </button>
+
+                )
+                :
+                (<AniLink paintDrip hex="#525375"
                 to={this.props.to}>
                 <div className="cool-button">
                     <div className="fill" ref={div => this.fill = div}/>
@@ -69,7 +85,7 @@ class CoolButton extends Component{
                         {this.props.children}
                     </div>
                 </div>
-            </AniLink>
+            </AniLink>)
         );
     }
 }
