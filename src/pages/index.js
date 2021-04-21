@@ -3,7 +3,6 @@ import {Link} from "gatsby";
 import {gsap} from "gsap";
 import {TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin, DrawSVGPlugin} from "gsap/all";
 import Scrollbar from 'smooth-scrollbar';
-
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import LayoutDefault from '../parts/LayoutDefault'
@@ -56,6 +55,8 @@ class Home extends Component {
         super(props);
 
         this.scrollTo = null;
+
+        this.Sections = []
 
         this.Header = {
             logo: null,

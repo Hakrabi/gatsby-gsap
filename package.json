@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
+    "just": "echo \"deployed\"",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -14,11 +15,14 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "css-loader": "^5.2.4",
     "gatsby": "^3.0.1",
     "gatsby-plugin-react-helmet": "^4.2.0",
     "gatsby-plugin-sass": "^4.1.0",
     "gatsby-plugin-transition-link": "^1.20.5",
     "gsap": "^3.6.0",
+    "query-string": "^6.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",

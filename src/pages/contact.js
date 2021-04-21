@@ -1,6 +1,9 @@
 import React, {Component} from "react"
 import { gsap } from "gsap";
 
+import axios from "axios"
+import * as qs from "query-string"
+
 import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
 import "../scss/contact.scss"
@@ -19,7 +22,9 @@ class Contact extends Component{
             subject: '',
             email: '',
             msg: '',
+            feedbackMsg: null,
         }
+        this.formRef = React.createRef();
 
         this.Header = {
             logo: null,
@@ -32,6 +37,8 @@ class Contact extends Component{
         this.question = null
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleServerResponse = this.handleServerResponse.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
@@ -46,10 +53,39 @@ class Contact extends Component{
         const value = event.target.value;
         const name  = event.target.name;
 
-        this.setState({
-            [name]: value
-        });
+        if(!value.trim().length) this.setState({
+            handleErrors: 'Please fill the form!'
+        })
+
     }
+
+    handleServerResponse (ok, msg, form) {
+        this.setState({
+            feedbackMsg: msg,
+        })
+        if (ok) {
+            form.reset();
+        }
+    };
+
+    handleSubmit(event) {
+        // Do not submit form via HTTP, since we're doing that via XHR request.
+        event.preventDefault()
+
+        const form = event.target;
+        axios({
+            method: "post",
+            url: "https://getform.io/f/22fcd7a7-f019-448e-a2b5-0d2574429d8d",
+            data: new FormData(form)
+        })
+            .then(r => {
+                this.handleServerResponse(true, "Form submitted successfully!", form)
+            })
+            .catch(r => {
+                this.handleServerResponse(false, "Form could not be submitted.", form)
+            });
+    }
+
     render() {
         return (
             <LayoutDefault Sections={this.Sections}>
@@ -63,21 +99,31 @@ class Contact extends Component{
                                 <img src={Img} alt=""/>
                             </div>
                             <div className="col2">
-                                <form action="">
+                                {this.state.feedbackMsg && <p style={{color: "green"}}>{this.state.feedbackMsg}</p>}
+                                <form
+                                      method="POST"
+                                      action="https://getform.io/f/22fcd7a7-f019-448e-a2b5-0d2574429d8d" method="POST"
+                                      ref={this.formRef}
+                                      onSubmit={event => this.handleSubmit(event)}
+                                >
                                     <div className="grid">
                                         <div>
                                             <label htmlFor="name">Name<span>*</span></label>
                                             <input type="text"
                                                    name="name"
-                                                   value={this.state.name}
-                                                   onChange={this.handleChange}/>
+                                                   ref="name"
+                                                   // value={this.state.name}
+                                                   onChange={this.handleChange}
+                                            />
                                         </div>
                                         <div>
                                             <label htmlFor="email">Email<span>*</span></label>
                                             <input type="text"
                                                    name="email"
-                                                   value={this.state.email}
-                                                   onChange={this.handleChange}/>
+                                                   ref="email"
+                                                   // value={this.state.email}
+                                                   onChange={this.handleChange}
+                                            />
                                         </div>
                                     </div>
 
@@ -85,19 +131,22 @@ class Contact extends Component{
                                         <label htmlFor="subject">Subject<span>*</span></label>
                                         <input type="text"
                                                name="subject"
-                                               value={this.state.subject}
-                                               onChange={this.handleChange}/>
+                                               ref="subject"
+                                               // value={this.state.subject}
+                                               onChange={this.handleChange}
+                                        />
                                     </div>
 
                                     <div className="row">
                                         <label htmlFor="msg">Message</label>
                                         <textarea
                                             name="msg"
-                                            value={this.state.msg}
-                                            onChange={this.handleChange}/>
+                                            ref="msg"
+                                            // value={this.state.msg}
+                                            // onChange={this.handleChange}
+                                        />
                                     </div>
-
-                                    <CoolButton to="">Send Email</CoolButton>
+                                    <CoolButton type="submit">Send Email</CoolButton>
                                 </form>
                             </div>
                         </div>
