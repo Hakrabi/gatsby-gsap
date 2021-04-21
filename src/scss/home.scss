@@ -120,10 +120,6 @@ body{
     padding-top: 8vh;
     height: 92vh;
     box-sizing: border-box;
-    //.grid {
-    //  height: 95%;
-    //}
-
     h2 {
       max-width: 277px;
     }
@@ -151,11 +147,9 @@ body{
         }
       }
     }
-
     .col2 {
       position: relative;
     }
-
     .outline {
       position: absolute;
       margin: auto;
@@ -171,7 +165,6 @@ body{
 
 
   section.design {
-    //height: calc(100vh + 50px);
     position: relative;
     .circle {
       background-color: $yellow;
@@ -215,12 +208,6 @@ body{
       height: 100vh;
     }
 
-    .grid {
-      //height: 80%;
-      //padding-bottom: 15%;
-      //align-items: flex-end;
-      //justify-items: center;
-    }
     .img-cont{
       height: 156px;
     }
@@ -248,15 +235,18 @@ body{
 
 
   section.whyCCL {
-    background: url("../imgs/home/whyCCL/top.svg"),
+    background:
+    url("../imgs/home/whyCCL/top-mask.svg"),
+    url("../imgs/home/whyCCL/top.svg"),
     url("../imgs/home/whyCCL/bottom.svg"),
-    linear-gradient(180deg,
-                    $red 0%, $red 10%,
-                    $violet 10%, $violet 88%,
-                    $grey-bg 88%, $grey-bg 100%);
-    background-position: top center, center bottom;
+    $violet;
+    //linear-gradient(180deg,
+    //                $red 0%, $red 10%,
+                    //$violet 10%, $violet 88%,
+                    //$grey-bg 88%, $grey-bg 100%);
+    //background-position: top center,top center, center bottom;
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: 130.76% auto, 100% auto, 100% auto;
     position: relative;
     color: $white;
 
@@ -355,6 +345,10 @@ body{
     background-position: center left;
     background-repeat: no-repeat;
     background-size: auto;
+
+    .img-cont{
+      height: 168px;
+    }
 
     .paint{
       width: 100vw;

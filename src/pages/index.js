@@ -183,7 +183,7 @@ class Home extends Component {
             this.Contact,
         ]
 
-        this.ScrollTriggers.forEach((el)=>{
+        this.ScrollTriggers.forEach((el) => {
             el.anim = new TimelineLite({
                 ease: "power3.easeOut",
                 scrollTrigger: {
@@ -297,38 +297,32 @@ class Home extends Component {
 
         //Why CCL
         this.WhyCCL.anim
-            .from(this.WhyCCL.head[0], 0.5, {height: 0})
+            .from(this.WhyCCL.head[0], 0.5, {height: 0},1.3)
             .from(this.WhyCCL.head[1], 0.5, {height: 0}, "-=0.4")
             .from(this.WhyCCL.head[2], 0.5, {height: 0}, "-=0.4")
             .from(this.WhyCCL.head[3], 0.5, {height: 0}, "-=0.4")
             .from(this.WhyCCL.text, 0.5, {y: '10vh', opacity: 0}, "-=0.5")
             .from(this.WhyCCL.bottom, 0.4, {opacity: 0, x: -50},)
             .from(this.WhyCCL.link, 1, {opacity: 0}, "+=1")
-
+            .fromTo(this.WhyCCL.section, 0.8,
+                {backgroundPosition: '0vw 0%, top center, bottom center '},
+                {backgroundPosition: '-120vw 0%, top center, bottom center '},
+                0.5
+            )
         //Team
         this.Team.anim
             .from(this.Team.head[0], 0.5, {height: 0})
             .from(this.Team.head[1], 0.5, {height: 0}, "-=0.4")
             .from(this.Team.text, 0.5, {y: '10vh', opacity: 0}, "-=0.3")
 
-        //Contact
-        this.Contact.anim
-            .from(this.Contact.head[0], 0.5, {height: 0},)
-            .from(this.Contact.head[1], 0.5, {height: 0}, "-=0.4")
-            .to(this.Contact.wrapper, 0.5, {width: 0}, "+=0.5")
-            .from(this.Contact.realH2, 0.5, {x: '-5%'}, "-=0.4")
-            .from(this.Contact.wrapperH2, 0.5, {x: '-5%'}, "-=0.5")
-            .from(this.Contact.cont, 0.3, {height: 0},)
-            .from(this.Contact.bottom[0], 0.3, {opacity: 0, y: 50}, "-=0.1")
-            .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
-            .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
 
+        //Clients
         this.Clients.anim
             .from(this.Clients.head[0], 0.4, {opacity: 0, y: 100, rotate: 7}, "-=0.2")
             .from(this.Clients.text, 0.3, {opacity: 0, y: 50}, "-=0.2")
             .from(this.Clients.row, 0.3, {opacity: 0, y: 50}, "-=0.2")
-            .from(this.Clients.right.rotate, 0.5,{x: 200, rotate: 180})
-            .from(this.Clients.left.rotate, 0.5,{x: -200, rotate: -180}, "-=0.5")
+            .from(this.Clients.right.rotate, 0.5, {x: 200, rotate: 180})
+            .from(this.Clients.left.rotate, 0.5, {x: -200, rotate: -180}, "-=0.5")
 
         this.Clients.rowAnim = new TimelineLite({
             ease: "power1.inOut",
@@ -341,13 +335,32 @@ class Home extends Component {
             }
         })
         this.Clients.rowAnim
-            .to(this.Clients.row, 0.4, {top:'100%'})
-            .fromTo(this.Clients.right.move, 1.6, {right:0}, {right: 'auto'}, 0.4)
-            .fromTo(this.Clients.left.move, 1.6,{left:0}, {left: 'auto'}, 0.4)
+            .to(this.Clients.row, 0.4, {top: '100%'})
+            .fromTo(this.Clients.right.move, 1.6, {right: 0}, {right: 'auto'}, 0.4)
+            .fromTo(this.Clients.left.move, 1.6, {left: 0}, {left: 'auto'}, 0.4)
             .fromTo(this.Clients.right.rotate, 1.6, {rotate: 0}, {rotate: -360}, 0.4)
-            .fromTo(this.Clients.left.rotate, 1.6,{rotate: 0}, {rotate: 360}, 0.4)
+            .fromTo(this.Clients.left.rotate, 1.6, {rotate: 0}, {rotate: 360}, 0.4)
 
+        //Tech
+        this.Tech.anim
+            .from(this.Tech.head[0], 0.5, {height: 0})
+            .from(this.Tech.head[1], 0.5, {height: 0}, "-=0.4")
+            .from(this.Tech.head[2], 0.5, {height: 0}, "-=0.4")
+            .from(this.Tech.head[3], 0.5, {height: 0}, "-=0.4")
+            .from(this.Tech.text, 0.5, {y: '10vh', opacity: 0}, 0)
+            .from(this.Tech.img[0], 0.3, {height: 0}, 0)
 
+        //Contact
+        this.Contact.anim
+            .from(this.Contact.head[0], 0.5, {height: 0},)
+            .from(this.Contact.head[1], 0.5, {height: 0}, "-=0.4")
+            .to(this.Contact.wrapper, 0.5, {width: 0}, "+=0.5")
+            .from(this.Contact.realH2, 0.5, {x: '-5%'}, "-=0.4")
+            .from(this.Contact.wrapperH2, 0.5, {x: '-5%'}, "-=0.5")
+            .from(this.Contact.cont, 0.3, {height: 0},)
+            .from(this.Contact.bottom[0], 0.3, {opacity: 0, y: 50}, "-=0.1")
+            .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
+            .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
 
 
         this.Sections = [
@@ -536,7 +549,7 @@ class Home extends Component {
                                     </div>
                                     <div className="col2 col-center">
                                         <div className="img-cont">
-                                            <img className="mb" src={mobdevImg} ref={img => this.Mobdev.img[0] = img}
+                                            <img src={mobdevImg} ref={img => this.Mobdev.img[0] = img}
                                                  alt=""/>
                                         </div>
                                         <h2 className="side-move">
@@ -657,16 +670,18 @@ class Home extends Component {
                     <section className="tech" ref={section => this.Tech.section = section}>
                         <div className="grid mw900">
                             <div className="col1">
-                                <h2>
-                                    <span ref={span => this.tech1 = span}>PROVEN</span>
-                                    <span ref={span => this.tech2 = span}>TECHNO</span>
-                                    <span ref={span => this.tech3 = span}>LOGY</span>
-                                    <span ref={span => this.tech4 = span}>STACK</span>
+                                <h2 className='vertical-bottom-move '>
+                                    <span><span ref={span => this.Tech.head[0] = span}>PROVEN</span></span>
+                                    <span><span ref={span => this.Tech.head[1] = span}>TECHNO</span></span>
+                                    <span><span ref={span => this.Tech.head[2] = span}>LOGY</span></span>
+                                    <span><span ref={span => this.Tech.head[3] = span}>STACK</span></span>
                                 </h2>
                             </div>
                             <div className="col2 col-center">
-                                <img className="mb" src={techImg} alt=""/>
-                                <p className='mw375'>
+                                <div className="img-cont">
+                                    <img src={techImg} ref={img => this.Tech.img[0] = img} alt=""/>
+                                </div>
+                                <p className='mw375' ref={p => this.Tech.text = p}>
                                     We use only proven technologies that <b>work stably</b> without breakdowns and
                                     unnecessary
                                     updates. Thus, <b>we reduce the risk of problems</b> and can predict the operation
