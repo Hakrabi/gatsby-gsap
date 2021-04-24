@@ -1,7 +1,7 @@
 @import '../scss/vars';
 //@import '../scss/main.scss';
 
-body{
+body.home{
   background: $red;
 }
 
@@ -12,47 +12,9 @@ body{
     justify-content: center;
     position: relative;
 
-    .wrapper{
-      width: 100vw;
-      height: 100vh;
+    .load-wrapper{
       color: $white;
       background: $red;
-      position: absolute;
-      right: 0;
-      top: 0;
-      overflow: hidden;
-      z-index: 20;
-      .block{
-        height: 100%;
-        width: 100vw;
-        right: 0;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        .white-logo{
-          opacity: 0;
-          position: absolute;
-          top: 26px;
-          left: 143px;
-        }
-        h1 {
-          &.vertical-move {
-            span {
-              display: flex;
-              align-items: flex-end;
-              justify-content: center;
-              height: 78px;
-              span {
-                height: 0;
-                display: block;
-                overflow: hidden;
-              }
-            }
-          }
-        }
-      }
     }
     h1{
       transform: translateX(-5%);
@@ -81,8 +43,12 @@ body{
 
       h2 {
         max-width: 277px;
-        //display: block;
         margin: 0 auto;
+        //position: sticky;
+        //position: fixed;
+        //top: 0;
+        //left: calc(25% - 180px);
+
       }
 
       .col1 {
@@ -106,6 +72,8 @@ body{
         z-index: 1;
       }
     }
+
+
 
     .row {
       height: 30%;

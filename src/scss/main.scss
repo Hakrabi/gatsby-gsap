@@ -22,28 +22,9 @@ body{
   font-family: "Inconsolata";
   color: $black-violet;
   background: $grey-bg;
-  //background: $red;
   margin: 0;
-  //overflow-x: hidden;
   overflow: hidden;
-  //height: 100vh;
   width: 100%;
-}
-
-//.scroller{
-//  position: relative;
-//  height: 100vh;
-//  overflow-x: hidden;
-//}
-
-//#home{
-//  position: relative;
-//  height: 100vh;
-//  overflow-x: hidden;
-//}
-
-.scrollbar-thumb{
-  background: $black-violet !important;
 }
 
 h1,h2,p{
@@ -56,6 +37,19 @@ h1{
   letter-spacing: -0.02em;
   text-align: center;
   max-width: 800px;
+  &.vertical-move {
+    span {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 78px;
+      span {
+        height: 0;
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
 }
 h2{
   font-weight: bold;
@@ -141,7 +135,8 @@ img{
   -ms-user-select: none;
 }
 
-img.mb{
+img.mb,
+svg.mb{
   margin-bottom: 60px;
 }
 
@@ -178,6 +173,35 @@ section{
   justify-content: center;
   flex-direction: column;
 }
+
+.load-wrapper{
+  width: 100vw;
+  height: 100vh;
+  color: $white;
+  //background: $red;
+  position: absolute;
+  right: 0;
+  top: 0;
+  overflow: hidden;
+  z-index: 20;
+  .block{
+    height: 100%;
+    width: 100vw;
+    right: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .white-logo{
+      opacity: 0;
+      position: absolute;
+      top: 26px;
+      left: 143px;
+    }
+  }
+}
+
 
 .oval{
   width: 110%;
@@ -270,7 +294,7 @@ section{
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    z-index: 10;
+    z-index: 50;
     img{
       cursor: pointer;
     }

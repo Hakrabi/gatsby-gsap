@@ -1,15 +1,16 @@
 import React, {Component} from "react"
 import { gsap } from "gsap";
+import Typewriter from 'typewriter-effect';
 
 import axios from "axios"
 import * as qs from "query-string"
 
 import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
+import Hamster from '../parts/CoolImgs/Hamster'
 import "../scss/contact.scss"
 
 
-import Img from "../imgs/contact/hello.svg"
 import FooterMenu from "../parts/Footer/FooterMenu";
 import Header from "../parts/Header";
 
@@ -88,15 +89,32 @@ class Contact extends Component{
 
     render() {
         return (
-            <LayoutDefault Sections={this.Sections}>
+            <LayoutDefault pageName="contact" Sections={this.Sections}>
                 <Header innerRefs={this.Header}/>
                 <main id="contact">
                     <section className="contact-form" ref={section => this.MainContact = section}>
                         <div className="grid">
                             <div className="col1">
-                                <h1>WHY NOT SAY HELLO<span ref={span => this.question = span}>?</span></h1>
+                                <h1>WHY NOT SAY&nbsp;
+                                    <span>
+                                        <Typewriter
+                                            onInit={(typewriter) => {
+                                                typewriter
+                                                    .typeString('HELLO')
+                                                    .start();
+                                            }}
+                                            options={{
+                                                strings: ["HELLO", "HOLA", 'SALUT'],
+                                                autoStart: true,
+                                                // loop: false,
+                                                cursor: ''
+                                            }}
+                                        />
+                                    </span>
+                                    <span ref={span => this.question = span}>?</span>
+                                </h1>
                                 <p className="big">Write us an e-mail via the form</p>
-                                <img src={Img} alt=""/>
+                                <Hamster/>
                             </div>
                             <div className="col2">
                                 {this.state.feedbackMsg && <p style={{color: "green"}}>{this.state.feedbackMsg}</p>}

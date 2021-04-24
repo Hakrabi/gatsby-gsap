@@ -7,25 +7,9 @@ section.still-reading{
   .container{
     height: 100%;
   }
-  .wrapper{
-    width: 100vw;
-    height: 100vh;
+  .load-wrapper{
     color: $violet;
     background: $white;
-    position: absolute;
-    right: 0;
-    overflow: hidden;
-    z-index: 20;
-    .block{
-      height: 100%;
-      width: 100vw;
-      right: 0;
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
   }
   .cool-button{
     margin-top: 50px;

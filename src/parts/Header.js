@@ -26,30 +26,7 @@ class Header extends Component{
     }
 
     componentDidMount() {
-        // const scroller = document.querySelector('.scroller');
-        // const bodyScrollBar = Scrollbar.init(scroller, { damping: 0.05, delegateTo: document, alwaysShowTracks: false });
-        // ScrollTrigger.scrollerProxy(".scroller", {
-        //     scrollTop(value) {
-        //         if (arguments.length) {
-        //             bodyScrollBar.scrollTop = value;
-        //         }
-        //         return bodyScrollBar.scrollTop;
-        //     }
-        // });
-        // bodyScrollBar.addListener(ScrollTrigger.update);
-        // ScrollTrigger.defaults({ scroller: scroller });
 
-        // gsap.to(this.header,
-        //     {y: -100,
-        //         ease:"power3.easeOut",
-        //         scrollTrigger: {
-        //             trigger: this.trigger,
-        //             start: 100,
-        //             toggleActions: 'play none none reverse'
-        //             scrub: true
-                // }
-            // }
-        // );
     }
 
     render() {
@@ -57,7 +34,7 @@ class Header extends Component{
             <>
                <div ref={div => this.trigger = div}/>
                <header ref={header => this.header = header}>
-                   <AniLink paintDrip hex="#525375" className="logo" to="/">
+                   <AniLink paintDrip hex="#D16978" className="logo" to="/">
                        <img className="color" src={colorLogo} ref={img => this.props.innerRefs.logo = img}/>
                        <div className="text">
                            <img src={text1} ref={img => this.props.innerRefs.text[0] = img}/>

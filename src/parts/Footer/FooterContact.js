@@ -26,7 +26,7 @@ class FooterContact extends Component{
     render() {
         return (
             <section className="still-reading" ref={section => this.props.Contact.section = section}>
-                <div className="wrapper" ref={div => this.props.Contact.wrapper = div}>
+                <div className="load-wrapper" ref={div => this.props.Contact.wrapper = div}>
                     <div className="block">
                         <h2 className="vertical-bottom-move" ref={h1 => this.props.Contact.wrapperH2 = h1}>
                             <span><span ref={span => this.props.Contact.head[0] = span}>{this.Head[0]}</span></span>

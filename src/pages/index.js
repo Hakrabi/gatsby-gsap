@@ -172,6 +172,7 @@ class Home extends Component {
     componentDidMount() {
 
         this.ScrollTriggers = [
+            this.Welcome,
             this.WWD,
             this.Webdev,
             this.Design,
@@ -196,10 +197,6 @@ class Home extends Component {
         })
 
         //Welcome
-        this.Welcome.anim = new TimelineLite({
-            ease: "power3.easeOut",
-        });
-
         this.Welcome.anim
             .to(document.body, 0, {background: "#FCFCFF"})
             .to(this.Welcome.whiteLogo, 0.5, {opacity: 1}, "+=1")
@@ -309,6 +306,24 @@ class Home extends Component {
                 {backgroundPosition: '-120vw 0%, top center, bottom center '},
                 0.5
             )
+
+        // this.anim = new TimelineLite({
+        //     ease: "none",
+        //     scrollTrigger: {
+        //         trigger: this.WWD.text,
+        //         start: "center center-=200px ",
+        //         end: "bottom+=100% center",
+        //         pin:true,
+        //         markers: true,
+        //         toggleActions: 'play none none reverse',
+        //     }
+        // })
+
+        // this.anim
+            // .to('#WWD-h2',0,{position:"fixed"})
+            // .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
+            // .to('#WWD-h2>span', 0.3,{height:"38px"}, 0)
+
         //Team
         this.Team.anim
             .from(this.Team.head[0], 0.5, {height: 0})
@@ -385,7 +400,7 @@ class Home extends Component {
                 <Header innerRefs={this.Header}/>
                 <main id="home">
                     <section className="welcome" ref={section => this.Welcome.section = section}>
-                        <div className="wrapper" ref={div => this.Welcome.wrapper = div}>
+                        <div className="load-wrapper" ref={div => this.Welcome.wrapper = div}>
                             <div className="block">
                                 <img className="white-logo" src={whiteLogo} ref={img => this.Welcome.whiteLogo = img}/>
                                 <h1 className="vertical-move" ref={h1 => this.Welcome.wrapperH1 = h1}>
@@ -406,7 +421,7 @@ class Home extends Component {
                     <section className="what-we-do">
                         <div className="grid" ref={div => this.WWD.section = div}>
                             <div className='col1'>
-                                <h2 className="vertical-move">
+                                <h2 id="WWD-h2" className="vertical-move" ref={h2 => this.WWD.H2 = h2}>
                                     <span><span ref={span => this.WWD.head[0] = span}>WHAT</span></span>
                                     <span><span ref={span => this.WWD.head[1] = span}>WE</span></span>
                                     <span><span ref={span => this.WWD.head[2] = span}>DO</span></span>

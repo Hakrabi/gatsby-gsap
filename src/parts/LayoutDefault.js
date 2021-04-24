@@ -1,11 +1,6 @@
 import React, {Component} from "react"
 import { Helmet } from "react-helmet"
 
-import Header from './Header'
-
-import FooterMenu from './Footer/FooterMenu'
-import FooterContact from "./Footer/FooterContact";
-
 import '../scss/main.scss'
 import {gsap} from "gsap";
 import { ScrollToPlugin } from "gsap/all";
@@ -71,14 +66,19 @@ class LayoutDefault extends Component{
     goToNextSlide() {
         let index = this.state.currentSection
         let duration = 1
+        let delay = 0
         let ease = "power3.inOut"
         if(this.props.pageName === 'home' && index === 7) {duration = 1.5; ease = "power1.inOut"}
+        if(this.props.pageName === 'home' && index === 9) {delay = 1.1}
+        if(this.props.pageName === 'design' && index === 10) {delay = 1.1}
+        if(this.props.pageName === 'design' && index === 2) {delay = 0.5}
 
         if(this.state.scrollActive && this.props.Sections.length-1 > index){
             this.setState({
                 scrollActive:false
             });
-            gsap.to(window, {duration: duration, ease: ease, scrollTo:{y: this.props.Sections[index + 1]},
+            gsap.to(window, {duration: duration, ease: ease, delay: delay,
+                scrollTo:{y: this.props.Sections[index + 1]},
                 onComplete:()=>{
                     this.setState({
                         scrollActive:true,

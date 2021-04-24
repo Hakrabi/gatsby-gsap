@@ -25,7 +25,8 @@ class Gallery extends Component {
             this.setState({
                 scrollActive:false
             });
-            gsap.to(this.Gallery, {duration: 0.5,ease: "power3.inOut", scrollTo:{x: '-=500'},
+            gsap.to(this.props.innerRef.gallery, {duration: 1,ease: "power1.inOut",  scrollTo:{
+                x: () => '-=' + (this.props.innerRef.gallery.scrollWidth - document.documentElement.clientWidth)/5},
                 onComplete:()=>{
                     this.setState({
                         scrollActive:true,
@@ -41,7 +42,9 @@ class Gallery extends Component {
             this.setState({
                 scrollActive:false
             });
-            gsap.to(this.Gallery, {duration: 0.5,ease: "power3.inOut", scrollTo:{x: '+=500'},
+            gsap.to(this.props.innerRef.gallery, {duration: 1,ease: "power1.inOut",
+                scrollTo:{
+                x: () => '+=' + (this.props.innerRef.gallery.scrollWidth - document.documentElement.clientWidth)/5},
                 onComplete:()=>{
                     this.setState({
                         scrollActive:true,
@@ -53,8 +56,8 @@ class Gallery extends Component {
 
     render() {
         return (
-            <div className="gallery" ref={div => this.props.innerRef.gallery = div}>
-                <div className="gallery-imgs" ref={div => this.Gallery = div}>
+            <div className="gallery">
+                <div className="gallery-imgs" ref={div => this.props.innerRef.gallery = div}>
                     {this.props.children}
                 </div>
                 <div className="gallery-controls">

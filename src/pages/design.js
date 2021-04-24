@@ -10,8 +10,10 @@ import Gallery from "../parts/Gallery"
 import Video from "../parts/Video";
 import '../scss/design.scss'
 
-import IllustrationImg from "../imgs/design/illustrations/img.svg"
+import IllustrationImg from  "../parts/CoolImgs/design/IllustrationImg"
+import WelcomePen from "../parts/CoolImgs/design/WelcomePen"
 
+//
 import Ill1 from "../imgs/design/illustrations-gallery/1.png"
 import Ill2 from "../imgs/design/illustrations-gallery/2.png"
 import Ill3 from "../imgs/design/illustrations-gallery/3.png"
@@ -29,8 +31,9 @@ import Ill15 from "../imgs/design/illustrations-gallery/15.png"
 import Ill16 from "../imgs/design/illustrations-gallery/16.png"
 import Ill17 from "../imgs/design/illustrations-gallery/17.png"
 import Ill18 from "../imgs/design/illustrations-gallery/18.png"
+//
 
-import AnimationImg from "../imgs/design/animation/img.svg"
+import Camera from "../parts/CoolImgs/design/Camera"
 
 import webdesignPanels from "../imgs/design/web-design/panels.svg"
 import webdesignImg1 from "../imgs/design/web-design/1.png"
@@ -56,6 +59,9 @@ import wwuArr4 from "../imgs/design/what-we-use/4.svg"
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
 import Header from "../parts/Header";
+import whiteLogo from "../imgs/header/logo/white.svg";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
+import WelcomeBottomText from "../imgs/home/welcome-bg.svg";
 
 let Illustrations = [[Ill1, Ill2, Ill3, Ill4, Ill5, Ill6, Ill7, Ill8],
                         [Ill10, Ill11, Ill12, Ill13, Ill14, Ill15, Ill16, Ill17, Ill18]]
@@ -76,14 +82,22 @@ class Design extends Component{
             text: []
         };
 
-        this.Welcome ={
+        this.Welcome = {
             section: null,
+            wrapper: null,
+            whiteLogo: null,
+            wrapperH1: null,
+            head: [],
+            H1: null,
+            bottom: null,
+            penAnim: null
         }
 
         this.Illustrations ={
             anim: null,
             section: null,
             text: null,
+            imgAnim: null,
             head: []
         }
 
@@ -103,7 +117,9 @@ class Design extends Component{
             circle: null,
             text: null,
             head: [],
-            img: [],
+            imgAnim: null,
+            paintBack: null,
+            paintFront: null
         }
         this.Videos ={
             anim: null,
@@ -161,41 +177,80 @@ class Design extends Component{
 
     }
     componentDidMount() {
-        let container = this.IllustrationsGallery.gallery
-        // gsap.to(container, {
-        //     x: () => -(container.scrollWidth - document.documentElement.clientWidth) - 146 + "px",
-        //     ease: "none",
-        //     scrollTrigger: {
-        //         trigger: container,
-        //         invalidateOnRefresh: true,
-        //         pin: true,
-        //         scrub: 1,
-        //         end: () => "+=" + container.offsetWidth
-        //     }
-        // })
-        //
-        // let container1 = this.WebDesignGallery.gallery
-        // gsap.to(container1, {
-        //     x: () => -(container1.scrollWidth - document.documentElement.clientWidth) - 146 + "px",
-        //     ease: "none",
-        //     scrollTrigger: {
-        //         trigger: container1,
-        //         invalidateOnRefresh: true,
-        //         pin: true,
-        //         scrub: 1,
-        //         end: () => "+=" + container1.offsetWidth
-        //     }
-        // })
 
-        this.Contact.anim = new TimelineLite({
-            ease:"power3.easeOut",
+        this.ScrollTriggers = [
+            this.Welcome,
+            this.Illustrations,
+            this.IllustrationsGallery,
+            this.Animation,
+            this.Videos,
+            this.WebDesign,
+            this.WebDesignGallery,
+            this.Page404,
+            this.Presentation,
+            this.WWU,
+            this.Contact,
+        ]
+
+        this.ScrollTriggers.forEach((el) => {
+            el.anim = new TimelineLite({
+                scrollTrigger: {
+                    trigger: el.section,
+                    start: "bottom bottom+=40px",
+                    end: "top top",
+                    toggleActions: 'play none none reverse'
+                }
+            })
+        })
+
+        //Welcome
+        this.Welcome.anim
+            .to(document.body, 0, {background: "#FCFCFF"})
+            .to(this.Welcome.whiteLogo, 0.5, {opacity: 1}, "+=1")
+            .to(this.Welcome.head[0], 0.5, {height: "auto"}, "-=0.5")
+            .to(this.Welcome.wrapper, 0.5, {width: 0}, "+=0.3")
+            .to(this.Welcome.H1, 0.5, {x: 0}, "-=0.4")
+            .to(this.Welcome.wrapperH1, 0.5, {x: 0}, "-=0.5")
+            .from(this.Header.text[0], 0.3, {opacity: 0, y: 20})
+            .from(this.Header.text[1], 0.3, {opacity: 0, y: 20}, "-=0.25")
+            .from(this.Header.text[2], 0.3, {opacity: 0, y: 20}, "-=0.25")
+            .from(this.Welcome.section, 0.7, {ease: 'circ.out', backgroundSize: "auto 0%"})
+            .add(this.Welcome.penAnim,"-=0.3")
+            .from(this.Welcome.bottom, 0.5, {opacity: 0})
+
+
+
+        this.Illustrations.anim
+            .from(this.Illustrations.head[0], 0.5, {height: 0})
+            .from(this.Illustrations.head[1], 0.5, {height: 0}, "-=0.4")
+            .from(this.Illustrations.head[2], 0.5, {height: 0}, "-=0.4")
+            .from(this.Illustrations.head[3], 0.5, {height: 0}, "-=0.4")
+            .from(this.Illustrations.text, 0.5, {y: '10vh', opacity: 0}, 0)
+            .add(this.Illustrations.imgAnim, 0.5)
+            .to(this.IllustrationsGallery.gallery, 0.5, {y:"-25vh"})
+
+        this.IllustrationsGallery.anim = new TimelineLite({
             scrollTrigger: {
-                trigger: this.Contact.section,
-                start: "bottom bottom+=40px",
-                end:"top top",
-                toggleActions: 'play none none reverse'
+                trigger: this.IllustrationsGallery.gallery,
+                invalidateOnRefresh: true,
+                scrub: 1,
+                // start: "top top",
+                end: "bottom bottom"
             }
         })
+        this.IllustrationsGallery.anim
+        .to(this.IllustrationsGallery.gallery, {y: 0,})
+        .to(this.Illustrations.section, {backgroundSize: "100% 100%"},0)
+
+        this.Animation.anim
+            .from(this.Animation.head[0], 0.5, {height: 0})
+            .from(this.Animation.head[1], 0.5, {height: 0}, "-=0.4")
+            .from(this.Animation.head[2], 0.5, {height: 0}, "-=0.4")
+            .from(this.Animation.text, 0.5, {y: '10vh', opacity: 0}, 0)
+            .add(this.Animation.imgAnim)
+
+
+        this.Contact.anim
             .from(this.Contact.head[0], 0.5, {height: 0}, )
             .from(this.Contact.head[1], 0.5, {height: 0}, "-=0.4")
             .to(this.Contact.wrapper, 0.5, {width: 0}, "+=0.5")
@@ -228,23 +283,34 @@ class Design extends Component{
             <LayoutDefault pageName="design" Sections={this.Sections}>
                 <Header innerRefs={this.Header}/>
                 <main id="design">
-                    <section className="welcome" ref={section => this.Welcome.section = section}>
-                        <h1>Design & Art</h1>
-                        <p className="big bottom-text">What we do?</p>
+                    <section className="welcome" ref={el => this.Welcome.section = el}>
+                        <div className="load-wrapper" ref={div => this.Welcome.wrapper = div}>
+                            <div className="block">
+                                <img className="white-logo" src={whiteLogo} ref={img => this.Welcome.whiteLogo = img}/>
+                                <h1 className="vertical-move" ref={h1 => this.Welcome.wrapperH1 = h1}>
+                                    <span><span ref={span => this.Welcome.head[0] = span}>Design & Art</span></span>
+                                </h1>
+                            </div>
+                        </div>
+                        <div className="header-block">
+                            <h1 ref={h1 => this.Welcome.H1 = h1}>Design & Art</h1>
+                            <WelcomePen anim={this.Welcome}/>
+                        </div>
+                        <p ref={el => this.Welcome.bottom = el} className="big bottom-text">What we do?</p>
                     </section>
 
                     <section className="illustrations" ref={section => this.Illustrations.section = section}>
                         <div className="grid">
                             <div className="col1">
-                                <h2>
-                                    <span ref={span => this.webdesign1 = span}>ILLUS</span>
-                                    <span ref={span => this.webdesign2 = span}>TRATI</span>
-                                    <span ref={span => this.webdesign3 = span}>ONS</span>
+                                <h2 className="vertical-bottom-move">
+                                    <span><span ref={span => this.Illustrations.head[0] = span}>ILLUS</span></span>
+                                    <span><span ref={span => this.Illustrations.head[1] = span}>TRATI</span></span>
+                                    <span><span ref={span => this.Illustrations.head[2] = span}>ONS</span></span>
                                 </h2>
                             </div>
                             <div className="col2">
-                                <img className='mb' src={IllustrationImg} alt=""/>
-                                <p className="big mw444">
+                                <IllustrationImg anim={this.Illustrations}/>
+                                <p className="big mw444" ref={p => this.Illustrations.text = p}>
                                     No more stock photos and boring diagrams, all the visuals are made to broadcast your specific values and your brand personality, tell your story and be simply great.
                                 </p>
                             </div>
@@ -270,21 +336,21 @@ class Design extends Component{
                         </Gallery>
                     </section>
 
-                    <section className="animation">
-                        <div className="oval">
+                    <section className="animation" ref={el => this.Animation.paintBack = el}>
+                        <div className="oval" ref={el => this.Animation.paintFront = el}>
                             <div className="behance"></div>
                             <div className="grid mw900" ref={div => this.Animation.section = div}>
                                 <div className="col1">
-                                    <img className='mb' src={AnimationImg} alt=""/>
-                                    <p className="mw375">
+                                    <Camera anim={this.Animation}/>
+                                    <p ref={el => this.Animation.text = el} className="mw375">
                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                                     </p>
                                 </div>
                                 <div className="col2">
-                                    <h2>
-                                        <span ref={span => this.Animation.head[1] = span}>ANIMAT</span>
-                                        <span ref={span => this.Animation.head[2] = span}>IONS &</span>
-                                        <span ref={span => this.Animation.head[3] = span}>VIDEOS</span>
+                                    <h2 className="vertical-bottom-move">
+                                        <span><span ref={span => this.Animation.head[0] = span}>ANIMAT</span></span>
+                                        <span><span ref={span => this.Animation.head[1] = span}>IONS &</span></span>
+                                        <span><span ref={span => this.Animation.head[2] = span}>VIDEOS</span></span>
                                     </h2>
                                 </div>
                             </div>
