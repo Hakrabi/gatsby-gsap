@@ -71,8 +71,6 @@ body.design{
     height: auto;
     max-height: initial;
     .gallery{
-      //transform: translateY(-15vh);
-      //height: 400vh;
       .grid{
         grid-template-columns: auto auto auto auto auto auto auto auto auto;
         grid-gap: 40px;
@@ -140,6 +138,7 @@ body.design{
               url("../imgs/design/animation/paint.svg") no-repeat;
       background-position: bottom 80% right;
       background-color: $violet;
+      height: 108vh;
     }
     .grid{
       height: 100vh;
@@ -184,6 +183,18 @@ body.design{
     background-color: $yellow;
     .col2{
       align-items: flex-start;
+    }
+    .col1{
+      position: relative;
+    }
+    .outline {
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      bottom: -60px;
+      z-index: 1;
     }
   }
 
@@ -253,12 +264,25 @@ body.design{
     background-color: $red;
     overflow-x: hidden;
     height: auto;
+    position: relative;
 
     .oval{
       background-color: $yellow;
     }
     .grid{
       height: 100vh;
+    }
+    .col2{
+      position: relative;
+      .outline {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        bottom: -30px;
+        z-index: 1;
+      }
     }
   }
 

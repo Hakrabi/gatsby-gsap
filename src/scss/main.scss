@@ -139,6 +139,9 @@ img.mb,
 svg.mb{
   margin-bottom: 60px;
 }
+svg{
+  overflow: visible;
+}
 
 section{
   //max-height: 70vw;
@@ -236,9 +239,6 @@ section{
   background-position: center;
   background-repeat: no-repeat;
 }
-.behance{
-  height: 8vh;
-}
 
 .img-cont{
   display: flex;
@@ -268,8 +268,51 @@ section{
   overflow: hidden;
 }
 
+.behance{
+  height: 8vh;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  position: relative;
+  a{
+    font-weight: 700;
+  }
+  .icon{
+    width: 35px;
+    height: 35px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+  }
+  &.black{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    a{
+      color: $red;
+    }
+    .icon{
+      background-image: url("../imgs/design/behance-black.svg");
+    }
+  }
+  &.white{
+    a{
+      color: $yellow;
+    }
+    .icon{
+      background-image: url("../imgs/design/behance-white.svg");
+    }
+  }
+}
+
 .gallery {
-  height: 95vh;
+  height: 92vh;
   display: flex;
   box-sizing: border-box;
   justify-content: center;
@@ -285,18 +328,26 @@ section{
     padding: 0 146px;
   }
   &-controls{
-    box-sizing: border-box;
-    position: absolute;
     width: 100vw;
-    bottom: -5vh;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    z-index: 50;
-    img{
-      cursor: pointer;
+    //position: relative;
+    .control{
+      position: absolute;
+      height: 8vh;
+      bottom: -8vh;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img{
+        max-height: 8vh;
+        cursor: pointer;
+      }
+      &:first-child{
+        left: 40px;
+      }
+      &:last-child{
+        right: 40px;
+      }
     }
   }
 }

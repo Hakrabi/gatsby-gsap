@@ -1,36 +1,36 @@
-.video {
-  box-sizing: border-box;
-  width: 100%;
-  border: 10px solid white;
-  cursor: pointer;
-}
-.wrapper{
+.video-wrapper{
   display:table;
   width:auto;
   position:relative;
   width:50%;
   margin-bottom: 96px;
-}
-.control {
-  cursor: pointer;
-  background-repeat:no-repeat;
-  width:35%;
-  height:35%;
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  margin:auto;
-  background-size:contain;
-  background-position: center;
-  &.frame1{
-    background-image:url("../imgs/design/videos/frames/1.svg");
+  .video {
+    box-sizing: border-box;
+    width: 100%;
+    border: 10px solid white;
+    cursor: pointer;
   }
-  &.frame2{
-    background-image:url("../imgs/design/videos/frames/2.svg");
-  }
-  &.frame3{
-    background-image:url("../imgs/design/videos/frames/3.svg");
+  .control {
+    cursor: pointer;
+    background-repeat:no-repeat;
+    width:35%;
+    height:35%;
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+    &.frame1{
+      background-image:url("../imgs/design/videos/frames/1.svg");
+    }
+    &.frame2{
+      background-image:url("../imgs/design/videos/frames/2.svg");
+    }
+    &.frame3{
+      background-image:url("../imgs/design/videos/frames/3.svg");
+    }
   }
 }

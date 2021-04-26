@@ -6,7 +6,7 @@ import Scrollbar from 'smooth-scrollbar';
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import LayoutDefault from '../parts/LayoutDefault'
-import LisaSimpson from '../parts/CoolImgs/LisaSimpson'
+import LisaSimpson from '../parts/CoolImgs/home/LisaSimpson'
 import '../scss/home.scss'
 
 import whiteLogo from "../imgs/header/logo/white.svg"
@@ -41,6 +41,7 @@ import FooterMenu from "../parts/Footer/FooterMenu";
 import Header from "../parts/Header";
 import CoolButton from "../parts/CoolButton";
 import BottomText from "../imgs/home/whyCCl/text.svg";
+import DesignImg from "../parts/CoolImgs/home/DesignImg";
 
 
 let clientsArr = [client1, client2, client3, client4, client5]
@@ -97,7 +98,7 @@ class Home extends Component {
             circle: null,
             text: null,
             head: [],
-            img: [],
+            imgAnim: null,
             star: null,
             link: null,
         }
@@ -243,18 +244,17 @@ class Home extends Component {
         //Design
         gsap.set('.star path', {drawSVG: "0%"})
         this.Design.anim
-            .from(this.Design.img[0], 0.5, {opacity: 0, y: 500, x: 70, rotate: -10}, "-=0.5")
-            .from(this.Design.img[1], 0.5, {opacity: 0, y: 500, x: -70, rotate: 10}, "-=0.4")
-            .from(this.Design.head[0], 0.4, {opacity: 0, y: 500, rotate: -50}, "-=0.2")
-            .from(this.Design.head[1], 0.4, {opacity: 0, y: 500, rotate: -40}, "-=0.4")
-            .from(this.Design.text, 0.3, {opacity: 0, y: 500}, "-=0.2")
+            .add(this.Design.imgAnim)
+            .from(this.Design.head[0], 0.4, {opacity: 0, y: 500, rotate: -50}, 0.5)
+            .from(this.Design.head[1], 0.4, {opacity: 0, y: 500, rotate: -40}, 0.5)
+            .from(this.Design.text, 0.3, {opacity: 0, y: 500}, 0.6)
             // .from(this.Design.star, 0.8, {ease:"elastic.out", scale:0}, "+=0.5")
             .fromTo('.star .real, .star .fict', 1.5, {drawSVG: "0%"}, {
                 ease: "power1.inOut",
                 drawSVG: "100%",
                 stagger: 0.1
             })
-            .from(this.Design.link, 1, {opacity: 0}, "+=1")
+            .from(this.Design.link, 1, {opacity: 0}, 1.6)
 
         gsap.to(this.Design.circle, {
             // borderRadius: 0,
@@ -504,10 +504,7 @@ class Home extends Component {
                         <div className="circle" ref={div => this.Design.circle = div}>
                             <div className="anchor-arrow"/>
                             <div className="container flex-center" ref={div => this.Design.section = div}>
-                                <div className="img-cont">
-                                    <img src={designImg1} ref={img => this.Design.img[0] = img} alt=""/>
-                                    <img src={designImg2} ref={img => this.Design.img[1] = img} alt=""/>
-                                </div>
+                                <DesignImg anim={this.Design}/>
                                 <h2 className="small mb">
                                     <span ref={span => this.Design.head[0] = span}>CREATIVES</span>
                                     <span ref={span => this.Design.head[1] = span}>AND DESIGN</span>
@@ -593,9 +590,7 @@ class Home extends Component {
                                     <span><span ref={span => this.WhyCCL.head[0] = span}>WHY</span></span>
                                     <span><span ref={span => this.WhyCCL.head[1] = span}>CLEVER</span></span>
                                     <span><span ref={span => this.WhyCCL.head[2] = span}>CODE</span></span>
-                                    <span><span ref={span => this.WhyCCL.head[3] = span}>LAB?</span>
-                                        {/*<span className="question" ref={span => this.WhyCCL.question = span}>?</span>*/}
-                          </span>
+                                    <span><span ref={span => this.WhyCCL.head[3] = span}>LAB?</span></span>
                                 </h2>
                             </div>
 

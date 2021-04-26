@@ -61,8 +61,8 @@ class Gallery extends Component {
                     {this.props.children}
                 </div>
                 <div className="gallery-controls">
-                    <img onClick={this.toLeft} src={left} alt="" className="left"/>
-                    <img onClick={this.toRight} src={right} alt="" className="right"/>
+                    <div className="control"><img onClick={this.toLeft} src={left} alt="" className="left"/></div>
+                    <div className="control"><img onClick={this.toRight} src={right} alt="" className="right"/></div>
                 </div>
             </div>
         );

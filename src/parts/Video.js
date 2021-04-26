@@ -41,7 +41,7 @@ class Video extends Component {
 
     render() {
         return (
-            <div className="wrapper">
+            <div className="video-wrapper">
                 <video className="video" onClick={this.Play} ref={video => this.video = video}>
                     <source
                         src={video}
