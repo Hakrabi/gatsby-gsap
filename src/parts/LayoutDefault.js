@@ -7,6 +7,7 @@ import { ScrollToPlugin } from "gsap/all";
 gsap.registerPlugin(ScrollToPlugin);
 
 class LayoutDefault extends Component{
+
     constructor(props) {
         super(props);
 
@@ -27,11 +28,10 @@ class LayoutDefault extends Component{
         this.handleKey = this.handleKey.bind(this)
         this.goToNextSlide = this.goToNextSlide.bind(this)
         this.goToPrevSlide = this.goToPrevSlide.bind(this)
-        // this.scrollToSection = this.scrollToSection.bind(this)
     }
 
     componentDidMount() {
-        // window.scrollTop = 0
+
         window.addEventListener('keydown', this.handleKey,{passive: false});
         window.addEventListener('wheel', this.handleWheel,{passive: false});
     }
