@@ -188,14 +188,21 @@ class Design extends Component{
         ]
 
         this.ScrollTriggers.forEach((el) => {
-            el.anim = new TimelineLite({
-                scrollTrigger: {
-                    trigger: el.section,
-                    start: "bottom bottom+=40px",
-                    end: "top top",
-                    toggleActions: 'play none none reverse'
-                }
-            })
+            el.anim = new TimelineLite().pause()
+        })
+        this.ScrollTriggers.forEach((el) => {
+            ScrollTrigger.create({
+                trigger: el.section,
+                start: 'top center',
+                onEnter: () => el.anim.play()
+            });
+        })
+        this.ScrollTriggers.forEach((el) => {
+            ScrollTrigger.create({
+                trigger: el.section,
+                start: 'top bottom',
+                onLeaveBack: () => el.anim.pause(0)
+            });
         })
 
         //Welcome

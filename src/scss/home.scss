@@ -46,8 +46,9 @@ body.home{
         margin: 0 auto;
         //position: sticky;
         //position: fixed;
-        //top: 0;
-        //left: calc(25% - 180px);
+        top: 0;
+        left: calc(25% - 180px);
+        z-index: 20;
 
       }
 
@@ -59,17 +60,8 @@ body.home{
       }
 
       .outline {
-        display: block;
-        position: absolute;
         margin-bottom: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
         right: 30px;
-        //text-align: center;
-        height: 334px;
-        width: 390px;
-        z-index: 1;
       }
     }
 
@@ -119,11 +111,8 @@ body.home{
       position: relative;
     }
     .outline {
-      position: absolute;
-      margin: auto;
       right:  40px;
       bottom: -25px;
-      z-index: 1;
     }
 
     .img-cont {
@@ -182,11 +171,8 @@ body.home{
     h2{
       position: relative;
       .outline {
-        position: absolute;
-        margin: auto;
         left: 0;
         top: 20px;
-        z-index: 1;
       }
     }
 
@@ -329,6 +315,14 @@ body.home{
       z-index: 30;
       bottom: -4vw;
     }
+
+    .col1{
+      position: relative;
+      .outline {
+        top: 85px;
+      }
+    }
+
   }
 }
 

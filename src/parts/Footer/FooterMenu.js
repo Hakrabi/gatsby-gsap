@@ -19,12 +19,17 @@ class FooterMenu extends Component {
             block: null,
             controller: null,
             arrow: null,
+            enterAnim: null,
+            leaveAnim: null,
+
         }
         this.Social = {
             anim: null,
             block: null,
             controller: null,
             arrow: null,
+            enterAnim: null,
+            leaveAnim: null,
         }
 
         this.CurrentBlock = true //Social if true, Menu if false
@@ -39,56 +44,22 @@ class FooterMenu extends Component {
             right: -100,
         })
 
-    }
-
-    overSocial = () =>{
-        if (!this.CurrentBlock){
-            gsap.to([this.Social.block, this.Social.controller], {duration: 0.2, ease: "none",height: '120vh',width: 400,left: -200});
-            gsap.to(this.Social.arrow, {duration: 0.2, ease: "none",margin: '0 20px'});
-        }
-    }
-    outSocial  = () =>{
-        if (!this.CurrentBlock){
-            gsap.to([this.Social.block, this.Social.controller], {duration: 0.2, ease: "none",height: 200,width: 200,left: -100});
-            gsap.to(this.Social.arrow, {duration: 0.2, ease: "none",margin: '0 40px'});
-        }
-    }
-
-    openSocial = () => {
-        this.CurrentBlock = true;
-
         this.Social.anim = new TimelineLite()
-        .to(this.Social.block,0.4,{ ease:"none",height: '120vh', width: '120vw',} )
-        .to(this.Social.block,0.2,{ ease:"none", borderRadius: '0'} )
-        .to(this.Social.controller,0.2,{ ease:"none", opacity: 0}, "=-0.6" )
-        .to([this.Social.block, this.Social.controller],0,{ ease:"none", zIndex: 0},)
-        .to([this.Menu.block, this.Menu.controller], 0, {
-            ease: "none",
-            opacity: 1,
-            borderRadius: '50% 0 0 50%',
-            width: 200,
-            height: 200,
-            right: -200,
-            zIndex: 3
-        },)
-        .to([this.Menu.block, this.Menu.controller],0.2,{ right: -100}, "=+0.2" )
-    }
-
-    overMenu = () =>{
-        if (this.CurrentBlock){
-            gsap.to([this.Menu.block, this.Menu.controller], {duration: 0.2, ease: "none",height: '120vh',width: 400, right: -200});
-            // gsap.to(this.Menu.arrow, {duration: 0.2, ease: "none",margin: '0 20px'});
-        }
-    }
-    outMenu  = () =>{
-        if (this.CurrentBlock){
-            gsap.to([this.Menu.block, this.Menu.controller], {duration: 0.2, ease: "none",height: 200,width: 200,right: -100});
-            // gsap.to(this.Menu.arrow, {duration: 0.2, ease: "none",margin: '0 40px'});
-        }
-    }
-
-    openMenu = () => {
-        this.CurrentBlock = false
+            .to(this.Social.block,0.4,{ ease:"none",height: '120vh', width: '120vw',} )
+            .to(this.Social.block,0.2,{ ease:"none", borderRadius: '0'} )
+            .to(this.Social.controller,0.2,{ ease:"none", opacity: 0}, "=-0.6" )
+            .to([this.Social.block, this.Social.controller],0,{ ease:"none", zIndex: 0},)
+            .to([this.Menu.block, this.Menu.controller], 0, {
+                ease: "none",
+                opacity: 1,
+                borderRadius: '50% 0 0 50%',
+                width: 200,
+                height: 200,
+                right: -200,
+                zIndex: 3
+            },)
+            .to([this.Menu.block, this.Menu.controller],0.2,{ right: -100}, "=+0.2" )
+            .pause()
 
         this.Menu.anim = new TimelineLite()
             .to(this.Menu.block, 0.4, {ease: "none", height: '120vh', width: '120vw',})
@@ -105,7 +76,62 @@ class FooterMenu extends Component {
                 zIndex: 3
             },)
             .to(this.Social.arrow, {duration: 0, ease: "none",margin: '0 40px'})
-            .to([this.Social.block, this.Social.controller], 0.2, {left: -100}, "=+0.2");
+            .to([this.Social.block, this.Social.controller], 0.2, {left: -100}, "=+0.2")
+            .pause()
+
+        this.Social.enterAnim = new TimelineLite()
+            .to([this.Social.block, this.Social.controller], {duration: 0.2, ease: "none",height: '120vh',width: 400,left: -200})
+            .to(this.Social.arrow, {duration: 0.2, ease: "none",margin: '0 20px'},0)
+            .pause()
+
+        this.Social.leaveAnim = new TimelineLite()
+            .to([this.Social.block, this.Social.controller], {duration: 0.2, ease: "none",height: 200,width: 200,left: -100})
+            .to(this.Social.arrow, {duration: 0.2, ease: "none",margin: '0 40px'},0)
+            .pause()
+
+        this.Menu.enterAnim = new TimelineLite()
+            .to([this.Menu.block, this.Menu.controller], {duration: 0.2, ease: "none",height: '120vh',width: 400, right: -200})
+            .pause()
+
+        this.Menu.leaveAnim = new TimelineLite()
+            .to([this.Menu.block, this.Menu.controller], {duration: 0.2, ease: "none",height: 200,width: 200,right: -100})
+            .pause()
+
+
+    }
+
+    enterSocial = () =>{
+        if (!this.CurrentBlock){
+            this.Social.enterAnim.restart()
+        }
+    }
+    leaveSocial  = () =>{
+        if (!this.CurrentBlock){
+            this.Social.leaveAnim.restart()
+        }
+    }
+
+    openSocial = () => {
+        this.CurrentBlock = true;
+
+        this.Social.anim.restart()
+    }
+
+    enterMenu = () =>{
+        if (this.CurrentBlock){
+            this.Menu.enterAnim.restart()
+        }
+    }
+    leaveMenu  = () =>{
+        if (this.CurrentBlock){
+            this.Menu.leaveAnim.restart()
+        }
+    }
+
+    openMenu = () => {
+        this.CurrentBlock = false
+
+        this.Menu.anim.restart()
     }
 
     render() {
@@ -121,8 +147,8 @@ class FooterMenu extends Component {
                     </div>
                 </div>
                 <div className="controller left" ref={div => this.Social.controller = div}
-                     onMouseOver={this.overSocial}
-                     onMouseLeave={this.outSocial}
+                     onMouseEnter={this.enterSocial}
+                     onMouseLeave={this.leaveSocial}
                      onClick={this.openSocial}>
                     <div className="text">SOCIAL</div>
                     <div className="arrow" ref={div => this.Social.arrow = div}/>
@@ -132,13 +158,13 @@ class FooterMenu extends Component {
                         <FooterLink to='/'>Home</FooterLink>
                         <FooterLink to='/'>Our Work</FooterLink>
                         <FooterLink to='/'>Services</FooterLink>
-                        <FooterLink to='/'>About Us</FooterLink>
+                        <FooterLink to='/'>Ableave Us</FooterLink>
                         <FooterLink to='/'>Contact</FooterLink>
                     </div>
                 </div>
                 <div className="controller right closed" ref={div => this.Menu.controller = div}
-                     onMouseOver ={this.overMenu}
-                     onMouseLeave ={this.outMenu}
+                     onMouseEnter ={this.enterMenu}
+                     onMouseLeave ={this.leaveMenu}
                      onClick={this.openMenu}>
                     <div className="arrow" ref={div => this.Menu.arrow = div} />
                     <div className="text">MENU</div>

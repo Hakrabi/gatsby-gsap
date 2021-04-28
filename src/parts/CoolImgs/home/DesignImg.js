@@ -32,30 +32,20 @@ class DesignImg extends Component {
         this.bottomLine = null
     }
     componentDidMount() {
-        gsap.set([this.topLine,this.bottomLine,this.leftLine], {drawSVG: 0})
+        gsap.set([this.topLine,this.bottomLine,this.leftLine, this.circle], {drawSVG: 0})
         this.props.anim.imgAnim = new TimelineLite()
             .from(this.img1, 0.5, {opacity: 0, y: 500, x: 70, rotate: -10}, )
             .from(this.img2, 0.5, {opacity: 0, y: 500, x: -70, rotate: 10}, "-=0.4")
 
             .from(this.leftPanel, 0.3, {scale: 0, transformOrigin: "100% 10%"},0.5)
-            .from(this.figma, 0.4, {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"},"-=0.2")
-            .from(this.ai, 0.4, {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"},"-=0.2")
-            .from(this.ae, 0.4, {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"},"-=0.2")
-            .fromTo(this.leftLine, 1, {drawSVG: "0%"}, {
-                ease: "power1.inOut",
-                drawSVG: "100%",
-                stagger: 0.1
-            }, )
+            .from(this.figma, 0.3, {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"},"-=0.2")
+            .from(this.ai, 0.3, {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"},"-=0.2")
+            .from(this.ae, 0.3, {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"},"-=0.2")
 
-            .from(this.topPanel, 0.3, {scale: 0, transformOrigin: "0% 60%"})
-            .from(this.bottomPanel, 0.3, {scale: 0, transformOrigin: "0% 20%"})
-            .fromTo([this.topLine,this.bottomLine], 1, {drawSVG: "100% 100%"}, {
-                ease: "power1.inOut",
-                drawSVG: "0% 100%",
-                stagger: 0.1
-            })
+            .from(this.topPanel, 0.3, {scale: 0, transformOrigin: "0% 60%"}, 0.8)
+            .from(this.bottomPanel, 0.3, {scale: 0, transformOrigin: "0% 20%"}, 1)
 
-            .to(this.indicator, 0.2, {fill:"#D16978"})
+            .to(this.indicator, 0.2, {fill:"#D16978"}, 1)
             .to(this.pen, 1,{
                 motionPath: {path: this.circle, align: this.circle, alignOrigin: [0, 1]},
                 ease: "none"
@@ -66,6 +56,17 @@ class DesignImg extends Component {
                 stagger: 0.1
             }, "-=1")
             .from(this.face,0.7, {opacity:0})
+
+            .fromTo(this.leftLine, 1, {drawSVG: "0%"}, {
+                ease: "power1.inOut",
+                drawSVG: "100%",
+                stagger: 0.1
+            }, 0.8 )
+            .fromTo([this.topLine,this.bottomLine], 1, {drawSVG: "100% 100%"}, {
+                ease: "power1.inOut",
+                drawSVG: "0% 100%",
+                stagger: 0.1
+            }, 1.1)
 
     }
     render() {

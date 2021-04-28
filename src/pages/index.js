@@ -27,21 +27,20 @@ import client5 from "../imgs/home/clients/5.svg"
 import ClientSmileRight from "../imgs/home/clients/smile-right.svg"
 import ClientSmileLeft from "../imgs/home/clients/smile-left.svg"
 
-import designImg1 from "../imgs/home/design/desing1.svg"
-import designImg2 from "../imgs/home/design/desing2.svg"
-
-import mobdevImg from "../imgs/home/mobdev/mobdev.svg"
 
 import WhyCCLBottomText from "../imgs/home/whyCCl/text.svg"
 
 
-import techImg from "../imgs/home/tech/tech.svg"
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
 import Header from "../parts/Header";
 import CoolButton from "../parts/CoolButton";
 import BottomText from "../imgs/home/whyCCl/text.svg";
 import DesignImg from "../parts/CoolImgs/home/DesignImg";
+import WebDevImg from "../parts/CoolImgs/home/WebDevImg";
+import MobDevImg from "../parts/CoolImgs/home/MobDevImg";
+import TechImg from "../parts/CoolImgs/home/TechImg";
+import TeamImg from "../parts/CoolImgs/home/TeamImg";
 
 
 let clientsArr = [client1, client2, client3, client4, client5]
@@ -88,7 +87,7 @@ class Home extends Component {
             section: null,
             text: null,
             head: [],
-            img: null,
+            imgAnim: null,
             link: null,
         }
 
@@ -109,7 +108,7 @@ class Home extends Component {
             circle: null,
             text: null,
             head: [],
-            img: [],
+            imgAnim: null,
             link: null,
             outline: null,
         }
@@ -155,8 +154,9 @@ class Home extends Component {
             section: null,
             text: null,
             head: [],
-            img: [],
             link: null,
+            outline: null,
+            imgAnim: null,
         }
 
         this.Contact = {
@@ -186,15 +186,21 @@ class Home extends Component {
         ]
 
         this.ScrollTriggers.forEach((el) => {
-            el.anim = new TimelineLite({
-                ease: "power3.easeOut",
-                scrollTrigger: {
-                    trigger: el.section,
-                    start: "bottom bottom+=40px",
-                    end: "top top",
-                    toggleActions: 'play none none reverse'
-                }
-            })
+            el.anim = new TimelineLite().pause()
+        })
+        this.ScrollTriggers.forEach((el) => {
+            ScrollTrigger.create({
+                trigger: el.section,
+                start: 'top center',
+                onEnter: () => el.anim.play()
+            });
+        })
+        this.ScrollTriggers.forEach((el) => {
+            ScrollTrigger.create({
+                trigger: el.section,
+                start: 'top bottom',
+                onLeaveBack: () => el.anim.pause(0)
+            });
         })
 
         //Welcome
@@ -236,10 +242,11 @@ class Home extends Component {
             .from(this.Webdev.head[1], 0.4, {x: '101%'}, "-=0.2")
             .from(this.Webdev.head[2], 0.4, {x: '101%'}, "-=0.2")
             .from(this.Webdev.head[3], 0.4, {x: '101%'}, "-=0.2")
-            .fromTo(this.Webdev.text, 0.5, {x: '-60vw'}, {x: '0%'}, 0)
-            .fromTo(this.Webdev.img, 0.3, {height: 0}, {height: '100%'}, 0.4)
             .fromTo(this.Webdev.outline, 1.5, {drawSVG: "0%"}, {ease: "power1.inOut", drawSVG: "100%", stagger: 0.1})
             .from(this.Webdev.link, 1, {opacity: 0}, "+=1")
+            .fromTo(this.Webdev.text, 0.5, {x: '-60vw'}, {x: '0%'}, 0)
+            .add(this.Webdev.imgAnim, 0.4)
+
 
         //Design
         gsap.set('.star path', {drawSVG: "0%"})
@@ -286,10 +293,11 @@ class Home extends Component {
             .from(this.Mobdev.head[0], 0.4, {ease: "power3.easeOut", x: '+101%'})
             .from(this.Mobdev.head[1], 0.4, {ease: "power3.easeOut", x: '+101%'}, "-=0.2")
             .from(this.Mobdev.head[2], 0.4, {ease: "power3.easeOut", x: '+101%'}, "-=0.2")
-            .from(this.Mobdev.text, 0.5, {x: '-60vw'}, "-=0.8")
-            .from(this.Mobdev.img[0], 0.3, {height: 0}, "-=0.5")
             .from(this.Mobdev.outline, 1, {ease: "power1.inOut", drawSVG: 0, stagger: 0.1},)
             .from(this.Mobdev.link, 1, {opacity: 0}, "+=1")
+            .from(this.Mobdev.text, 0.5, {x: '-60vw'}, 0)
+            .add(this.Mobdev.imgAnim, 0.5)
+
 
 
         //Why CCL
@@ -307,22 +315,56 @@ class Home extends Component {
                 0.5
             )
 
+
+
         // this.anim = new TimelineLite({
         //     ease: "none",
         //     scrollTrigger: {
-        //         trigger: this.WWD.text,
-        //         start: "center center-=200px ",
-        //         end: "bottom+=100% center",
-        //         pin:true,
-        //         markers: true,
+        //         trigger: this.WWD.H2,
+        //         start: "top top",
+        //         // start: "center center-=200px ",
+        //         // end: "bottom+=100% center",
         //         toggleActions: 'play none none reverse',
         //     }
         // })
+        this.WWD.headAnim = new TimelineLite()
+            .to('#WWD-h2',0.001,{position:"fixed"},0)
+            .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
+            .to('#WWD-h2>span', 0.3,{height:"38px"}, 0)
+            .pause()
 
-        // this.anim
-            // .to('#WWD-h2',0,{position:"fixed"})
-            // .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
-            // .to('#WWD-h2>span', 0.3,{height:"38px"}, 0)
+        this.WWD.headAnimBack = new TimelineLite()
+            .to('#WWD-h2', 0.2, { opacity: 0}, 0)
+            .to('#WWD-h2',0,{position:"static", opacity: 1, fontSize: 120, textAlign: "center", color: "#FFFFFF", left:'calc(25% - 180px)', top:'0',},0.2)
+            .to('#WWD-h2>span', 0,{height:"96px"}, 0.2)
+            .pause()
+
+        this.WWD.HeadAnimOff= new TimelineLite()
+            .to('#WWD-h2', 0.5, { opacity: 0}, 0)
+            .pause()
+
+        ScrollTrigger.create({
+            trigger: this.WWD.text,
+            start: 'top top',
+            onEnter: () => this.WWD.headAnim.restart()
+        });
+        ScrollTrigger.create({
+            trigger: this.Webdev.section,
+            start: 'bottom bottom',
+            onLeaveBack: () => this.WWD.headAnimBack.restart()
+        });
+        ScrollTrigger.create({
+            trigger: this.WhyCCL.section,
+            animation: this.WWD.HeadAnimOff,
+            // start: 'top top',
+            // markers: true,
+            toggleActions: 'play none none reverse',
+            // onLeave: () => this.WWD.headAnim.restart()
+        });
+
+        //
+
+
 
         //Team
         this.Team.anim
@@ -362,8 +404,9 @@ class Home extends Component {
             .from(this.Tech.head[1], 0.5, {height: 0}, "-=0.4")
             .from(this.Tech.head[2], 0.5, {height: 0}, "-=0.4")
             .from(this.Tech.head[3], 0.5, {height: 0}, "-=0.4")
+            .from(this.Tech.outline, 1.5, {ease: "power1.inOut", drawSVG: "0%", stagger: 0.1})
             .from(this.Tech.text, 0.5, {y: '10vh', opacity: 0}, 0)
-            .from(this.Tech.img[0], 0.3, {height: 0}, 0)
+            .add(this.Tech.imgAnim, 0.5)
 
         //Contact
         this.Contact.anim
@@ -426,14 +469,9 @@ class Home extends Component {
                                     <span><span ref={span => this.WWD.head[1] = span}>WE</span></span>
                                     <span><span ref={span => this.WWD.head[2] = span}>DO</span></span>
                                 </h2>
-                                <div className="outline">
-                                    <svg width="393" height="338" viewBox="0 0 393 338" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path ref={path => this.WWD.outline = path} opacity="0.5"
-                                              d="M1.30005 207.2C19.8 175.5 79 84.3003 188.8 55.6003C225.3 46.1003 292.3 28.6003 343.1 69.2003C387.1 104.3 398.9 166.9 387 214.2C366.3 297 268.2 352.5 180.9 331.9C122.8 318.2 70.4001 271.1 57.2001 210.2C35.5 110 130.2 18.0003 212.8 4.10031C225.8 1.90031 268.5 -5.29968 306 21.2003C358.5 58.2003 355.8 129.1 355.4 135.5"
-                                              stroke="white" strokeWidth="3" strokeMiterlimit="10"/>
-                                    </svg>
-                                </div>
+                                <svg className="outline" width="392.86" height="337.68" fill="none" version="1.1" viewBox="0 0 392.86 337.68" xmlns="http://www.w3.org/2000/svg">
+                                    <path ref={path => this.WWD.outline = path} d="m1.2955 207.16c18.5-31.7 77.7-122.9 187.5-151.6 36.5-9.5 103.5-27 154.3 13.6 44 35.1 55.8 97.7 43.9 145-20.7 82.8-118.8 138.3-206.1 117.7-58.1-13.7-110.5-60.8-123.7-121.7-21.7-100.2 73-192.2 155.6-206.1 13-2.2 55.7-9.4 93.2 17.1 52.5 37 49.8 107.9 49.4 114.3" opacity=".5" stroke="#fff" strokeMiterlimit="10" strokeWidth="3"/>
+                                </svg>
                             </div>
 
                             <div className='col2'>
@@ -459,9 +497,7 @@ class Home extends Component {
                     <section className="webdev" ref={section => this.Webdev.section = section}>
                         <div className="grid mw900">
                             <div className='col1 col-center'>
-                                <div className="img-cont">
-                                    <img className="mb" src={webdevPC} ref={img => this.Webdev.img = img} alt=""/>
-                                </div>
+                                <WebDevImg anim={this.Webdev}/>
                                 <div className="overflow-hidden">
                                     <p className='mw475' ref={p => this.Webdev.text = p}>
                                         Convenient, fast and understandable website whether it is a landing page, online
@@ -560,10 +596,7 @@ class Home extends Component {
                                         </div>
                                     </div>
                                     <div className="col2 col-center">
-                                        <div className="img-cont">
-                                            <img src={mobdevImg} ref={img => this.Mobdev.img[0] = img}
-                                                 alt=""/>
-                                        </div>
+                                        <MobDevImg anim={this.Mobdev}/>
                                         <h2 className="side-move">
                                             <span ref={span => this.Mobdev.head[0] = span}>MOBILE</span>
                                             <span ref={span => this.Mobdev.head[1] = span}>DEVELO</span>
@@ -630,7 +663,8 @@ class Home extends Component {
                             </div>
 
                             <div className='col2 col-center'>
-                                <img src={tempTeam} alt=""/>
+                                <TeamImg anim={this.Team}/>
+                                {/*<img src={tempTeam} alt=""/>*/}
                             </div>
                         </div>
                     </section>
@@ -686,11 +720,15 @@ class Home extends Component {
                                     <span><span ref={span => this.Tech.head[2] = span}>LOGY</span></span>
                                     <span><span ref={span => this.Tech.head[3] = span}>STACK</span></span>
                                 </h2>
+                                <svg className="outline" width="396.06" height="214.78" fill="none" version="1.1" viewBox="0 0 396.06 214.78" xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path ref={el => this.Tech.outline = el}  d="m168.1 64.1c-80.5-15.9-143.6-4.1-161.4 31.1-10.3 20.2-2.3 41.7-1.5 43.8 28.6 81.2 267.3 111 360.5 10.9 7.6-8.1 32.1-36.6 28.5-65.5-7.6-62.1-156-78.5-170.1-80.2-35.4-4.2-64.4-2.8-85-0.8" opacity="0.5" stroke="#f4bc4f" strokeMiterlimit="10" strokeWidth="3"/>
+                                    </g>
+                                </svg>
+
                             </div>
                             <div className="col2 col-center">
-                                <div className="img-cont">
-                                    <img src={techImg} ref={img => this.Tech.img[0] = img} alt=""/>
-                                </div>
+                                <TechImg anim={this.Tech}/>
                                 <p className='mw375' ref={p => this.Tech.text = p}>
                                     We use only proven technologies that <b>work stably</b> without breakdowns and
                                     unnecessary
