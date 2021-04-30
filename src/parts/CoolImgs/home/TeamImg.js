@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {gsap} from "gsap";
 import {TimelineLite} from "gsap/all";
 
-import Ira from "../../../imgs/home/team/Ira.png"
-import Elvis from "../../../imgs/home/team/Elvis.png"
-import Alex from "../../../imgs/home/team/Alex.png"
-import Yaroslav from "../../../imgs/home/team/Yaroslav.png"
-import Slava from "../../../imgs/home/team/Slava.png"
-import Slavik from "../../../imgs/home/team/Slavik.png"
-import Vetal from "../../../imgs/home/team/Vetal.png"
-import Yuri from "../../../imgs/home/team/Yuri.png"
+import Ira from "../../../imgs/home/team/ira.png"
+import Elvis from "../../../imgs/home/team/elvis.png"
+import Alex from "../../../imgs/home/team/alex.png"
+import Yaroslav from "../../../imgs/home/team/yaroslav.png"
+import Slava from "../../../imgs/home/team/slava.png"
+import Slavik from "../../../imgs/home/team/slavik.png"
+import Vetal from "../../../imgs/home/team/vetal.png"
+import Yuri from "../../../imgs/home/team/yuri.png"
 
 class TeamImg extends Component {
     constructor(props) {
