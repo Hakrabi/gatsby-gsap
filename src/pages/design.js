@@ -7,7 +7,7 @@ import Scrollbar from 'smooth-scrollbar';
 import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
 import Gallery from "../parts/Gallery"
-import Video from "../parts/Video";
+// import Video from "../parts/Video";
 import '../scss/design.scss'
 
 import IllustrationImg from  "../parts/CoolImgs/design/IllustrationImg"
@@ -425,7 +425,7 @@ class Design extends Component{
 
                     <section className="videos" ref={section => this.Videos.section = section}>
                         <h2 ref={el => this.Videos.head = el}>VIDEOS</h2>
-                        <Video/>
+                        {/*<Video/>*/}
                     </section>
 
                     <section className="webdesign" ref={section => this.WebDesign.section = section}>

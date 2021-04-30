@@ -1,0 +1,94 @@
+section.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background: rgba(239, 239, 247, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.modal-container {
+  position: relative;
+  max-width: 600px;
+  background: #FFFFFF;
+  border-radius: 1.14068px;
+  width: 100%;
+}
+
+.modal-container:after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  background: #F4BC4F;
+  border-radius: 5.7034px;
+  transform: rotate(1deg);
+  left: 13px;
+  top: 16px;
+  width: calc(100% - 5px);
+  height: calc(100% - 4px);
+}
+
+.modal-content {
+  padding: 21px;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  position: relative;
+}
+
+button.cls-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border: 0;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 450ms;
+}
+
+button.cls-btn:hover {
+  color: #e0e1ec !important;
+}
+
+.modal-body {
+  padding: 50px;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.message {
+  width: 276px;
+  font-family: Inconsolata;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #525375;
+  margin-bottom: 30px;
+}
+
+
+
+.illustarion {
+  position: absolute;
+  z-index: 0;
+  left: auto;
+  right: 0;
+  top: auto;
+  bottom: 0;
+  z-index: -1;
+}
+
+.modal-controls {
+  margin-bottom: 70px;
+}
