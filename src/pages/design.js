@@ -71,7 +71,10 @@ class Design extends Component{
 
         this.Header = {
             logo: null,
-            text: []
+            text: [],
+            btn: null,
+            box: null,
+            letters: []
         };
 
         this.Welcome = {
