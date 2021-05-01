@@ -60,7 +60,10 @@ class Home extends Component {
 
         this.Header = {
             logo: null,
-            text: []
+            text: [],
+            btn: null,
+            box: null,
+            letters: []
         };
 
         this.Welcome = {
@@ -217,6 +220,11 @@ class Home extends Component {
             .fromTo(this.Header.text[1], 0.3, {opacity: 0, y: 20}, {opacity: 1, y: 0}, "-=0.25")
             .fromTo(this.Header.text[2], 0.3, {opacity: 0, y: 20}, {opacity: 1, y: 0}, "-=0.25")
             .fromTo(this.Welcome.bottom, 0.4, {opacity: 0, y: 50}, {opacity: 1, y: 0})
+            .fromTo(this.Header.box, 1, {scale: 0, y: -100}, {scale: 1, y: 0})
+            .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
 
 
         //What We Do Section
