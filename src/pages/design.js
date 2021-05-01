@@ -222,6 +222,10 @@ class Design extends Component{
             .from(this.Welcome.section, 0.7, {ease: 'circ.out', backgroundSize: "auto 0%"})
             .add(this.Welcome.penAnim,"-=0.3")
             .from(this.Welcome.bottom, 0.5, {opacity: 0})
+            .fromTo(this.Header.box, 1, {scale: 0, y: -100}, {scale: 1, y: 0})
+            .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
 
 
 
