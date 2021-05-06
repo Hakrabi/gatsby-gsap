@@ -171,7 +171,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-
         this.ScrollTriggers = [
             this.Welcome,
             this.WWD,
@@ -206,7 +205,7 @@ class Home extends Component {
         //Welcome
         this.Welcome.anim
             .to(document.body, 0, {background: "#FCFCFF"})
-            .to(this.Welcome.whiteLogo, 0.5, {opacity: 1}, "+=1")
+            .to(this.Welcome.whiteLogo, 0.5, {opacity: 1, }, "+=1")
             .to(this.Welcome.head[0], 0.5, {height: "auto"}, "-=0.5")
             .to(this.Welcome.head[1], 0.5, {height: "auto"}, "-=0.4")
             .to(this.Welcome.head[2], 0.5, {height: "auto"}, "-=0.4")
@@ -217,7 +216,6 @@ class Home extends Component {
             .fromTo(this.Header.text[1], 0.3, {opacity: 0, y: 20}, {opacity: 1, y: 0}, "-=0.25")
             .fromTo(this.Header.text[2], 0.3, {opacity: 0, y: 20}, {opacity: 1, y: 0}, "-=0.25")
             .fromTo(this.Welcome.bottom, 0.4, {opacity: 0, y: 50}, {opacity: 1, y: 0})
-
 
         //What We Do Section
         this.WWD.anim
