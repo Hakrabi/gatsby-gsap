@@ -1,0 +1,8 @@
+@mixin gooey{
+  filter: url('#goo');
+}
+
+@mixin content{
+  content: "";
+  display: block;
+}

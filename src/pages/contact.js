@@ -13,23 +13,28 @@ import "../scss/contact.scss"
 
 import FooterMenu from "../parts/Footer/FooterMenu";
 import Header from "../parts/Header";
+import ContactForm from "../parts/ContactForm";
+import CCLModal from "../parts/Modal";
 
 class Contact extends Component{
     constructor(props) {
         super(props);
 
         this.state = {
-            name: '',
-            subject: '',
-            email: '',
-            msg: '',
-            feedbackMsg: null,
+            modal:{
+                open: false,
+                type: 'success'
+            }
         }
-        this.formRef = React.createRef();
+
+
 
         this.Header = {
             logo: null,
-            text: []
+            text: [],
+            btn: null,
+            box: null,
+            letters: []
         };
 
         this.MainContact = null
@@ -37,9 +42,7 @@ class Contact extends Component{
 
         this.question = null
 
-        this.handleChange = this.handleChange.bind(this)
-        this.handleServerResponse = this.handleServerResponse.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleModal = this.handleModal.bind(this)
     }
 
     componentDidMount() {
@@ -50,41 +53,12 @@ class Contact extends Component{
         ]
     }
 
-    handleChange(event) {
-        const value = event.target.value;
-        const name  = event.target.name;
 
-        if(!value.trim().length) this.setState({
-            handleErrors: 'Please fill the form!'
-        })
-
-    }
-
-    handleServerResponse (ok, msg, form) {
-        this.setState({
-            feedbackMsg: msg,
-        })
-        if (ok) {
-            form.reset();
-        }
-    };
-
-    handleSubmit(event) {
-        // Do not submit form via HTTP, since we're doing that via XHR request.
-        event.preventDefault()
-
-        const form = event.target;
-        axios({
-            method: "post",
-            url: "https://getform.io/f/22fcd7a7-f019-448e-a2b5-0d2574429d8d",
-            data: new FormData(form)
-        })
-            .then(r => {
-                this.handleServerResponse(true, "Form submitted successfully!", form)
-            })
-            .catch(r => {
-                this.handleServerResponse(false, "Form could not be submitted.", form)
-            });
+    handleModal(form, success= true) {
+        this.setState({modal: {
+                open: success,
+                type: success ? 'success' : 'error'
+            }})
     }
 
     render() {
@@ -117,60 +91,13 @@ class Contact extends Component{
                                 <Hamster/>
                             </div>
                             <div className="col2">
-                                {this.state.feedbackMsg && <p style={{color: "green"}}>{this.state.feedbackMsg}</p>}
-                                <form
-                                      method="POST"
-                                      action="https://getform.io/f/22fcd7a7-f019-448e-a2b5-0d2574429d8d" method="POST"
-                                      ref={this.formRef}
-                                      onSubmit={event => this.handleSubmit(event)}
-                                >
-                                    <div className="grid">
-                                        <div>
-                                            <label htmlFor="name">Name<span>*</span></label>
-                                            <input type="text"
-                                                   name="name"
-                                                   ref="name"
-                                                   // value={this.state.name}
-                                                   onChange={this.handleChange}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="email">Email<span>*</span></label>
-                                            <input type="text"
-                                                   name="email"
-                                                   ref="email"
-                                                   // value={this.state.email}
-                                                   onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <label htmlFor="subject">Subject<span>*</span></label>
-                                        <input type="text"
-                                               name="subject"
-                                               ref="subject"
-                                               // value={this.state.subject}
-                                               onChange={this.handleChange}
-                                        />
-                                    </div>
-
-                                    <div className="row">
-                                        <label htmlFor="msg">Message</label>
-                                        <textarea
-                                            name="msg"
-                                            ref="msg"
-                                            // value={this.state.msg}
-                                            // onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    <CoolButton type="submit">Send Email</CoolButton>
-                                </form>
+                                <ContactForm handleModal={this.handleModal}/>
                             </div>
                         </div>
                         <div className="paint"/>
                     </section>
                 </main>
+                <CCLModal modal={this.state.modal} handleCloseP={() => { console.log('closed');  this.setState({modal: {open: false}})}}/>
                 <footer>
                     <FooterMenu inputRef={el => this.FooterMenu = el}/>
                 </footer>

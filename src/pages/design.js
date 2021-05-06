@@ -7,7 +7,7 @@ import Scrollbar from 'smooth-scrollbar';
 import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
 import Gallery from "../parts/Gallery"
-import Video from "../parts/Video";
+// import Video from "../parts/Video";
 import '../scss/design.scss'
 
 import IllustrationImg from  "../parts/CoolImgs/design/IllustrationImg"
@@ -71,7 +71,10 @@ class Design extends Component{
 
         this.Header = {
             logo: null,
-            text: []
+            text: [],
+            btn: null,
+            box: null,
+            letters: []
         };
 
         this.Welcome = {
@@ -219,6 +222,10 @@ class Design extends Component{
             .from(this.Welcome.section, 0.7, {ease: 'circ.out', backgroundSize: "auto 0%"})
             .add(this.Welcome.penAnim,"-=0.3")
             .from(this.Welcome.bottom, 0.5, {opacity: 0})
+            .fromTo(this.Header.box, 1, {scale: 0, y: -100}, {scale: 1, y: 0})
+            .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
+            .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
 
 
 
@@ -425,7 +432,7 @@ class Design extends Component{
 
                     <section className="videos" ref={section => this.Videos.section = section}>
                         <h2 ref={el => this.Videos.head = el}>VIDEOS</h2>
-                        <Video/>
+                        {/*<Video/>*/}
                     </section>
 
                     <section className="webdesign" ref={section => this.WebDesign.section = section}>
