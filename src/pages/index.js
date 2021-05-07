@@ -15,9 +15,6 @@ import WelcomeBottomText from "../imgs/home/welcome-bg.svg"
 import wwdArrow from "../imgs/home/wwd/arrow.svg"
 import wwdText from "../imgs/home/wwd/text.svg"
 import wwdSmile from "../imgs/home/wwd/smile.svg"
-import webdevPC from "../imgs/home/webdev/PC.svg"
-
-import tempTeam from "../imgs/home/TEMPORAL/team.png"
 
 import client1 from "../imgs/home/clients/1.svg"
 import client2 from "../imgs/home/clients/2.svg"
@@ -174,7 +171,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-
         this.ScrollTriggers = [
             this.Welcome,
             this.WWD,
@@ -209,7 +205,7 @@ class Home extends Component {
         //Welcome
         this.Welcome.anim
             .to(document.body, 0, {background: "#FCFCFF"})
-            .to(this.Welcome.whiteLogo, 0.5, {opacity: 1}, "+=1")
+            .to(this.Welcome.whiteLogo, 0.5, {opacity: 1, }, "+=1")
             .to(this.Welcome.head[0], 0.5, {height: "auto"}, "-=0.5")
             .to(this.Welcome.head[1], 0.5, {height: "auto"}, "-=0.4")
             .to(this.Welcome.head[2], 0.5, {height: "auto"}, "-=0.4")
@@ -225,7 +221,6 @@ class Home extends Component {
             .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, '+=0.15')
             .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "-=0.7")
             // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
-
 
         //What We Do Section
         this.WWD.anim
@@ -323,18 +318,6 @@ class Home extends Component {
                 0.5
             )
 
-
-
-        // this.anim = new TimelineLite({
-        //     ease: "none",
-        //     scrollTrigger: {
-        //         trigger: this.WWD.H2,
-        //         start: "top top",
-        //         // start: "center center-=200px ",
-        //         // end: "bottom+=100% center",
-        //         toggleActions: 'play none none reverse',
-        //     }
-        // })
         this.WWD.headAnim = new TimelineLite()
             .to('#WWD-h2',0.001,{position:"fixed"},0)
             .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
@@ -364,13 +347,8 @@ class Home extends Component {
         ScrollTrigger.create({
             trigger: this.WhyCCL.section,
             animation: this.WWD.HeadAnimOff,
-            // start: 'top top',
-            // markers: true,
             toggleActions: 'play none none reverse',
-            // onLeave: () => this.WWD.headAnim.restart()
         });
-
-        //
 
 
 
@@ -379,6 +357,7 @@ class Home extends Component {
             .from(this.Team.head[0], 0.5, {height: 0})
             .from(this.Team.head[1], 0.5, {height: 0}, "-=0.4")
             .from(this.Team.text, 0.5, {y: '10vh', opacity: 0}, "-=0.3")
+            .add(this.Team.imgAnim, 0)
 
 
         //Clients
