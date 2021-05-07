@@ -131,19 +131,38 @@ header {
 
     &:hover {
       transform: scale(1.1) !important;
+
+      &:hover{
+        & .span {
+
+          &:nth-child(2) {
+            transform: translate(27px, 0px) !important;
+          }
+
+          &:nth-child(3) {
+            transform: translate(-42px, 0px) !important;
+          }
+
+          &:nth-child(4) {
+            transform: translate(-58px, 0px) !important;
+          }
+        }
+      }
     }
 
     .square_for_effect {
       display: block;
-      width: 90px;
-      height: 103px;
       position: absolute;
-      background: #F4BC4F;
-      border-radius: 0;
-      left: 0;
-      top: -26px;
-      transform: translate(-21%, -60%) rotate(45deg);
+      left: 0px;
+      top: -16px;
       z-index: -1;
+      width: 92px;
+      transform: translate(-24px, 0px);
+      svg {
+        width: 100%;
+        height: auto;
+        color: #f3bc4e;
+      }
     }
 
     .nav-btn {
@@ -152,8 +171,9 @@ header {
       height: 44px;
       padding: 10px;
       border: 0;
-      border-radius: 100%;
+      border-radius: 0 0 50% 50%;
       background: #f3bc4e;
+      color: white;
       transition: all 450ms;
       box-sizing: border-box;
 
@@ -162,7 +182,6 @@ header {
         max-height: 100%;
         height: auto;
       }
-
 
     }
 
@@ -174,6 +193,7 @@ header {
       left: auto;
       right: auto;
       opacity: 0;
+      transition: all 450ms;
 
       & > svg {
         max-width: 14px;
@@ -182,7 +202,7 @@ header {
 
       &:nth-child(2) {
         left: -25px;
-        transform: translate(25px, 0px);
+        transform: translate(27px, 0px);
       }
 
       &:nth-child(3) {
@@ -196,6 +216,17 @@ header {
       }
     }
 
+    .immitation-box {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 44px;
+      height: 44px;
+      background: #f3bc4e;
+      border-radius: 100%;
+      transform: translateY(0px);
+      z-index: -1;
+    }
     //&:before {
     //  @include content;
     //  width: 103px;
@@ -222,3 +253,89 @@ header {
   }
 
 }
+
+
+.menu-box {
+  position: absolute;
+  z-index: 1131;
+  background: #D16978;
+  width: 200px;
+  height: 200px;
+  left: auto;
+  right: 80px;
+  top: 100px;
+  box-sizing: border-box;
+  border-radius: 100%;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+
+  .inner-container {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .grid-box {
+    padding: 110px 143px 0;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100%;
+    box-sizing: border-box;
+
+    .nav-column {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      & > .inner-box > div {
+        max-width: fit-content;
+        margin-left: auto;
+      }
+
+    }
+
+    .socials-column{
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      & > .inner-box > div {
+        max-width: fit-content;
+      }
+    }
+  }
+
+
+
+  .nav-link-header {
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 100px;
+    text-align: right;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .social-link {
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 2;
+    color: #FFFFFF;
+  }
+
+
+
+
+  .nav-toggle-box {
+    .nav-btn {
+      background: #fff;
+      color: #D16978;
+    }
+    .square_for_effect svg{
+      color: #fff
+    }
+  }
+}
+
