@@ -45,7 +45,7 @@ import webdesignImg4 from "../imgs/design/web-design/4.png"
 
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
-import Header from "../parts/Header";
+import Header_old from "../parts/Header";
 import whiteLogo from "../imgs/header/logo/white.svg";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import WelcomeBottomText from "../imgs/home/welcome-bg.svg";
@@ -347,7 +347,7 @@ class Design extends Component{
     render(){
         return (
             <LayoutDefault pageName="design" Sections={this.Sections}>
-                <Header innerRefs={this.Header}/>
+                <Header_old innerRefs={this.Header}/>
                 <main id="design">
                     <section className="welcome" ref={el => this.Welcome.section = el}>
                         <div className="load-wrapper" ref={div => this.Welcome.wrapper = div}>

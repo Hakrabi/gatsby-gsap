@@ -122,6 +122,7 @@ header {
   .nav-toggle-box {
     .btn-gooey {
       @include gooey;
+
       position: relative;
     }
 
@@ -130,9 +131,10 @@ header {
     transition: all 450ms;
 
     &:hover {
-      transform: scale(1.1) !important;
+      .square_for_effect, .nav-btn{
 
-      &:hover{
+      transform: scale(1.1) !important;
+      }
         & .span {
 
           &:nth-child(2) {
@@ -147,17 +149,16 @@ header {
             transform: translate(-58px, 0px) !important;
           }
         }
-      }
     }
 
     .square_for_effect {
       display: block;
       position: absolute;
-      left: 0px;
-      top: -16px;
+      left: -24px;
+      top: -18px;
       z-index: -1;
       width: 92px;
-      transform: translate(-24px, 0px);
+      transition: all 450ms;
       svg {
         width: 100%;
         height: auto;
@@ -166,6 +167,7 @@ header {
     }
 
     .nav-btn {
+
       cursor: pointer;
       width: 44px;
       height: 44px;
@@ -218,7 +220,7 @@ header {
 
     .immitation-box {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 44px;
       height: 44px;
@@ -259,16 +261,13 @@ header {
   position: absolute;
   z-index: 1131;
   background: #D16978;
-  width: 200px;
-  height: 200px;
-  left: auto;
-  right: 80px;
-  top: 100px;
+  width: 100%;
+  height: 0vh;
+  left: 0;
+  right: 0;
+  top: 0;
   box-sizing: border-box;
-  border-radius: 100%;
   overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
 
   .inner-container {
     min-width: 100vw;

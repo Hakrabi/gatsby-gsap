@@ -1,6 +1,7 @@
-import React, {Component} from "react"
+import React, {Component, useRef} from "react"
 import {gsap} from "gsap";
 import {DrawSVGPlugin, ScrollToPlugin, ScrollTrigger, TimelineLite, TweenLite} from "gsap/all";
+import {ExpoScaleEase} from "gsap/EasePack";
 
 
 import '../scss/header.scss'
@@ -15,45 +16,114 @@ import Scrollbar from "smooth-scrollbar";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import CustomLink from "./CustomComponents/CustomLink";
 
-gsap.registerPlugin(TimelineLite, TweenLite, ScrollTrigger);
+gsap.registerPlugin(TimelineLite, TweenLite, ScrollTrigger, ExpoScaleEase);
 
+const calcPageFillRadius = (x, y, windowWidth, windowHeight) => {
+    const l = Math.max(x - 0, windowWidth - x);
+    const h = Math.max(y - 0, windowHeight - y);
+    return Math.sqrt(Math.pow(l, 2) + Math.pow(h, 2));
+};
+
+const useInstance = (initialValueOrFunction = {}) => {
+    const ref = useRef();
+    if (!ref.current) {
+        ref.current =
+            typeof initialValueOrFunction === "function"
+                ? initialValueOrFunction()
+                : initialValueOrFunction;
+    }
+    return ref.current;
+};
 
 class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isOpen: false,
+            welcome: new TimelineLite().pause()
         }
         this.trigger = null;
         this.header = null;
         this.menuBox = null;
         this.menu = null;
-
+        this.sLink = null;
+        this.navLinks = null;
+        this.oBtn = null;
+        this.anim = {};
         this.handleOpen = this.handleOpen.bind(this)
     }
 
-    handleOpen(){
-        this.setState({isOpen: !this.isOpen});
-        gsap.to(this.menuBox, {
-            y: '240px',
-            x: '-93px',
-            height: "200px",
-            width: "200px",
-            ease: "power3.easeOut",
-            duration: 1,
-            opacity: 0
-        })
-            .to(this.menu, {
-                height: "100",
-                width: "100",
-                opacity: 1,
-                visibility: 'visible',
-                ease: "power3.easeOut",
-                duration: 1,
+    handleOpen(e) {
+
+
+        if (this.state.isOpen) {
+            this.setState({isOpen: false}, () => {
+                this.state.welcome.reverse();
             })
+        } else {
+            this.setState({isOpen: true}, () => {
+
+                this.state.welcome.play();
+            });
+        }
+
     }
 
     componentDidMount() {
+
+        this.state.welcome
+            .fromTo(
+                this.menuBox,
+                {
+                    x: '0',
+                    y: '0',
+                    width: 44,
+                    height: 44
+                },
+                {
+                    scale: 100,
+                    duration: 0.45,
+                    ease: ExpoScaleEase.config(1, 100),
+                    immediateRender: true,
+                },
+            )
+            .fromTo(this.menu,
+                {
+                    height: "0",
+                    duration: 1,
+                    visibility: 'hidden'
+                },
+                {
+                    visibility: 'visible',
+                    height: "100vh",
+                    duration: 1,
+                }, "+=0.35")
+            .fromTo(this.props.innerRefs.box,
+                {scale: 1, y: 0}, {scale: 0, y: -100},
+            )
+            .fromTo(this.oBtn,
+                {scale: 0, y: -100}, {scale: 1, y: 0, duration: 0.45}
+            )
+
+            .fromTo(this.sLink, {
+                    opacity: 0,
+                    x: -30,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.2
+                }, "-=0.65")
+            .fromTo(this.navLinks, {
+                    opacity: 0,
+                    x: 30,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.2
+                }, "-=0.2")
+
 
     }
 
@@ -119,7 +189,8 @@ class Header extends Component {
                                         fill="currentColor"/>
                                 </svg>
                             </div>
-                            <div onClick={this.handleOpen} type='button' className='nav-btn' ref={btn => this.props.innerRefs.btn = btn}>
+                            <div onClick={this.handleOpen} type='button' className='nav-btn'
+                                 ref={btn => this.props.innerRefs.btn = btn}>
                                 <svg width="21" height="19" viewBox="0 0 21 19" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <g opacity="0.5">
@@ -131,6 +202,7 @@ class Header extends Component {
 
                             </div>
                             <div className="immitation-box" ref={box => this.menuBox = box}></div>
+
                         </div>
                         <div className='span' ref={letter => this.props.innerRefs.letters[0] = letter}>
                             <svg width="17" height="29" viewBox="0 0 17 29" fill="none"
@@ -161,16 +233,12 @@ class Header extends Component {
                 </header>
                 <div className="menu-box" ref={menu => this.menu = menu}>
                     <div className="inner-container">
-
                         <header>
                             <AniLink paintDrip hex="#D16978" className="logo" to="/">
                                 <img className="color" src={whiteLogo}/>
                             </AniLink>
-
-
-                            <div className="nav-toggle-box">
+                            <div className="nav-toggle-box" ref={oBtn => this.oBtn = oBtn}>
                                 <div className="btn-gooey">
-
                                     <div className="square_for_effect">
                                         <svg width="113" height="36" viewBox="0 0 113 36" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +247,9 @@ class Header extends Component {
                                                 fill="currentColor"/>
                                         </svg>
                                     </div>
-                                    <div type='button' className='nav-btn' ref={btn => this.props.innerRefs.btn = btn}>
+                                    <div type='button' className='nav-btn'
+                                         onClick={this.handleOpen}
+                                         ref={btn => this.props.innerRefs.btn = btn}>
 
                                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -197,34 +267,41 @@ class Header extends Component {
                         </header>
                         <div className="grid-box">
                             <div className="socials-column">
-                                <div className="inner-box">
-                                    <CustomLink type="link" className="social-link" to='/'>Home</CustomLink>
-                                    <CustomLink type="link" className="social-link" to='/'>Our Work</CustomLink>
-                                    <CustomLink type="link" className="social-link" to='/'>Services</CustomLink>
-                                    <CustomLink type="link" className="social-link" to='/'>About Us</CustomLink>
-                                    <CustomLink type="link" className="social-link" to='/'>Careers</CustomLink>
+                                <div className="inner-box" ref={link => this.sLink = link}>
+                                    <CustomLink  type="link"
+                                                className="social-link" to='/'>Home</CustomLink>
+                                    <CustomLink  type="link"
+                                                className="social-link" to='/'>Our Work</CustomLink>
+                                    <CustomLink  type="link"
+                                                className="social-link" to='/'>Services</CustomLink>
+                                    <CustomLink  type="link"
+                                                className="social-link" to='/'>About Us</CustomLink>
+                                    <CustomLink  type="link"
+                                                className="social-link" to='/'>Careers</CustomLink>
                                 </div>
                             </div>
                             <div className="nav-column">
-                                <div className="inner-box">
-                                    <CustomLink paintDrip hex="#D16978" to='/'
+                                <div className="inner-box" ref={link => this.navLinks = link}>
+                                    <CustomLink  paintDrip hex="#D16978" to='/'
                                                 className="nav-link-header">Home</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/' className="nav-link-header">Our
+                                    <CustomLink  paintDrip hex="#D16978" to='/'
+                                                className="nav-link-header">Our
                                         Work</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
+                                    <CustomLink  paintDrip hex="#D16978" to='/'
                                                 className="nav-link-header">Services</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/' className="nav-link-header">About
+                                    <CustomLink  paintDrip hex="#D16978" to='/'
+                                                className="nav-link-header">About
                                         Us</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
+                                    <CustomLink  paintDrip hex="#D16978" to='/'
                                                 className="nav-link-header">Careers</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
+                                    <CustomLink  paintDrip hex="#D16978" to='/'
                                                 className="nav-link-header">Contact</CustomLink>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </>
         );
     }

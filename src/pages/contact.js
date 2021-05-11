@@ -12,7 +12,7 @@ import "../scss/contact.scss"
 
 
 import FooterMenu from "../parts/Footer/FooterMenu";
-import Header from "../parts/Header";
+import Header_old from "../parts/Header";
 import ContactForm from "../parts/ContactForm";
 import CCLModal from "../parts/Modal";
 
@@ -64,7 +64,7 @@ class Contact extends Component{
     render() {
         return (
             <LayoutDefault pageName="contact" Sections={this.Sections}>
-                <Header innerRefs={this.Header}/>
+                <Header_old innerRefs={this.Header}/>
                 <main id="contact">
                     <section className="contact-form" ref={section => this.MainContact = section}>
                         <div className="grid">
