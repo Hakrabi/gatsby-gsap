@@ -18,23 +18,6 @@ import CustomLink from "./CustomComponents/CustomLink";
 
 gsap.registerPlugin(TimelineLite, TweenLite, ScrollTrigger, ExpoScaleEase);
 
-const calcPageFillRadius = (x, y, windowWidth, windowHeight) => {
-    const l = Math.max(x - 0, windowWidth - x);
-    const h = Math.max(y - 0, windowHeight - y);
-    return Math.sqrt(Math.pow(l, 2) + Math.pow(h, 2));
-};
-
-const useInstance = (initialValueOrFunction = {}) => {
-    const ref = useRef();
-    if (!ref.current) {
-        ref.current =
-            typeof initialValueOrFunction === "function"
-                ? initialValueOrFunction()
-                : initialValueOrFunction;
-    }
-    return ref.current;
-};
-
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -81,9 +64,9 @@ class Header extends Component {
                     height: 44
                 },
                 {
-                    scale: 100,
+                    scale: 1000,
                     duration: 0.45,
-                    ease: ExpoScaleEase.config(1, 100),
+                    ease: ExpoScaleEase.config(1, 1000),
                     immediateRender: true,
                 },
             )
