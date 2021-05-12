@@ -57,7 +57,7 @@ header {
 
   .nav-toggle-box {
     .btn-gooey {
-      @include gooey;
+      //@include gooey;
       position: relative;
       color: #f4bc4f;
       & > svg {
@@ -102,14 +102,12 @@ header {
       color: #f4bc4f;
       transform: scale(0.1);
       transform-origin: top center;
-      transition: all 450ms;
       z-index: -1;
 
       svg {
         width: 100%;
         height: 100%;
         transform: translate3d(0px, 0px, 0px);
-        transition: all 450ms;
 
       }
     }
@@ -172,15 +170,14 @@ header {
 
     .immitation-box {
       position: absolute;
-      top: 84px;
-      left: -80px;
-      width: 271px;
-      height: 271px;
+      top: 14px;
+      left: 36px;
+      width: 44px;
+      height: 44px;
       background: #f4bc4f;
       border-radius: 100%;
-      opacity: 0;
+      opacity: 1;
       z-index: 0;
-      transform: scale(0.1);
       visibility: hidden;
     }
 
@@ -193,11 +190,10 @@ header {
   position: absolute;
   z-index: 1131;
   background: #f4bc4f;
-  width: 100%;
+  width: 0;
   height: 100vh;
   left: 0;
   top: 0;
-  opacity: 0;
   visibility: hidden;
   box-sizing: border-box;
   overflow: hidden;
