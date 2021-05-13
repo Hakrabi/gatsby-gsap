@@ -364,3 +364,37 @@ section{
   right: 0;
   z-index: 1;
 }
+
+
+
+
+.dots {
+  position: fixed;
+  z-index: 50;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  .dot-cont{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+
+    .dot {
+      //margin: -5px 0 0 -5px;
+      border-color: rgba(9, 10, 66, 0.1);
+      border-width: 5px;
+      border-style: solid;
+      background: transparent;
+      width: 0;
+      height: 0;
+      border-radius: 100%;
+      //background-color: #fff;
+      //margin: auto;
+      cursor: pointer;
+    }
+  }
+}

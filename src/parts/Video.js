@@ -44,7 +44,7 @@ class Video extends Component {
             <div className="video-wrapper">
                 <video className="video" onClick={this.Play} ref={video => this.video = video}>
                     <source
-                        src={video}
+                        // src={video}
                         type="video/mp4"/>
                 </video>
                 <div className="control" onClick={this.Play} ref={div => this.control = div}/>

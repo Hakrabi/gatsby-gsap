@@ -1,9 +1,11 @@
 import React, {Component} from "react"
 import { Helmet } from "react-helmet"
-
-import '../scss/main.scss'
 import {gsap} from "gsap";
 import { ScrollToPlugin } from "gsap/all";
+
+import '../scss/main.scss'
+import Dots from "../parts/Dots"
+
 gsap.registerPlugin(ScrollToPlugin);
 
 class LayoutDefault extends Component{
@@ -26,16 +28,16 @@ class LayoutDefault extends Component{
 
         this.handleWheel = this.handleWheel.bind(this)
         this.handleKey = this.handleKey.bind(this)
+        this.goToSlide = this.goToSlide.bind(this)
         this.goToNextSlide = this.goToNextSlide.bind(this)
         this.goToPrevSlide = this.goToPrevSlide.bind(this)
     }
 
     componentDidMount() {
-
         window.addEventListener('keydown', this.handleKey,{passive: false});
         window.addEventListener('wheel', this.handleWheel,{passive: false});
     }
-    //
+
     componentWillUnmount() {
         window.removeEventListener('keydown', this.handleKey,{passive: false});
         window.removeEventListener('wheel', this.handleWheel,{passive: false});
@@ -50,19 +52,20 @@ class LayoutDefault extends Component{
 
         if(this.state.scrollActive && index > 0){
             this.setState({
-                scrollActive:false
+                scrollActive:false,
+                currentSection: this.state.currentSection - 1
             });
-            gsap.to(window, {duration: duration, ease: ease, scrollTo:{y: this.props.Sections[index - 1]},
+            gsap.to(window, {duration: duration, ease: ease, scrollTo:{y: this.props.Sections[index - 1].section},
                 onComplete:()=>{
                     this.setState({
                         scrollActive:true,
-                        currentSection: this.state.currentSection - 1
                     })
                 }
             });
 
         }
     }
+
     goToNextSlide() {
         let index = this.state.currentSection
         let duration = 1
@@ -75,15 +78,40 @@ class LayoutDefault extends Component{
 
         if(this.state.scrollActive && this.props.Sections.length-1 > index){
             this.setState({
-                scrollActive:false
+                scrollActive:false,
+                currentSection: this.state.currentSection + 1
             });
             gsap.to(window, {duration: duration, ease: ease,
-                scrollTo:{y: this.props.Sections[index + 1]},
+                scrollTo:{y: this.props.Sections[index + 1].section},
                 onComplete:()=>{
                     setTimeout(() => {
                         this.setState({
                             scrollActive:true,
-                            currentSection: this.state.currentSection + 1
+                        })
+                    }, delay)
+                }
+            });
+
+        }
+    }
+
+    goToSlide = (slideIndex) => {
+        let duration = 1
+        let delay = 0 //milliseconds
+        let ease = "power3.inOut"
+        console.log(slideIndex)
+
+        if(this.state.scrollActive){
+            this.setState({
+                scrollActive:false,
+                currentSection: slideIndex
+            });
+            gsap.to(window, {duration: duration, ease: ease,
+                scrollTo:{y: this.props.Sections[slideIndex].section},
+                onComplete:()=>{
+                    setTimeout(() => {
+                        this.setState({
+                            scrollActive:true,
                         })
                     }, delay)
                 }
@@ -125,6 +153,10 @@ class LayoutDefault extends Component{
                 <div className="scroller">
                     {this.props.children}
                 </div>
+                <Dots Dots={this.props.Dots}
+                      currentSection={this.state.currentSection}
+                      count={this.props.Sections.length}
+                      goToSlide={this.goToSlide}/>
             </>
         )
     }

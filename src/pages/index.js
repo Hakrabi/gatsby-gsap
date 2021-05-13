@@ -63,6 +63,10 @@ class Home extends Component {
             letters: []
         };
 
+        this.Dots = {
+            anim: null
+        }
+
         this.Welcome = {
             section: null,
             wrapper: null,
@@ -166,8 +170,23 @@ class Home extends Component {
             bottom: [],
         }
 
-        this.FooterMenu = null;
+        this.FooterMenu={
+            section: null
+        }
 
+        this.Sections = [
+            this.Welcome,
+            this.WWD,
+            this.Webdev,
+            this.Design,
+            this.Mobdev,
+            this.WhyCCL,
+            this.Team,
+            this.Clients,
+            this.Tech,
+            this.Contact,
+            this.FooterMenu
+        ]
     }
 
     componentDidMount() {
@@ -191,6 +210,7 @@ class Home extends Component {
             ScrollTrigger.create({
                 trigger: el.section,
                 start: 'top center',
+                // end: 'bottom bottom',
                 onEnter: () => el.anim.play()
             });
         })
@@ -220,8 +240,9 @@ class Home extends Component {
             .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
-            // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
+            .add(this.Dots.anim, 2)
 
+        // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
         //What We Do Section
         this.WWD.anim
             .fromTo(this.WWD.outline, 1.5, {drawSVG: "100% 100%"}, {
@@ -408,25 +429,13 @@ class Home extends Component {
             .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
 
 
-        this.Sections = [
-            this.Welcome.section,
-            this.WWD.section,
-            this.Webdev.section,
-            this.Design.section,
-            this.Mobdev.section,
-            this.WhyCCL.section,
-            this.Team.section,
-            this.Clients.section,
-            this.Tech.section,
-            this.Contact.section,
-            this.FooterMenu
-        ]
+
 
     }
 
     render() {
         return (
-            <LayoutDefault Sections={this.Sections} pageName='home'>
+            <LayoutDefault Sections={this.Sections} pageName='home' Dots={this.Dots}>
                 <Header innerRefs={this.Header}/>
                 <main id="home">
                     <section className="welcome" ref={section => this.Welcome.section = section}>
@@ -734,7 +743,7 @@ class Home extends Component {
                 </main>
                 <footer>
                     <FooterContact Contact={this.Contact} pageName="home"/>
-                    <FooterMenu inputRef={el => this.FooterMenu = el}/>
+                    <FooterMenu inputRef={el => this.FooterMenu.section = el}/>
                 </footer>
             </LayoutDefault>
         )

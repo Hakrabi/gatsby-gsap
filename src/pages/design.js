@@ -7,7 +7,7 @@ import Scrollbar from 'smooth-scrollbar';
 import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
 import Gallery from "../parts/Gallery"
-// import Video from "../parts/Video";
+import Video from "../parts/Video";
 import '../scss/design.scss'
 
 import IllustrationImg from  "../parts/CoolImgs/design/IllustrationImg"
@@ -76,7 +76,9 @@ class Design extends Component{
             box: null,
             letters: []
         };
-
+        this.Dots = {
+            anim: null
+        }
         this.Welcome = {
             section: null,
             wrapper: null,
@@ -171,7 +173,24 @@ class Design extends Component{
             bottom: [],
         }
 
-        this.FooterMenu = null;
+        this.FooterMenu={
+            section: null
+        }
+
+        this.Sections = [
+            this.Welcome,
+            this.Illustrations,
+            this.IllustrationsGallery,
+            this.Animation,
+            this.Videos,
+            this.WebDesign,
+            this.WebDesignGallery,
+            this.Page404,
+            this.Presentation,
+            this.WWU,
+            this.Contact,
+            this.FooterMenu
+        ]
 
     }
     componentDidMount() {
@@ -226,7 +245,7 @@ class Design extends Component{
             .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
-
+            .add(this.Dots.anim, 2)
 
 
         this.Illustrations.anim
@@ -327,26 +346,13 @@ class Design extends Component{
             .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
             .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
 
-        this.Sections = [
-            this.Welcome.section,
-            this.Illustrations.section,
-            this.IllustrationsGallery.section,
-            this.Animation.section,
-            this.Videos.section,
-            this.WebDesign.section,
-            this.WebDesignGallery.section,
-            this.Page404.section,
-            this.Presentation.section,
-            this.WWU.section,
-            this.Contact.section,
-            this.FooterMenu
-        ]
+
 
     }
 
     render(){
         return (
-            <LayoutDefault pageName="design" Sections={this.Sections}>
+            <LayoutDefault pageName="design" Sections={this.Sections} Dots={this.Dots}>
                 <Header innerRefs={this.Header}/>
                 <main id="design">
                     <section className="welcome" ref={el => this.Welcome.section = el}>
@@ -432,7 +438,7 @@ class Design extends Component{
 
                     <section className="videos" ref={section => this.Videos.section = section}>
                         <h2 ref={el => this.Videos.head = el}>VIDEOS</h2>
-                        {/*<Video/>*/}
+                        <Video/>
                     </section>
 
                     <section className="webdesign" ref={section => this.WebDesign.section = section}>
@@ -538,7 +544,7 @@ class Design extends Component{
                 </main>
                 <footer>
                     <FooterContact Contact={this.Contact} pageName="design"/>
-                    <FooterMenu inputRef={el => this.FooterMenu = el}/>
+                    <FooterMenu inputRef={el => this.FooterMenu.section = el}/>
                 </footer>
             </LayoutDefault>
         )

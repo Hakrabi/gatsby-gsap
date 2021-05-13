@@ -1,20 +1,18 @@
 import React, {Component} from "react"
 import { gsap } from "gsap";
+import {ScrollTrigger, TimelineLite} from "gsap/all";
 import Typewriter from 'typewriter-effect';
 
-import axios from "axios"
-import * as qs from "query-string"
-
 import LayoutDefault from "../parts/LayoutDefault";
-import CoolButton from "../parts/CoolButton";
-import Hamster from '../parts/CoolImgs/Hamster'
-import "../scss/contact.scss"
-
-
-import FooterMenu from "../parts/Footer/FooterMenu";
 import Header from "../parts/Header";
 import ContactForm from "../parts/ContactForm";
 import CCLModal from "../parts/Modal";
+import FooterMenu from "../parts/Footer/FooterMenu";
+
+import Hamster from '../parts/CoolImgs/Hamster'
+import "../scss/contact.scss"
+
+gsap.registerPlugin(ScrollTrigger)
 
 class Contact extends Component{
     constructor(props) {
@@ -27,8 +25,6 @@ class Contact extends Component{
             }
         }
 
-
-
         this.Header = {
             logo: null,
             text: [],
@@ -36,21 +32,37 @@ class Contact extends Component{
             box: null,
             letters: []
         };
-
-        this.MainContact = null
-        this.FooterMenu = null;
+        this.Dots = {
+            anim: null
+        }
+        this.MainContact={
+            anim: null,
+            section: null
+        }
+        this.FooterMenu={
+            section: null
+        }
 
         this.question = null
+
+        this.Sections = [
+            this.MainContact,
+            this.FooterMenu
+        ]
 
         this.handleModal = this.handleModal.bind(this)
     }
 
     componentDidMount() {
         gsap.to(this.question, {opacity: 0, yoyo: true, duration: 0.6, repeat:-1})
-        this.Sections = [
-            this.MainContact,
-            this.FooterMenu
-        ]
+
+        this.MainContact.anim = new TimelineLite({
+            scrollTrigger:{
+                trigger: this.MainContact.section,
+                start: 'top center',
+            }
+        })
+        this.MainContact.anim.add(this.Dots)
     }
 
 
@@ -63,10 +75,10 @@ class Contact extends Component{
 
     render() {
         return (
-            <LayoutDefault pageName="contact" Sections={this.Sections}>
+            <LayoutDefault pageName="contact" Sections={this.Sections} Dots={this.Dots}>
                 <Header innerRefs={this.Header}/>
                 <main id="contact">
-                    <section className="contact-form" ref={section => this.MainContact = section}>
+                    <section className="contact-form" ref={section => this.MainContact.section = section}>
                         <div className="grid">
                             <div className="col1">
                                 <h1>WHY NOT SAY&nbsp;
@@ -99,7 +111,7 @@ class Contact extends Component{
                 </main>
                 <CCLModal modal={this.state.modal} handleCloseP={() => { console.log('closed');  this.setState({modal: {open: false}})}}/>
                 <footer>
-                    <FooterMenu inputRef={el => this.FooterMenu = el}/>
+                    <FooterMenu inputRef={el => this.FooterMenu.section = el}/>
                 </footer>
             </LayoutDefault>
         );
