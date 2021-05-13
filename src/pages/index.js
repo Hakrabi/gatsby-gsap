@@ -240,7 +240,12 @@ class Home extends Component {
             .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
+
+            .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, '+=0.15')
+            .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, '+=0.15')
+            .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "-=0.7")
             .add(this.Dots.anim, 2)
+            // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
 
         // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
         //What We Do Section

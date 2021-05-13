@@ -1,15 +1,15 @@
 import React, {Component} from "react"
 import { gsap } from "gsap";
-import {ScrollTrigger, TimelineLite} from "gsap/all";
+import { TimelineLite, ScrollTrigger} from "gsap/all";
 import Typewriter from 'typewriter-effect';
 
 import LayoutDefault from "../parts/LayoutDefault";
-import Header from "../parts/Header";
+import Header_old from "../parts/Header";
+import FooterMenu from "../parts/Footer/FooterMenu";
 import ContactForm from "../parts/ContactForm";
 import CCLModal from "../parts/Modal";
-import FooterMenu from "../parts/Footer/FooterMenu";
-
 import Hamster from '../parts/CoolImgs/Hamster'
+
 import "../scss/contact.scss"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -76,7 +76,7 @@ class Contact extends Component{
     render() {
         return (
             <LayoutDefault pageName="contact" Sections={this.Sections} Dots={this.Dots}>
-                <Header innerRefs={this.Header}/>
+                <Header_old innerRefs={this.Header}/>
                 <main id="contact">
                     <section className="contact-form" ref={section => this.MainContact.section = section}>
                         <div className="grid">
