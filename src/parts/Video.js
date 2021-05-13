@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { gsap } from "gsap";
 
-import video from '../videos/video1.mp4'
+// import video from '../videos/video1.mp4'
 import "../scss/Video.scss"
 
 import {TimelineLite} from "gsap/all";
