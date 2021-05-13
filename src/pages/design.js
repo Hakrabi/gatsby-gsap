@@ -262,7 +262,6 @@ class Design extends Component{
                 trigger: this.IllustrationsGallery.gallery,
                 invalidateOnRefresh: true,
                 scrub: 1,
-                // start: "top top",
                 end: "bottom bottom"
             }
         })
