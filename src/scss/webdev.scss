@@ -102,6 +102,72 @@
       }
     }
   }
+  .landing{
+    background: $violet;
+    color: $white;
+    .col2{
+      .bottom{
+        position: absolute;
+        transform: translate(50%, -50%);
+        right: 25vw;
+        top: 95vh;
+      }
+    }
+  }
+
+  .sub-landing{
+    background: $violet;
+    color: $white;
+    .migration {
+      position: absolute;
+      top: 50vh;
+      right: 75vw;
+      transform: translate(50%, -50%);
+      width: 420px;
+      height: 532px;
+      .just-look{
+        span{
+          display: block;
+        }
+      }
+
+      .imgs {
+        position: relative;
+
+        img {
+          width: 404px;
+          position: absolute;
+
+          &:nth-child(1) {
+            top: 0;
+            left: 0;
+            z-index: 5;
+          }
+          &:nth-child(2) {
+            top: 344px;
+            left: 0;
+            z-index: 4;
+          }
+          &:nth-child(3){
+            top: -100px;
+            left: 629px;
+            z-index: 2;
+          }
+        }
+      }
+      .button{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .fill{
+          background: #6C6DB9;
+        }
+        .border{
+          border: 1px solid $white;
+        }
+      }
+    }
+  }
 
   section.mobile{
     .col2{

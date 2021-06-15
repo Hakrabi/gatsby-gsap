@@ -245,7 +245,6 @@ class Home extends Component {
             .add(this.Dots.anim, 2)
             // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
 
-        // .fromTo(this.Header.btn, 0.5, {scale: 0, y: -50}, {scale: 1, y: 0})
         //What We Do Section
         this.WWD.anim
             .fromTo(this.WWD.outline, 1.5, {drawSVG: "100% 100%"}, {
@@ -261,6 +260,37 @@ class Home extends Component {
             )
             .fromTo(this.WWD.text, 0.5, {x: '60vw'}, {x: '0%',}, "-=1.5");
 
+        this.WWD.headAnim = new TimelineLite()
+            .to('#WWD-h2',0.001,{position:"fixed"},0)
+            .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
+            .to('#WWD-h2>span', 0.3,{height:"38px"}, 0)
+            .pause()
+
+        this.WWD.headAnimBack = new TimelineLite()
+            .to('#WWD-h2', 0.2, { opacity: 0}, 0)
+            .to('#WWD-h2',0,{position:"static", opacity: 1, fontSize: 120, textAlign: "center", color: "#FFFFFF", left:'calc(25% - 180px)', top:'0',},0.2)
+            .to('#WWD-h2>span', 0,{height:"96px"}, 0.2)
+            .pause()
+
+        this.WWD.HeadAnimOff= new TimelineLite()
+            .to('#WWD-h2', 0.5, { opacity: 0}, 0)
+            .pause()
+
+        ScrollTrigger.create({
+            trigger: this.WWD.text,
+            start: 'top top',
+            onEnter: () => this.WWD.headAnim.restart()
+        });
+        ScrollTrigger.create({
+            trigger: this.Webdev.section,
+            start: 'bottom bottom',
+            onLeaveBack: () => this.WWD.headAnimBack.restart()
+        });
+        ScrollTrigger.create({
+            trigger: this.WhyCCL.section,
+            animation: this.WWD.HeadAnimOff,
+            toggleActions: 'play none none reverse',
+        });
 
         //WebDev Section
         gsap.set(this.Webdev.outline, {drawSVG: "0%"})
@@ -326,7 +356,6 @@ class Home extends Component {
             .add(this.Mobdev.imgAnim, 0.5)
 
 
-
         //Why CCL
         this.WhyCCL.anim
             .from(this.WhyCCL.head[0], 0.5, {height: 0},1.3)
@@ -342,35 +371,35 @@ class Home extends Component {
                 0.5
             )
 
-        this.WWD.headAnim = new TimelineLite()
+        this.WhyCCL.headAnim = new TimelineLite()
             .to('#WWD-h2',0.001,{position:"fixed"},0)
             .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
             .to('#WWD-h2>span', 0.3,{height:"38px"}, 0)
             .pause()
 
-        this.WWD.headAnimBack = new TimelineLite()
+        this.WhyCCL.headAnimBack = new TimelineLite()
             .to('#WWD-h2', 0.2, { opacity: 0}, 0)
             .to('#WWD-h2',0,{position:"static", opacity: 1, fontSize: 120, textAlign: "center", color: "#FFFFFF", left:'calc(25% - 180px)', top:'0',},0.2)
             .to('#WWD-h2>span', 0,{height:"96px"}, 0.2)
             .pause()
 
-        this.WWD.HeadAnimOff= new TimelineLite()
+        this.WhyCCL.HeadAnimOff= new TimelineLite()
             .to('#WWD-h2', 0.5, { opacity: 0}, 0)
             .pause()
 
         ScrollTrigger.create({
-            trigger: this.WWD.text,
+            trigger: this.WhyCCL.text,
             start: 'top top',
-            onEnter: () => this.WWD.headAnim.restart()
+            onEnter: () => this.WhyCCL.headAnim.restart()
         });
         ScrollTrigger.create({
             trigger: this.Webdev.section,
             start: 'bottom bottom',
-            onLeaveBack: () => this.WWD.headAnimBack.restart()
+            onLeaveBack: () => this.WhyCCL.headAnimBack.restart()
         });
         ScrollTrigger.create({
             trigger: this.WhyCCL.section,
-            animation: this.WWD.HeadAnimOff,
+            animation: this.WhyCCL.HeadAnimOff,
             toggleActions: 'play none none reverse',
         });
 

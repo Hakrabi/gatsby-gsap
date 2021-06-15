@@ -42,7 +42,10 @@ class LandingImg extends Component {
                     <path d="m114 92c7 0 13-6 13-13s-6-13-13-13-13 6-13 13 6 13 13 13z" fill="#F4BC4F"/>
                 </g>
                 <g ref={el => this.gem = el} stroke="#525375" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m1 35 6.8-5.2 11-6.8 12-3.8 8.4-1.7m-33 1.9 1.3 10 25 24-17-38m8.5-4.2 7 7.7 1.6 34m-31-18 31 18 6.8-36-15-6.1-17 8z" stroke="#525375"/>
+                    <path d="m1.1 35 31 18 6.8-36-15-6.1-17 8z" fill="#fff"/>
+                    <path d="m24 11 7 7.7 1.6 34" fill="none"/>
+                    <path d="m6.6 19 1.3 10 25 24-17-38" fill="none"/>
+                    <path d="m1.1 35 6.8-5.2 11-6.8 12-3.8 8.4-1.7" fill="none"/>
                 </g>
                 <g ref={el => this.coin1 = el} stroke="#525375" strokeLinecap="round" strokeLinejoin="round">
                     <path d="m166 94c6.6 0 12-5.4 12-12s-5.4-12-12-12-12 5.4-12 12 5.4 12 12 12z" fill="#fff" strokeLinejoin="round"/>

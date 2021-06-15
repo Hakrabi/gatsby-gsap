@@ -17,6 +17,13 @@ import amz from "../imgs/webdev/custom/AMZ.png";
 import uzilo from "../imgs/webdev/custom/uzilo.png";
 import CustomBottom from "../imgs/webdev/custom/bottom.svg";
 
+import natucan from "../imgs/webdev/landing/Natucan.png";
+import tiktok from "../imgs/webdev/landing/TikTok.png";
+import tester from "../imgs/webdev/landing/Tester.png";
+import LandingBottom from "../imgs/webdev/landing/bottom.svg";
+
+
+
 import MobileIll from "../imgs/webdev/mobile/sites.png";
 
 
@@ -117,6 +124,7 @@ class Webdev extends Component {
             this.Custom,
             this.SubCustom,
             this.Landing,
+            this.SubLanding,
             this.Mobile,
             this.Product,
             this.Contact,
@@ -172,7 +180,9 @@ class Webdev extends Component {
             .from(this.Custom.head, 0.5, {opacity: 0, y: 50})
             .add(this.Custom.imgAnim)
             .from(this.Custom.text, 0.5, {opacity: 0, y: 50}, 0.5)
-            .from(this.SubCustom.migration, 0.5, {opacity: 0, x: 50}, 1)
+            .from(this.SubCustom.text, 0.5, {opacity: 0, x: 20}, 1)
+            .from(this.SubCustom.imgs[0], 0.5, {opacity: 0, y: 20}, 1.4)
+            .from(this.SubCustom.imgs[1], 0.5, {opacity: 0, y: 20}, 1.6)
             .from(this.Custom.bottom, 0.5, {opacity: 0})
 
 
@@ -203,7 +213,36 @@ class Webdev extends Component {
         });
 
         this.Landing.anim
+            .from(this.Landing.head, 0.5, {opacity: 0, y: 50})
             .add(this.Landing.imgAnim)
+            .from(this.Landing.text, 0.5, {opacity: 0, y: 50}, 0.5)
+            .from(this.SubLanding.text, 0.5, {opacity: 0, x: -20}, 1)
+            .from(this.SubLanding.imgs[0], 0.5, {opacity: 0, x: -20}, 1.2)
+            .from(this.SubLanding.imgs[1], 0.5, {opacity: 0, x: -20}, 1.4)
+            .from(this.Landing.bottom, 0.5, {opacity: 0})
+
+        this.SubLanding.animInto = new TimelineLite().pause(0)
+            .to(this.SubLanding.migration, 0.7, {ease: "power3.inOut", width: 1013, height: 530, top: '150vh', right: '50vw'})
+            .to(this.SubLanding.imgs[1], 0.7, {ease: "power3.inOut", top: 100, left: 300}, 0)
+            .from(this.SubLanding.imgs[2], 0.2, {opacity: 0, scale: 0.8}, )
+            .from(this.SubLanding.button, 0.5, {opacity: 0}, 0.7)
+
+        this.SubLanding.animBack = new TimelineLite().pause(0)
+            .to(this.SubLanding.button, 0.2, {opacity: 0}, 0)
+            .to(this.SubLanding.imgs[2], 0.2, {opacity: 0}, 0)
+            .to(this.SubLanding.migration, 0.7, {ease: "power3.inOut", width: 420, height: 532, top: '50vh', right: '75vw'}, 0)
+            .to(this.SubLanding.imgs[1], 0.7, {ease: "power3.inOut", top: 344, left: 0}, 0)
+
+        ScrollTrigger.create({
+            trigger: this.SubLanding.section,
+            start: '0.5% bottom',
+            onEnter: () => this.SubLanding.animInto.restart()
+        });
+        ScrollTrigger.create({
+            trigger: this.SubLanding.section,
+            start: '99.5% bottom',
+            onLeaveBack: () => this.SubLanding.animBack.restart()
+        });
 
         this.Mobile.anim
             .add(this.Mobile.imgAnim)
@@ -276,16 +315,17 @@ class Webdev extends Component {
                         <div className="relative-wrapper">
                             <section className="landing" ref={el => this.Landing.section = el}>
                                 <div className="grid">
-                                    <div  className='col1 col-center'>
+                                    <div >
 
                                     </div>
                                     <div className="col2 col-center">
                                         <LandingImg  anim={this.Landing} />
-                                        <h2 className="small mb">
+                                        <h2 ref={el => this.Landing.head = el} className="small mb">
                                             <span>BEAUTIFUL</span>
                                             <span>LANDING PAGES</span>
                                         </h2>
-                                        <p className="center mw444">Whether you need to create a brand new website, a landing page or an online store, we will do it for you in a well-designed and structured way on the WordPress platform. By choosing us, you also choose a solid expertise, compelling design and aim straight for the chance to really stand out from all that crowd on the Internet. Bug-free projects, lifetime support, proven technologies, and other perks.</p>
+                                        <p ref={el => this.Landing.text = el} className="center mw444">Whether you need to create a brand new website, a landing page or an online store, we will do it for you in a well-designed and structured way on the WordPress platform. By choosing us, you also choose a solid expertise, compelling design and aim straight for the chance to really stand out from all that crowd on the Internet. Bug-free projects, lifetime support, proven technologies, and other perks.</p>
+                                        <img ref={el => this.Landing.bottom = el} className="bottom" src={LandingBottom} alt=""/>
                                     </div>
                                 </div>
                             </section>
@@ -294,13 +334,12 @@ class Webdev extends Component {
                                     <p className="just-look" ref={el => this.SubLanding.text = el}>
                                         Just look at out our awesome <span>recent projects</span>
                                     </p>
-                                    {/*<div className="imgs">*/}
-                                    {/*    <img ref={el => this.SubCustom.imgs.push(el)} src={rms} alt=""/>*/}
-                                    {/*    <img ref={el => this.SubCustom.imgs.push(el)} src={oms} alt=""/>*/}
-                                    {/*    <img ref={el => this.SubCustom.imgs.push(el)} src={uzilo} alt=""/>*/}
-                                    {/*    <img ref={el => this.SubCustom.imgs.push(el)} src={amz} alt=""/>*/}
-                                    {/*</div>*/}
-                                    <div className="button" ref={el => this.SubCustom.button = el}>
+                                    <div className="imgs">
+                                        <img ref={el => this.SubLanding.imgs.push(el)} src={natucan} alt=""/>
+                                        <img ref={el => this.SubLanding.imgs.push(el)} src={tiktok} alt=""/>
+                                        <img ref={el => this.SubLanding.imgs.push(el)} src={tester} alt=""/>
+                                    </div>
+                                    <div className="button" ref={el => this.SubLanding.button = el}>
                                         <CoolButton to="#">See all</CoolButton>
                                     </div>
                                 </div>
