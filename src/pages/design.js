@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import { Link } from "gatsby";
 import { gsap } from "gsap";
 import { TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin, DrawSVGPlugin} from "gsap/all";
-import Scrollbar from 'smooth-scrollbar';
 
 import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
@@ -168,9 +167,8 @@ class Design extends Component{
 
         this.Contact ={
             anim: null,
+            timeline: null,
             section: null,
-            head: [],
-            bottom: [],
         }
 
         this.FooterMenu={
@@ -333,17 +331,8 @@ class Design extends Component{
             .from(this.WWU.text, 0.5, {y: '10vh', opacity: 0}, 0)
             .add(this.WWU.imgAnim)
 
-
         this.Contact.anim
-            .from(this.Contact.head[0], 0.5, {height: 0}, )
-            .from(this.Contact.head[1], 0.5, {height: 0}, "-=0.4")
-            .to(this.Contact.wrapper, 0.5, {width: 0}, "+=0.5")
-            .from(this.Contact.realH2, 0.5, {x: '-5%'}, "-=0.4")
-            .from(this.Contact.wrapperH2, 0.5, {x: '-5%'}, "-=0.5")
-            .from(this.Contact.cont, 0.3, {height:0}, )
-            .from(this.Contact.bottom[0], 0.3, {opacity: 0, y: 50}, "-=0.1")
-            .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
-            .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
+            .add(this.Contact.timeline)
 
 
 

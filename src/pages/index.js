@@ -163,13 +163,11 @@ class Home extends Component {
             imgAnim: null,
         }
 
-        this.Contact = {
+        this.Contact ={
             anim: null,
+            timeline: null,
             section: null,
-            head: [],
-            bottom: [],
         }
-
         this.FooterMenu={
             section: null
         }
@@ -423,15 +421,7 @@ class Home extends Component {
 
         //Contact
         this.Contact.anim
-            .from(this.Contact.head[0], 0.5, {height: 0},)
-            .from(this.Contact.head[1], 0.5, {height: 0}, "-=0.4")
-            .to(this.Contact.wrapper, 0.5, {width: 0}, "+=0.5")
-            .from(this.Contact.realH2, 0.5, {x: '-5%'}, "-=0.4")
-            .from(this.Contact.wrapperH2, 0.5, {x: '-5%'}, "-=0.5")
-            .from(this.Contact.cont, 0.3, {height: 0},)
-            .from(this.Contact.bottom[0], 0.3, {opacity: 0, y: 50}, "-=0.1")
-            .from(this.Contact.bottom[1], 0.3, {opacity: 0, y: 50}, "-=0.1")
-            .from(this.Contact.bottom[2], 0.3, {opacity: 0, y: 50}, "-=0.1")
+            .add(this.Contact.timeline)
 
 
 

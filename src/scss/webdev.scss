@@ -1,0 +1,121 @@
+@import '../scss/vars';
+
+#webdev{
+  section.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+
+    h1{
+      margin-top: 170px;
+    }
+
+    svg{
+      overflow: hidden;
+    }
+  }
+
+  .relative-wrapper{
+    position: relative;
+  }
+
+  section.custom {
+    background: $yellow;
+    display: flex;
+    align-items: center;
+    .grid{
+      width: 100%;
+      height: auto;
+      .col2{
+        height: 100%;
+      }
+      .col1{
+        .bottom{
+          position: absolute;
+          transform: translateX(-50%);
+          left: 23vw;
+          top: 90vh;
+        }
+      }
+
+    }
+  }
+  p.just-look{
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+    margin-bottom: 45px;
+  }
+  section.sub-custom {
+    background: $yellow;
+    overflow-x: hidden;
+    .migration {
+      position: absolute;
+      top: 50vh;
+      left: 50vw;
+      width: 1013px;
+      height: 485px;
+      .just-look{
+      }
+      .imgs {
+        position: relative;
+        //left: 50vw;
+        display: flex;
+        align-items: flex-end;
+
+        img {
+          width: 384px;
+          position: absolute;
+
+          &:nth-child(1) {
+            top: 0;
+            left: 0;
+            z-index: 5;
+          }
+          &:nth-child(2) {
+            top: 0;
+            left: 424px;
+            z-index: 4;
+          }
+          &:nth-child(3){
+            top: 100px;
+            left: 563px;
+            z-index: 3;
+          }
+          &:nth-child(4){
+            top: -100px;
+            left: 629px;
+            z-index: 2;
+          }
+        }
+      }
+      .button{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .fill{
+          background: #FFF;
+        }
+      }
+    }
+  }
+
+  section.mobile{
+    .col2{
+      img{
+        max-width: 546px;
+        width: 100%;
+        margin-bottom: 26px;
+      }
+    }
+  }
+
+  section.product{
+    background: $red;
+    color: $white;
+
+  }
+}

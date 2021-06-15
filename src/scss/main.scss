@@ -51,6 +51,12 @@ h1{
       }
     }
   }
+  &.brackets{
+    margin-bottom: 64px;
+    span{
+      display: inline-block;
+    }
+  }
 }
 h2{
   font-weight: bold;
