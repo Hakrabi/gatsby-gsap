@@ -7,7 +7,7 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import LayoutDefault from '../parts/LayoutDefault'
 import LisaSimpson from '../parts/CoolImgs/home/LisaSimpson'
-import '../scss/home.scss'
+import '../scss/pages/home.scss'
 
 import whiteLogo from "../imgs/header/logo/white.svg"
 import WelcomeBottomText from "../imgs/home/welcome-bg.svg"

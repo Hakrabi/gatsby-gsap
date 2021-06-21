@@ -27,7 +27,7 @@ import LandingBottom from "../imgs/webdev/landing/bottom.svg";
 import MobileIll from "../imgs/webdev/mobile/sites.png";
 
 
-import '../scss/webdev.scss'
+import '../scss/pages/webdev.scss'
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
 import CoolButton from "../parts/CoolButton";
@@ -137,7 +137,6 @@ class Webdev extends Component {
         this.ScrollTriggers = [
             this.Welcome,
             this.Custom,
-            // this.SubCustom,
             this.Landing,
             this.Mobile,
             this.Product,

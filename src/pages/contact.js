@@ -10,7 +10,7 @@ import ContactForm from "../parts/ContactForm";
 import CCLModal from "../parts/Modal";
 import Hamster from '../parts/CoolImgs/Hamster'
 
-import "../scss/contact.scss"
+import "../scss/pages/contact.scss"
 
 gsap.registerPlugin(ScrollTrigger)
 

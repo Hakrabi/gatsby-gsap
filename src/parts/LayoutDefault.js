@@ -75,8 +75,6 @@ class LayoutDefault extends Component{
         if(this.props.pageName === 'home' && index === 8) {delay = 1100}
         if(this.props.pageName === 'design' && index === 9) {delay = 1100}
         if(this.props.pageName === 'design' && index === 1) {delay = 500}
-        // if(this.props.pageName === 'webdev' && index === 0) {delay = 1500}
-        // if(this.props.pageName === 'webdev' && index === 1) {delay = 400}
 
         if(this.state.scrollActive && this.props.Sections.length-1 > index){
             this.setState({

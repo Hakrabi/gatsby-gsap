@@ -93,6 +93,12 @@ h2{
   }
   &.small{
     font-size: 80px;
+    &.vertical-move,
+    &.vertical-bottom-move{
+      span{
+        height: 64px;
+      }
+    }
   }
   &.mb{
     margin-bottom: 50px;

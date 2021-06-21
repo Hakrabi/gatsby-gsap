@@ -7,7 +7,7 @@ import LayoutDefault from "../parts/LayoutDefault";
 import CoolButton from "../parts/CoolButton";
 import Gallery from "../parts/Gallery"
 import Video from "../parts/Video";
-import '../scss/design.scss'
+import '../scss/pages/design.scss'
 
 import IllustrationImg from  "../parts/CoolImgs/design/IllustrationImg"
 import WelcomePen from "../parts/CoolImgs/design/WelcomePen"

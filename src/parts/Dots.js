@@ -8,7 +8,7 @@ class Dots extends Component {
         super(props);
 
         this.state ={
-            count: this.props.count
+            count: props.count
         }
 
         this.control={
@@ -20,7 +20,7 @@ class Dots extends Component {
     componentDidMount() {
         this.props.Dots.anim = new TimelineLite()
             .from(this.control.dots,0.5, {x: 100, stagger: 0.15})
-            .to(this.control.dots[0],0.2, {width: "50%", height: "50%"})
+            .to(this.control.dots[this.props.currentSection],0.2, {width: "50%", height: "50%"})
     }
 
 

@@ -1,4 +1,4 @@
-@import '../scss/vars';
+@import '../vars';
 
 body.design{
   background: $yellow;
@@ -9,7 +9,7 @@ body.design{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../imgs/design/welcome/paint.svg');
+    background-image: url('../../imgs/design/welcome/paint.svg');
     background-size: auto 70%;
     background-repeat: no-repeat;
     background-position: 15% 50%;
@@ -41,7 +41,7 @@ body.design{
       width: 150px;
       &:before{
         content: '';
-        background-image: url('../imgs/design/welcome/arrow.svg');
+        background-image: url('../../imgs/design/welcome/arrow.svg');
         display: block;
         position: absolute;
         left: -76px;
@@ -54,7 +54,7 @@ body.design{
   }
 
   section.illustrations{
-    background: url("../imgs/design/illustrations/sag.svg"), $yellow;
+    background: url("../../imgs/design/illustrations/sag.svg"), $yellow;
     background-repeat: no-repeat;
     background-size: 100% 0%;
     background-position: center bottom -1px;
@@ -126,7 +126,7 @@ body.design{
     height: auto;
     color: $white;
     background:
-            url("../imgs/design/animation/paint.svg") no-repeat, $grey-bg;
+            url("../../imgs/design/animation/paint.svg") no-repeat, $grey-bg;
     background-position: bottom 80% right;
     position: relative;
 
@@ -135,7 +135,7 @@ body.design{
     }
     .oval{
       background:
-              url("../imgs/design/animation/paint.svg") no-repeat;
+              url("../../imgs/design/animation/paint.svg") no-repeat;
       background-position: bottom 80% right;
       background-color: $violet;
       height: 108vh;
@@ -152,7 +152,7 @@ body.design{
       left: 0;
       right: 0;
       .arrow{
-        background-image: url('../imgs/home/anchor-arrow.svg');
+        background-image: url('../../imgs/home/anchor-arrow.svg');
         position: absolute;
         bottom: -33px;
         background-repeat: no-repeat;

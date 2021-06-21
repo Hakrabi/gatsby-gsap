@@ -1,0 +1,75 @@
+@import '../scss/vars';
+
+.vacancy-link{
+  display: flex;
+  align-items: center;
+  position: absolute;
+
+  &:nth-child(2){
+    top: 10vh;
+    left: 15vw;
+
+  }
+  &:nth-child(3){
+    top: 10vh;
+    right: 15vw;
+    flex-direction: row-reverse;
+    img{
+      margin-left: 15px;
+    }
+  }
+  &:nth-child(4){
+    right: 10vw;
+    flex-direction: row-reverse;
+    img{
+      margin-left: 15px;
+    }
+  }
+  &:nth-child(5){
+    bottom: 10vh;
+    left: 45vw;
+    flex-direction: row-reverse;
+    img{
+      margin-left: 15px;
+    }
+  }
+  &:nth-child(6){
+    top: 55vh;
+    left: 7vw;
+    img{
+      margin-right: 5px;
+    }
+  }
+
+  .button{
+    display: flex;
+    align-items: center;
+    border: 2px solid $white;
+    color: $white;
+    padding: 12px 15px 12px 30px;
+    font-size: 26px;
+    line-height: 140%;
+
+    &.active{
+      background: $white;
+      color: $black-violet;
+    }
+
+    svg{
+      margin-left: 25px;
+    }
+    .count{
+      position: absolute;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      line-height: 26px;
+      font-size: 16px;
+      color: $white;
+      background: $red;
+      top: -13px;
+      left: -13px;
+    }
+  }
+}

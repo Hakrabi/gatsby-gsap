@@ -8,7 +8,7 @@ import Header_old from "../parts/Header";
 import Text from "../imgs/404/404.svg"
 import Hamsters from "../imgs/404/hamsters.svg"
 
-import '../scss/404.scss'
+import '../scss/pages/404.scss'
 import CoolButton from "../parts/CoolButton";
 
 

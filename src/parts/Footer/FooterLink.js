@@ -31,7 +31,7 @@ class FooterLink extends Component{
             <div ref={div => this.linkRef = div}>
                 <AniLink paintDrip hex="#525375"
                     to={this.props.to}
-                    onMouseOver = {this.runAnim}
+                    onMouseEnter = {this.runAnim}
                     onMouseLeave = {this.runAnim}>
                     {this.props.children}
                 </AniLink>

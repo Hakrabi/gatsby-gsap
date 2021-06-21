@@ -1,4 +1,4 @@
-@import '../scss/vars';
+@import '../vars';
 
 section.contact-form{
   position: relative;
@@ -94,7 +94,7 @@ section.contact-form{
     width: 100vw;
     height: 4vw;
     position: absolute;
-    background: url("../imgs/contact/paint.svg");
+    background: url("../../imgs/contact/paint.svg");
     background-size: 100vw;
     background-repeat: no-repeat;
     z-index: 30;

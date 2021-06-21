@@ -4,6 +4,16 @@ section.still-reading{
   color: $white;
   position: relative;
   background:$violet;
+
+  &.vacancies{
+    h2{
+      margin-bottom: 45px;
+    }
+    .sub{
+      font-size: 26px;
+    }
+  }
+
   .container{
     height: 100%;
   }
