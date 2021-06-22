@@ -6,6 +6,7 @@ import { TimelineLite, TweenLite, ScrollTrigger, ScrollToPlugin, DrawSVGPlugin} 
 import LayoutDefault from "../parts/LayoutDefault";
 import Header_old from "../parts/Header";
 import VacancyLink from "../parts/VacancyLink";
+import InfinityGallery from "../parts/InfinityGallery"
 
 import WelcomeImg1 from '../imgs/vacancies/welcome/1.png'
 import WelcomeImg2 from '../imgs/vacancies/welcome/2.png'
@@ -52,7 +53,7 @@ class Vacancies extends Component {
             section: null,
             head: null,
             text: null,
-            imgs: null,
+            gallery: null,
         }
 
         this.Hiring = {
@@ -114,6 +115,9 @@ class Vacancies extends Component {
         })
 
         this.Welcome.anim
+            .from(this.Welcome.head, 0.5, {opacity: 0, y: 50}, 0.5)
+            .from(this.Welcome.text, 0.5, {opacity: 0, y: 50}, 0.8)
+            .from(this.Welcome.gallery, 0.5, {opacity: 0, bottom: 0}, 1.1)
             .from(this.Header.text, 0.3, {opacity: 0, y: 20, stagger: 0.05})
             .fromTo(this.Header.box, 1, {scale: 0, y: -100}, {scale: 1, y: 0})
             .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
@@ -153,16 +157,12 @@ class Vacancies extends Component {
                         <section ref={el => this.Welcome.section = el} className="welcome">
                             <h1 ref={el => this.Welcome.head = el}>Let’s work together</h1>
                             <p ref={el => this.Welcome.text = el}>Work hard with highly motivated team of talented people and great teammates to launch perfectly crafted products you will love</p>
-                            <div className="imgs">
+                            <InfinityGallery innerRef={this.Welcome}>
                                 <img src={WelcomeImg1} alt=""/>
                                 <img src={WelcomeImg2} alt=""/>
                                 <img src={WelcomeImg3} alt=""/>
                                 <img src={WelcomeImg4} alt=""/>
-                                <img src={WelcomeImg1} alt=""/>
-                                <img src={WelcomeImg2} alt=""/>
-                                <img src={WelcomeImg3} alt=""/>
-                                <img src={WelcomeImg4} alt=""/>
-                            </div>
+                            </InfinityGallery>
                         </section>
 
                         <section ref={el => this.Hiring.section = el} className="hiring">
