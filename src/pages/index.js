@@ -534,7 +534,7 @@ class Home extends Component {
                                     </p>
                                 </div>
                                 <div className="read-more" ref={span => this.Webdev.link = span}>
-                                    <Link to="/">Read more</Link>
+                                    <Link to="/webdev">Read more</Link>
                                 </div>
                             </div>
                             <div className="col2 col-center">
@@ -577,7 +577,7 @@ class Home extends Component {
                                     will remember at first sight and forever.
                                 </p>
                                 <div className="read-more center" ref={span => this.Design.link = span}>
-                                    <Link to="/">Read more</Link>
+                                    <Link to="/design">Read more</Link>
                                 </div>
                             </div>
                         </div>
@@ -611,9 +611,11 @@ class Home extends Component {
                                                 This is a key advantage...
                                             </p>
                                         </div>
+                                        {/*
                                         <div className="read-more" ref={span => this.Mobdev.link = span}>
                                             <Link to="/">Read more</Link>
                                         </div>
+                                        */}
                                     </div>
                                     <div className="col2 col-center">
                                         <MobDevImg anim={this.Mobdev}/>
@@ -654,9 +656,11 @@ class Home extends Component {
                                     We creating not just a website or a mobile application. We create an effective tool
                                     that
                                     will benefit your client. And it brings you a regular income.
+                                    {/*
                                     <div className="read-more" ref={span => this.WhyCCL.link = span}>
                                         <Link to="/">Read more</Link>
                                     </div>
+                                    */}
                                 </p>
                             </div>
                         </div>
