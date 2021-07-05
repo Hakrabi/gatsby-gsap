@@ -299,7 +299,7 @@ class Home extends Component {
             .from(this.Webdev.head[1], 0.4, {x: '101%'}, "-=0.2")
             .from(this.Webdev.head[2], 0.4, {x: '101%'}, "-=0.2")
             .from(this.Webdev.head[3], 0.4, {x: '101%'}, "-=0.2")
-            .fromTo(this.Webdev.outline, 1.5, {drawSVG: "0%"}, {ease: "power1.inOut", drawSVG: "100%", stagger: 0.1})
+            .fromTo(this.Webdev.outline, 1.5, {drawSVG: "0%"}, {ease: "power1.inOut", drawSVG: "100%"})
             .from(this.Webdev.link, 1, {opacity: 0}, "+=1")
             .fromTo(this.Webdev.text, 0.5, {x: '-60vw'}, {x: '0%'}, 0)
             .add(this.Webdev.imgAnim, 0.4)
@@ -372,19 +372,19 @@ class Home extends Component {
             )
 
         this.WhyCCL.headAnim = new TimelineLite()
-            .to('#WWD-h2',0.001,{position:"fixed"},0)
-            .to('#WWD-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
-            .to('#WWD-h2>span', 0.3,{height:"38px"}, 0)
+            .to('#WhyCCL-h2',0.001,{position:"fixed"},0)
+            .to('#WhyCCL-h2', 0.3, {fontSize: 40, textAlign: "left", color: "#EBEBF1", left:'5vh', top:'5vh'}, 0)
+            .to('#WhyCCL-h2 span', 0.3,{height:"38px"}, 0)
             .pause()
 
         this.WhyCCL.headAnimBack = new TimelineLite()
-            .to('#WWD-h2', 0.2, { opacity: 0}, 0)
-            .to('#WWD-h2',0,{position:"static", opacity: 1, fontSize: 120, textAlign: "center", color: "#FFFFFF", left:'calc(25% - 180px)', top:'0',},0.2)
-            .to('#WWD-h2>span', 0,{height:"96px"}, 0.2)
+            .to('#WhyCCL-h2', 0.2, { opacity: 0}, 0)
+            .to('#WhyCCL-h2',0,{position:"static", opacity: 1, fontSize: 120, textAlign: "center", color: "#FFFFFF", left:'calc(25% - 180px)', top:'0',},0.2)
+            .to('#WhyCCL-h2 span', 0,{height:"96px"}, 0.2)
             .pause()
 
         this.WhyCCL.HeadAnimOff= new TimelineLite()
-            .to('#WWD-h2', 0.5, { opacity: 0}, 0)
+            .to('#WhyCCL-h2', 0.5, { opacity: 0}, 0)
             .pause()
 
         ScrollTrigger.create({
@@ -393,12 +393,13 @@ class Home extends Component {
             onEnter: () => this.WhyCCL.headAnim.restart()
         });
         ScrollTrigger.create({
-            trigger: this.Webdev.section,
+            trigger: this.Team.section,
             start: 'bottom bottom',
             onLeaveBack: () => this.WhyCCL.headAnimBack.restart()
         });
         ScrollTrigger.create({
-            trigger: this.WhyCCL.section,
+            trigger: this.Contact.section,
+            start: '-10% top',
             animation: this.WhyCCL.HeadAnimOff,
             toggleActions: 'play none none reverse',
         });
@@ -639,7 +640,7 @@ class Home extends Component {
                     <section className="whyCCL" ref={section => this.WhyCCL.section = section}>
                         <div className="grid">
                             <div className='col1'>
-                                <h2 className="vertical-bottom-move">
+                                <h2 id="WhyCCL-h2" className="vertical-bottom-move">
                                     <span><span ref={span => this.WhyCCL.head[0] = span}>WHY</span></span>
                                     <span><span ref={span => this.WhyCCL.head[1] = span}>CLEVER</span></span>
                                     <span><span ref={span => this.WhyCCL.head[2] = span}>CODE</span></span>

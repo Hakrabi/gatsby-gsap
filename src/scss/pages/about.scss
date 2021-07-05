@@ -1,0 +1,126 @@
+@import '../vars';
+
+#about{
+  section.welcome{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    video{
+      min-width: 100%;
+      min-height: 100%;
+      position: absolute;
+      top: 0;
+    }
+    h1{
+      color: $white;
+      z-index: 5;
+    }
+  }
+  section.info{
+    position: relative;
+    overflow: hidden;
+    h2{
+      position: relative;
+    }
+    .outline {
+      left:  -18px;
+      top: 46px;
+    }
+    p{
+      max-width: 460px;
+    }
+    .vetal,
+    .yaro,
+    .ernest{
+      position: absolute;
+      overflow: visible;
+    }
+    .vetal{
+      right: 52%;
+      top: -40px;
+    }
+    .ernest{
+      left: -24px;
+      bottom: -55px;
+    }
+    .yaro{
+      right: -15px;
+      bottom: -18px;
+    }
+  }
+
+  section.history{
+    background: $grey-footer;
+    //overflow-y: scroll;
+    //position: relative;
+    //height: initial;
+
+
+    .wrapper{
+      min-height: 100vh;
+      height: max-content;
+      padding: 94px 0;
+      box-sizing: border-box;
+      //position: absolute;
+
+      h2{
+        margin-bottom: 74px;
+      }
+
+      .grid{
+        grid-gap: 54px 125px;
+        position: relative;
+
+        svg{
+          position: absolute;
+          top: -50px;
+          left: 50%;
+          transform: translateX(-25%);
+        }
+
+        .col1{
+          align-items: flex-end;
+        }
+
+        p{
+          max-width: 303px;
+        }
+
+        .img1{
+          max-width: 482px;
+        }
+        .img2{
+          max-width: 379px;
+        }
+        .img3{
+          max-width: 340px;
+        }
+      }
+
+    }
+  }
+
+  section.team{
+    background: $grey-footer;
+    height: initial;
+
+    .teammate-card{
+      cursor: pointer;
+      text-align: center;
+      img{
+        max-width: 239px;
+        margin-bottom: 16px;
+      }
+    }
+
+    .grid{
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 60px;
+      max-width: 846px;
+      margin: 0 auto ;
+    }
+  }
+}

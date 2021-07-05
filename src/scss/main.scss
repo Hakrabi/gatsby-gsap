@@ -23,9 +23,15 @@ body{
   color: $black-violet;
   background: $grey-bg;
   margin: 0;
-  overflow: hidden;
+  //overflow: hidden;
   width: 100%;
-  height: 100vh;
+  //height: 100vh;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 h1,h2,p{
@@ -57,6 +63,16 @@ h1{
       display: inline-block;
     }
   }
+  &.big{
+    font-weight: bold;
+    font-size: 120px;
+    line-height: 96px;
+    &.vertical-move{
+      span{
+        height: 96px;
+      }
+    }
+  }
 }
 h2{
   font-weight: bold;
@@ -81,6 +97,7 @@ h2{
       display: flex;
       align-items: flex-end;
       justify-content: center;
+      width: 100%;
       height: 96px;
       span {
         display: block;
@@ -160,6 +177,9 @@ section{
   //max-height: 70vw;
   height: 100vh;
   background-color: $grey-bg;
+  &.init{
+    height: initial;
+  }
 }
 
 .grid{

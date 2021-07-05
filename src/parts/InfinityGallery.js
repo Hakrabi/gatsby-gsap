@@ -19,8 +19,6 @@ class InfinityGallery extends Component {
         this.gallery.appendChild(imgsCopy);
         gsap.set(imgsCopy, { xPercent: 100 });
         gsap.to(".imgs", { duration: 60, xPercent: "-=100", ease: "none", repeat: -1 });
-
-
     }
 
     render() {

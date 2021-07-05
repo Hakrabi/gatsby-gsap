@@ -48,7 +48,6 @@ body.home{
         top: 0;
         left: calc(25% - 180px);
         z-index: 20;
-
       }
 
       .col1 {
@@ -193,6 +192,14 @@ body.home{
     background-size: 130.76% auto, 100% auto, 100% auto;
     position: relative;
     color: $white;
+
+    h2 {
+      max-width: 377px;
+      margin: 0 auto;
+      top: 0;
+      left: calc(25% - 180px);
+      z-index: 50;
+    }
 
     .bottom-text{
       position: absolute;

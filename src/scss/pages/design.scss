@@ -111,7 +111,12 @@ body.design{
           border: 1px solid $white;
         }
 
+        .fill{
+          background: #6C6DB9;
+        }
+
         .text {
+          padding: 0;
           font-weight: bold;
           font-size: 30px;
           line-height: 80px;

@@ -17,6 +17,7 @@ class FooterContact extends Component{
             "home":        ["WHY YOU STILL","READING THIS?"],
             "design":   ['DO YOU LIKE IT?', 'SO WHY NOT'],
             "webdev":   ['DO YOU LIKE IT?', 'SO WHY NOT'],
+            "about":   ['DO YOU LIKE IT?', 'SO WHY NOT'],
             "vacancies":   ['“THE ONLY WAY TO DO', 'GREAT WORK, IS TO', 'LOVE WHAT YOU DO.”'],
             "contact": []
         }
