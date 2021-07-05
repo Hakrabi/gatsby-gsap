@@ -220,8 +220,8 @@ class about extends Component {
                             </h1>
                             <video autoPlay muted loop>
                                 <source
-                                    src={video}
-                                    type="video/mp4"/>
+                                    src="https://mazwai.com/videvo_files/video/free/2014-06/small_watermarked/Blue_Sky_and_Clouds_Timelapse_0892__Videvo_preview.webm"
+                                    type="video/webm"/>
                             </video>
                         </section>
 
