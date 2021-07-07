@@ -139,10 +139,10 @@ class FooterMenu extends Component {
             <section className="links" ref={this.props.inputRef}>
                 <div className="social wrapper" ref={div => this.Social.block = div}>
                     <div className="link-block">
-                        <FooterLink to='https://www.facebook.com/clevercodelab'>FACEBOOK</FooterLink>
-                        <FooterLink to='https://www.instagram.com/clevercodelab/'>INSTAGRAM</FooterLink>
-                        <FooterLink to='https://www.linkedin.com/company/clevercodelab/'>LINKEDIN</FooterLink>
-                        <FooterLink to='https://www.behance.net/clevercodelab'>BEHANCE</FooterLink>
+                        <FooterLink type="external" to='https://www.facebook.com/clevercodelab'>FACEBOOK</FooterLink>
+                        <FooterLink type="external" to='https://www.instagram.com/clevercodelab/'>INSTAGRAM</FooterLink>
+                        <FooterLink type="external" to='https://www.linkedin.com/company/clevercodelab/'>LINKEDIN</FooterLink>
+                        <FooterLink type="external" to='https://www.behance.net/clevercodelab'>BEHANCE</FooterLink>
                     </div>
                 </div>
                 <div className="controller left" ref={div => this.Social.controller = div}

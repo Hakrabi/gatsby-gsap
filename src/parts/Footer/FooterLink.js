@@ -9,6 +9,10 @@ class FooterLink extends Component{
         this.linkRef = null;
         this.anim = null;
 
+        this.children = props.children
+        this.to = props.to
+        this.type = props.type
+
         this.runAnim = this.runAnim.bind(this);
     }
 
@@ -31,11 +35,16 @@ class FooterLink extends Component{
             <div ref={div => this.linkRef = div}
                  onMouseEnter = {this.runAnim}
                  onMouseLeave = {this.runAnim}>
-                <AniLink paintDrip hex="#525375"
-                    to={this.props.to}
-                    target="blank">
-                    {this.props.children}
-                </AniLink>
+                {
+                    this.type === 'external' ? (
+                        <a href={this.to} target="blank">{this.children}</a>
+                    ):(
+                        <AniLink paintDrip hex="#525375"
+                                 to={this.to}>
+                                {this.children}
+                        </AniLink>
+                    )
+                }
             </div>
         );
     }

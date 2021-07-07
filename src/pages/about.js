@@ -102,15 +102,18 @@ class about extends Component {
             anim: null,
             section: null,
             wrapper: null,
-            way: null,
+            wayAnim: null,
+            wayRef: null,
             head: [],
             imgs: [],
+            rows: []
         }
 
         this.Team = {
             anim: null,
             section: null,
             head: null,
+            cards: []
         }
 
         this.Contact = {
@@ -122,6 +125,12 @@ class about extends Component {
         this.FooterMenu={
             section: null
         }
+
+        this.CustomScroll = {
+            Refs: [this.History.rows, this.Team.cards]
+
+        }
+
 
         this.Sections = [
             this.Welcome,
@@ -150,7 +159,6 @@ class about extends Component {
                 trigger: el.section,
                 start: 'top center',
                 onEnter: () => el.anim.play(),
-                markers: true,
 
             });
         })
@@ -191,10 +199,10 @@ class about extends Component {
             .add(this.History.way)
 
         ScrollTrigger.create({
-            animation: this.History.anim,
-            trigger: this.History.section,
-            start: "top top",
-            end: "bottom bottom",
+            animation: this.History.wayAnim,
+            trigger: this.History.wayRef,
+            start: "top center",
+            end: "bottom center",
             scrub: 1,
             markers: true,
             invalidateOnRefresh: true
@@ -208,7 +216,7 @@ class about extends Component {
     render() {
         return (
             <div>
-                <LayoutDefault pageName="about" Sections={this.Sections} Dots={this.Dots}>
+                <LayoutDefault pageName="about" Sections={this.Sections} Dots={this.Dots} CustomScroll={this.CustomScroll}>
                     <Header_old innerRefs={this.Header}/>
                     <main id="about">
                         <section className="welcome" ref={el => this.Welcome.section = el}>
@@ -220,8 +228,8 @@ class about extends Component {
                             </h1>
                             <video autoPlay muted loop>
                                 <source
-                                    src="https://mazwai.com/videvo_files/video/free/2014-06/small_watermarked/Blue_Sky_and_Clouds_Timelapse_0892__Videvo_preview.webm"
-                                    type="video/webm"/>
+                                    src="https://leonardo.osnova.io/c03628e7-339e-0d49-2cdd-077acb6a9e8f/-/format/mp4/"
+                                    type="video/mp4"/>
                             </video>
                         </section>
 
@@ -256,38 +264,45 @@ class about extends Component {
                         <section className="history init" ref={el => this.History.section = el}>
                             <div className="wrapper" ref={el => this.History.wrapper = el}>
 
-                                <h2 className="mb" ref={el => this.History.head = el}>How it was</h2>
+                                <h2 ref={el => this.History.head = el}>How it was</h2>
 
-                                <div className="grid">
+                                <div className="grid" ref={el => this.History.grid = el}>
                                     <HistoryWay anim={this.History}/>
-                                    <div className="col1">
-                                        <img className="img1" src={Historynow} ref={el => this.History.imgs.push(el)} alt=""/>
-                                    </div>
-                                    <div className="col2">
-                                        <p className="big">Now our team has 19 people. We working in the big office. And we continue to grow.</p>
+
+                                    <div className="grid-row" ref={el => this.History.rows[0] = el}>
+                                        <div className="col1">
+                                            <img className="img1" src={Historynow} ref={el => this.History.imgs.push(el)} alt=""/>
+                                        </div>
+                                        <div className="col2">
+                                            <p className="big">Now our team has 19 people. We working in the big office. And we continue to grow.</p>
+                                        </div>
                                     </div>
 
-                                    <div className="col1">
-                                        <p className="big">In the 2019 we was in the small flat which was our cosy office. Our team was small too. Seven guys and two girl</p>
-                                    </div>
-                                    <div className="col2">
-                                        <img className="img2" src={History2019} alt=""/>
+                                    <div className="grid-row" ref={el => this.History.rows[1] = el}>
+                                        <div className="col1">
+                                            <p className="big">In the 2019 we was in the small flat which was our cosy office. Our team was small too. Seven guys and two girl</p>
+                                        </div>
+                                        <div className="col2">
+                                            <img className="img2" src={History2019} alt=""/>
+                                        </div>
                                     </div>
 
-                                    <div className="col1">
-                                        <img className="img3" src={History2017} alt=""/>
-                                    </div>
-                                    <div className="col2">
-                                        <p className="big">All began in the little basement.Where was three tables, three laptops and three young guys who had a big dream...</p>
+                                    <div className="grid-row" ref={el => this.History.rows[2] = el}>
+                                        <div className="col1">
+                                            <img className="img3" src={History2017} alt=""/>
+                                        </div>
+                                        <div className="col2">
+                                            <p className="big">All began in the little basement.Where was three tables, three laptops and three young guys who had a big dream...</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
                         <section className="team" ref={el => this.Team.section = el}>
-                            <h2 ref={el => this.Team.head = el}>Our team</h2>
+                            <h2 className="mb" ref={el => this.Team.head = el}>Our team</h2>
                             <div className="grid">
                                 {TeammateCards.map((card,index)=>{
-                                    return <TeammateCard key={index} img={card[0]} name={card[1]} pos={card[2]}/>
+                                    return <div ref={el => this.Team.cards[index] = el}><TeammateCard  key={index} img={card[0]} name={card[1]} pos={card[2]}/></div>
                                 })}
                             </div>
                         </section>

@@ -12,13 +12,14 @@
       min-width: 100%;
       min-height: 100%;
       position: absolute;
-      top: 0;
+      //top: 0;
     }
     h1{
       color: $white;
       z-index: 5;
     }
   }
+
   section.info{
     position: relative;
     overflow: hidden;
@@ -67,12 +68,21 @@
       //position: absolute;
 
       h2{
-        margin-bottom: 74px;
+        margin-bottom: 174px;
       }
 
       .grid{
-        grid-gap: 54px 125px;
+        grid-gap: 54px;
+        grid-template-columns: 1fr;
         position: relative;
+        min-height: 861px;
+
+        &-row{
+          display: grid;
+          align-items: center;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 125px;
+        }
 
         svg{
           position: absolute;
@@ -106,7 +116,11 @@
   section.team{
     background: $grey-footer;
     height: initial;
+    padding: 94px 0;
 
+    h2{
+      margin-bottom: 150px;
+    }
     .teammate-card{
       cursor: pointer;
       text-align: center;
@@ -121,6 +135,7 @@
       grid-gap: 60px;
       max-width: 846px;
       margin: 0 auto ;
+
     }
   }
 }

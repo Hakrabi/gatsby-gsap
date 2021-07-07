@@ -62,7 +62,7 @@ class Dots extends Component {
                     <div className="dot"
                          ref={el => this.control.dots[i] = el}
                          onClick={() => {
-                             this.props.goToSlide(i)
+                             this.props.goToSection(i)
                          }}
                     />
                 </div>
