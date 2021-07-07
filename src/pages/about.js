@@ -8,7 +8,6 @@ import Header_old from "../parts/Header";
 
 import '../scss/pages/about.scss'
 
-import video from '../videos/video1.mp4'
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
 
