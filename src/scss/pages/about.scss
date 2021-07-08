@@ -93,6 +93,10 @@
 
         .col1{
           align-items: flex-end;
+          overflow: hidden;
+        }
+        .col2{
+          overflow: hidden;
         }
 
         p{
@@ -126,6 +130,7 @@
       text-align: center;
       img{
         max-width: 239px;
+        min-height: 238px;
         margin-bottom: 16px;
       }
     }

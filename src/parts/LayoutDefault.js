@@ -20,6 +20,7 @@ class LayoutDefault extends Component{
         }
 
         this.Sections = []
+        this.DotsIndex = []
         this.CustomScroll = props.CustomScroll
         this.page = props.pageName
 
@@ -42,15 +43,23 @@ class LayoutDefault extends Component{
         if(this.page === 'about'){
             this.HistorySections = []
             this.TeamSections = []
+
             for (let i = 0; i < this.CustomScroll.Refs[0].length; i++) {
                 this.HistorySections.push([this.CustomScroll.Refs[0][i], true])
             }
             for (let i = 0; i < this.CustomScroll.Refs[1].length; i+=3) {
                 this.TeamSections.push([this.CustomScroll.Refs[1][i], true])
             }
+
             this.Sections.splice(4, 0, ...this.TeamSections)
             this.Sections.splice(3, 0, ...this.HistorySections)
         }
+
+        for (let i = 0; i < this.Sections.length; i++) {
+            if (this.Sections[i][1]) continue
+            this.DotsIndex.push(i)
+        }
+        console.log(this.DotsIndex)
     }
 
     componentWillUnmount() {
@@ -120,6 +129,10 @@ class LayoutDefault extends Component{
         }
     }
 
+    goToSectionByDots = (sectionIndex) => {
+        this.goToSection(this.DotsIndex[sectionIndex])
+    }
+
     scrollToCenter = (sectionIndex, duration = 0.5, delay = 0, ease = "power1.inOut") =>{
         let offsetY = (window.innerHeight - this.Sections[sectionIndex][0].clientHeight) / 2;
         this.goToSection(sectionIndex, offsetY, duration, delay, ease)
@@ -166,7 +179,7 @@ class LayoutDefault extends Component{
                 <Dots Dots={this.props.Dots}
                       currentSection={this.state.currentSection}
                       count={this.props.Sections.length}
-                      goToSection={this.goToSection}/>
+                      goToSectionByDots={this.goToSectionByDots}/>
             </>
         )
     }

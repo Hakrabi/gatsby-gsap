@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {TimelineLite} from "gsap/all";
+import {TimelineLite,ScrollTrigger} from "gsap/all";
 import {gsap} from "gsap";
 
-gsap.registerPlugin(TimelineLite)
+gsap.registerPlugin(TimelineLite,ScrollTrigger)
 class TeammateCard extends Component {
 
     constructor(props) {
@@ -14,6 +14,7 @@ class TeammateCard extends Component {
 
         this.Refs = {
             img: null,
+            card: null
         }
 
         this.EnterAnim = null;
@@ -24,6 +25,15 @@ class TeammateCard extends Component {
     }
 
     componentDidMount() {
+        gsap.from(this.Refs.card,{opacity: 0, duration: 0.5,
+            scrollTrigger:{
+                trigger: this.Refs.card,
+                start: "top center",
+                end: "center center",
+                toggleActions: "play none none reverse",
+                markers: true
+            }
+        })
         this.EnterAnim = gsap.to(this.Refs.img, { duration: 0.5, scale: 1.13, transformOrigin: "50% 50%", ease:"back.out"}).pause()
         this.LeaveAnim = gsap.to(this.Refs.img, { duration: 0.5, scale: 1, transformOrigin: "50% 50%", ease:"back.out"}).pause()
     }
@@ -39,6 +49,7 @@ class TeammateCard extends Component {
     render() {
         return (
             <div className="teammate-card"
+                 ref={el => this.Refs.card = el}
                  onMouseEnter = {this.Enter}
                  onMouseLeave = {this.Leave}>
 

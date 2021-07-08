@@ -57,7 +57,7 @@ var TeammateCards = [
     [Dima,     "Dima",     "Developer"],
     [Sasha,    "Sasha",    "Project Manager"],
     [Anna,     "Anna",     "Content Manager"],
-    [Dimas,    "Dimas",    "Developer"],
+    [Dimas,    "Dima",     "Developer"],
     [Alexander,"Alexander","Developer"],
     [Iurii,    "Iurii",    "Developer"],
     [Vasilyi,  "Vasilyi",  "Developer"],
@@ -100,12 +100,12 @@ class about extends Component {
         this.History = {
             anim: null,
             section: null,
-            wrapper: null,
             wayAnim: null,
             wayRef: null,
-            head: [],
-            imgs: [],
-            rows: []
+            head: null,
+            rows: [],
+            rowsAnim:[],
+            parts: [[],[],[]]
         }
 
         this.Team = {
@@ -146,7 +146,8 @@ class about extends Component {
         this.ScrollTriggers = [
             this.Welcome,
             this.Info,
-            // this.History,
+            this.History,
+            this.Team,
             this.Contact,
         ]
 
@@ -194,8 +195,8 @@ class about extends Component {
             .from(this.Info.vetal, 0.5, {opacity: 0}, 2)
 
 
-        this.History.anim = new TimelineLite().pause()
-            .add(this.History.way)
+        this.History.anim
+            .from(this.History.head, 0.5, {opacity: 0, y: 100}, 0.5)
 
         ScrollTrigger.create({
             animation: this.History.wayAnim,
@@ -206,6 +207,24 @@ class about extends Component {
             markers: true,
             invalidateOnRefresh: true
         });
+
+        this.History.rows.forEach((row, index) => {
+            this.History.rowsAnim[index] = new TimelineLite()
+                .from(this.History.parts[index][0], 0.5, {xPercent: 100})
+                .from(this.History.parts[index][1], 0.5, {xPercent: -100}, 0)
+
+            ScrollTrigger.create({
+                trigger: row,
+                start: "top center",
+                end: "center center",
+                toggleActions: "play none none reverse",
+                markers: true,
+                animation: this.History.rowsAnim[index]
+            });
+        })
+
+        this.Team.anim
+            .from(this.Team.head, 0.5, {x: "-100%"}, 0.5)
 
         this.Contact.anim
             .add(this.Contact.timeline)
@@ -270,28 +289,27 @@ class about extends Component {
 
                                     <div className="grid-row" ref={el => this.History.rows[0] = el}>
                                         <div className="col1">
-                                            <img className="img1" src={Historynow} ref={el => this.History.imgs.push(el)} alt=""/>
+                                            <img ref={el => this.History.parts[0][0] = el} className="img1" src={Historynow} alt=""/>
                                         </div>
                                         <div className="col2">
-                                            <p className="big">Now our team has 19 people. We working in the big office. And we continue to grow.</p>
+                                            <p ref={el => this.History.parts[0][1] = el} className="big">Now our team has 19 people. We working in the big office. And we continue to grow.</p>
                                         </div>
                                     </div>
 
                                     <div className="grid-row" ref={el => this.History.rows[1] = el}>
                                         <div className="col1">
-                                            <p className="big">In the 2019 we was in the small flat which was our cosy office. Our team was small too. Seven guys and two girl</p>
+                                            <p ref={el => this.History.parts[1][0] = el} className="big">In the 2019 we was in the small flat which was our cosy office. Our team was small too. Seven guys and two girl</p>
                                         </div>
                                         <div className="col2">
-                                            <img className="img2" src={History2019} alt=""/>
+                                            <img ref={el => this.History.parts[1][1] = el} className="img2" src={History2019} alt=""/>
                                         </div>
                                     </div>
-
                                     <div className="grid-row" ref={el => this.History.rows[2] = el}>
                                         <div className="col1">
-                                            <img className="img3" src={History2017} alt=""/>
+                                            <img ref={el => this.History.parts[2][0] = el} className="img3" src={History2017} alt=""/>
                                         </div>
                                         <div className="col2">
-                                            <p className="big">All began in the little basement.Where was three tables, three laptops and three young guys who had a big dream...</p>
+                                            <p ref={el => this.History.parts[2][1] = el} className="big">All began in the little basement.Where was three tables, three laptops and three young guys who had a big dream...</p>
                                         </div>
                                     </div>
                                 </div>
