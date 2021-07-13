@@ -320,29 +320,29 @@ class Home extends Component {
             })
             .from(this.Design.link, 1, {opacity: 0}, 1.6)
 
-        gsap.to(this.Design.circle, {
-            // borderRadius: 0,
-            height: "140vh",
-            width: "140vw",
-            ease: "power3.easeOut",
-            duration: 1,
-            scrollTrigger: {
-                trigger: this.Design.section,
-                start: "center top",
-                toggleActions: 'play none none reverse',
-            }
-        });
-        gsap.to(this.Mobdev.circle, {
-            height: "140vh",
-            width: "140vw",
-            ease: "power3.easeOut",
-            duration: 1,
-            scrollTrigger: {
-                trigger: this.Mobdev.section,
-                start: "center top",
-                toggleActions: 'play none none reverse',
-            }
-        });
+        // gsap.to(this.Design.circle, {
+        //     // borderRadius: 0,
+        //     height: "140vh",
+        //     width: "140vw",
+        //     ease: "power3.easeOut",
+        //     duration: 1,
+        //     scrollTrigger: {
+        //         trigger: this.Design.section,
+        //         start: "center top",
+        //         toggleActions: 'play none none reverse',
+        //     }
+        // });
+        // gsap.to(this.Mobdev.circle, {
+        //     height: "140vh",
+        //     width: "140vw",
+        //     ease: "power3.easeOut",
+        //     duration: 1,
+        //     scrollTrigger: {
+        //         trigger: this.Mobdev.section,
+        //         start: "center top",
+        //         toggleActions: 'play none none reverse',
+        //     }
+        // });
 
 
         //Mobdev
@@ -358,17 +358,14 @@ class Home extends Component {
 
         //Why CCL
         this.WhyCCL.anim
-            .from(this.WhyCCL.head[0], 0.5, {height: 0},1.3)
-            .from(this.WhyCCL.head[1], 0.5, {height: 0}, "-=0.4")
-            .from(this.WhyCCL.head[2], 0.5, {height: 0}, "-=0.4")
-            .from(this.WhyCCL.head[3], 0.5, {height: 0}, "-=0.4")
-            .from(this.WhyCCL.text, 0.5, {y: '10vh', opacity: 0}, "-=0.5")
+            .from(this.WhyCCL.head, 0.5, {height: 0, stagger: 0.1},0.3)
+            .from(this.WhyCCL.text, 0.5, {y: '10vh', opacity: 0}, 0.3)
             .from(this.WhyCCL.bottom, 0.4, {opacity: 0, x: -50},)
             .from(this.WhyCCL.link, 1, {opacity: 0}, "+=1")
             .fromTo(this.WhyCCL.section, 0.8,
                 {backgroundPosition: '0vw 0%, top center, bottom center '},
                 {backgroundPosition: '-120vw 0%, top center, bottom center '},
-                0.5
+                0
             )
 
         this.WhyCCL.headAnim = new TimelineLite()

@@ -354,9 +354,11 @@ section{
   box-sizing: border-box;
   justify-content: center;
   flex-direction: column;
+  width: 100vw;
   //transform: translateY(-20vh);
   position: relative;
   .gallery-imgs{
+    width: 100vw;
     overflow: hidden;
   }
   .grid {
@@ -375,7 +377,7 @@ section{
       display: flex;
       align-items: center;
       justify-content: center;
-      img{
+      svg{
         max-height: 8vh;
         cursor: pointer;
       }

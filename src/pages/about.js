@@ -10,6 +10,8 @@ import '../scss/pages/about.scss'
 
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
+import Album from "../parts/Album";
+
 
 import InfoVetal from "../imgs/about/info/Vetal.svg"
 import InfoErnest from "../imgs/about/info/Ernest.svg"
@@ -41,6 +43,30 @@ import Alexander from "../imgs/about/team/Alexander.png"
 import Iurii from "../imgs/about/team/Iurii.png"
 import Vasilyi from "../imgs/about/team/Vasilyi.png"
 
+import Photo1 from "../imgs/about/album/1.png"
+import Photo2 from "../imgs/about/album/2.png"
+import Photo3 from "../imgs/about/album/3.png"
+import Photo4 from "../imgs/about/album/4.png"
+import Photo5 from "../imgs/about/album/5.png"
+import Photo6 from "../imgs/about/album/6.png"
+import Photo7 from "../imgs/about/album/7.png"
+import Photo8 from "../imgs/about/album/8.png"
+import Photo9 from "../imgs/about/album/9.png"
+import Photo10 from "../imgs/about/album/10.png"
+import Photo11 from "../imgs/about/album/11.png"
+import Photo12 from "../imgs/about/album/12.png"
+import Photo13 from "../imgs/about/album/13.png"
+import Photo14 from "../imgs/about/album/14.png"
+import Photo15 from "../imgs/about/album/15.png"
+import Photo16 from "../imgs/about/album/16.png"
+import Photo17 from "../imgs/about/album/17.png"
+import Photo18 from "../imgs/about/album/18.png"
+import Photo19 from "../imgs/about/album/19.png"
+import Photo20 from "../imgs/about/album/20.png"
+import Photo21 from "../imgs/about/album/21.png"
+import Photo22 from "../imgs/about/album/22.png"
+import Photo23 from "../imgs/about/album/23.png"
+
 var TeammateCards = [
     [Yaro,     "Yaro",     "Developer"],
     [Roman,    "Roman",    "Designer"],
@@ -61,6 +87,9 @@ var TeammateCards = [
     [Alexander,"Alexander","Developer"],
     [Iurii,    "Iurii",    "Developer"],
     [Vasilyi,  "Vasilyi",  "Developer"],
+]
+
+var AlbumPhotos = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6, Photo7, Photo8, Photo9, Photo10, Photo11, Photo12, Photo13, Photo14, Photo15, Photo16, Photo17, Photo18, Photo19, Photo20, Photo21, Photo22, Photo23,
 ]
 
 gsap.registerPlugin(TimelineLite,TweenLite,ScrollTrigger,ScrollToPlugin,DrawSVGPlugin);
@@ -115,6 +144,15 @@ class about extends Component {
             cards: []
         }
 
+        this.Album = {
+            anim: null,
+            section: null,
+            head: null,
+            text: null,
+            realSection: null,
+            photos: []
+        }
+
         this.Contact = {
             anim: null,
             section: null,
@@ -136,6 +174,7 @@ class about extends Component {
             this.Info,
             this.History,
             this.Team,
+            this.Album,
             this.Contact,
             this.FooterMenu
         ]
@@ -148,6 +187,7 @@ class about extends Component {
             this.Info,
             this.History,
             this.Team,
+            this.Album,
             this.Contact,
         ]
 
@@ -225,6 +265,13 @@ class about extends Component {
 
         this.Team.anim
             .from(this.Team.head, 0.5, {x: "-100%"}, 0.5)
+
+        this.Album.anim
+            .from(this.Album.realSection, 0.5, {x: -100, opacity: 0}, 0.3)
+            .from(this.Album.photos, 0.5, {opacity: 0}, 1.3)
+            .from(this.Album.head, 0.5, {opacity: 0, y: 100}, 0.8)
+            .from(this.Album.text, 0.5, {opacity: 0}, 0.9)
+
 
         this.Contact.anim
             .add(this.Contact.timeline)
@@ -317,11 +364,47 @@ class about extends Component {
                         </section>
                         <section className="team" ref={el => this.Team.section = el}>
                             <h2 className="mb" ref={el => this.Team.head = el}>Our team</h2>
-                            <div className="grid">
-                                {TeammateCards.map((card,index)=>{
-                                    return <div ref={el => this.Team.cards[index] = el}><TeammateCard  key={index} img={card[0]} name={card[1]} pos={card[2]}/></div>
-                                })}
-                            </div>
+                            {/*<Gallery>*/}
+                                <div className="grid">
+                                    {TeammateCards.map((card,index)=>{
+                                        return <div key={index} ref={el => this.Team.cards[index] = el}><TeammateCard  img={card[0]} name={card[1]} pos={card[2]}/></div>
+                                    })}
+                                </div>
+                            {/*</Gallery>*/}
+                        </section>
+
+                        <section className="album" ref={el => this.Album.section = el}>
+                            <Album refs={this.Album}>
+                                <div className="album-grid">
+                                    {AlbumPhotos.map((photo,index)=>{
+                                        if (index === 0){
+                                            return (
+                                                <>
+                                                    <div className="real-section" >
+
+                                                        <div className="photo" key={index} ref={el => this.Album.photos[index] = el}>
+                                                            <img src={photo} alt=''/>
+                                                        </div>
+                                                        <div className="wrap" ref={el => this.Album.realSection = el}>
+                                                            <div className="cont">
+                                                                <h2 className="mb small" ref={el => this.Album.head = el}>DO YOU LIKE BEHIND THE SCENES?</h2>
+                                                                <p className="mw375" ref={el => this.Album.text = el}>
+                                                                    There are legends about comfortable and hipsterish workspaces that help their staff reach a great efficiency. Well, we have those! There might not be toys and dry cleaning similar to Google headquarters, but it gets close with freely available chocolate-nut bars, also known as Snickers, and dark-coloured beverages, not going to give away all the secrets here, though. Add some beanbags, Apple appliances, and the freedom to work remotely or in the office — this will give you an idea about why we work effectively.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )
+                                        }
+                                        return (
+                                            <div className="photo" key={index} ref={el => this.Album.photos[index] = el}>
+                                                <img src={photo} alt=''/>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </Album>
                         </section>
                     </main>
                     <footer>

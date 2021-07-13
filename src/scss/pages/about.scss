@@ -63,15 +63,18 @@
     .wrapper{
       min-height: 100vh;
       height: max-content;
-      padding: 94px 0;
+      padding: 0 0 94px;
       box-sizing: border-box;
       //position: absolute;
 
       h2{
-        margin-bottom: 174px;
+        height: 50vh;
+        line-height: 50vh;
+        //margin-bottom: 174px;
       }
 
       .grid{
+        margin-top: 50px;
         grid-gap: 54px;
         grid-template-columns: 1fr;
         position: relative;
@@ -87,6 +90,7 @@
         svg{
           position: absolute;
           top: -50px;
+          //top: 0;
           left: 50%;
           transform: translateX(-25%);
         }
@@ -142,5 +146,79 @@
       margin: 0 auto ;
 
     }
+  }
+
+  section.album{
+    background: $red;
+    color: $white;
+    display: flex;
+    align-items: center;
+
+    .gallery{
+      height: 100vh;
+      &-controls{
+        .control{
+          height: 8vh;
+          bottom: 2vh;
+        }
+      }
+    }
+
+    .album-grid{
+      display: flex;
+      max-height: 504px;
+      align-items: center;
+      padding: 0 50vw;
+
+      .real-section{
+        flex: auto;
+        height: 100%;
+        //flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        position: relative;
+
+        .wrap{
+          width: 100%;
+          //margin: 0 22.5px;
+          overflow: hidden;
+
+          .cont{
+            background-image: url("../../imgs/about/album/arrows.svg");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-width: 690px;
+          }
+        }
+
+        .photo{
+          position: absolute;
+          right: 100%;
+        }
+
+        h2{
+          max-width: 515px;
+        }
+      }
+
+      .photo{
+        box-sizing: border-box;
+        height: 100%;
+        border: 12px solid $white;
+        border-radius: 2px;
+        margin: 0 22.5px;
+        img{
+          display: block;
+          height: 100%;
+        }
+      }
+    }
+
   }
 }
