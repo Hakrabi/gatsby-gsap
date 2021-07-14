@@ -16,11 +16,10 @@ class LayoutDefault extends Component{
         this.state={
             currentSection: 0,
             scrollActive: true,
-            currBlock:[-1,-1,0,]
+            count: props.Sections.length
         }
 
         this.Sections = []
-        this.DotsIndex = []
         this.CustomScroll = props.CustomScroll
         this.page = props.pageName
 
@@ -42,24 +41,22 @@ class LayoutDefault extends Component{
         this.props.Sections.map((obj) => this.Sections.push(obj.section))
         if(this.page === 'about'){
             this.HistorySections = []
-            this.TeamSections = []
-
             for (let i = 0; i < this.CustomScroll.Refs[0].length; i++) {
                 this.HistorySections.push([this.CustomScroll.Refs[0][i], true])
             }
-            for (let i = 0; i < this.CustomScroll.Refs[1].length; i+=3) {
-                this.TeamSections.push([this.CustomScroll.Refs[1][i], true])
-            }
-
-            this.Sections.splice(4, 0, ...this.TeamSections)
             this.Sections.splice(3, 0, ...this.HistorySections)
+            this.setState({
+                count: this.state.count + this.CustomScroll.Refs[0].length
+            })
         }
 
-        for (let i = 0; i < this.Sections.length; i++) {
-            if (this.Sections[i][1]) continue
-            this.DotsIndex.push(i)
-        }
-        console.log(this.DotsIndex)
+
+
+
+        // for (let i = 0; i < this.Sections.length; i++) {
+        //     if (this.Sections[i][1]) continue
+        //     this.DotsIndex.push(i)
+        // }
     }
 
     componentWillUnmount() {
@@ -130,7 +127,12 @@ class LayoutDefault extends Component{
     }
 
     goToSectionByDots = (sectionIndex) => {
-        this.goToSection(this.DotsIndex[sectionIndex])
+        if(this.Sections[sectionIndex][1]){
+            this.scrollToCenter(sectionIndex)
+        }else {
+            // console.log(sectionIndex,this.Sections[sectionIndex])
+            this.goToSection(sectionIndex)
+        }
     }
 
     scrollToCenter = (sectionIndex, duration = 0.5, delay = 0, ease = "power1.inOut") =>{
@@ -178,7 +180,7 @@ class LayoutDefault extends Component{
                 </div>
                 <Dots Dots={this.props.Dots}
                       currentSection={this.state.currentSection}
-                      count={this.props.Sections.length}
+                      count={this.state.count}
                       goToSectionByDots={this.goToSectionByDots}/>
             </>
         )

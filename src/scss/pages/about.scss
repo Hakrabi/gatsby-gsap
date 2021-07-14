@@ -123,27 +123,79 @@
 
   section.team{
     background: $grey-footer;
-    height: initial;
-    padding: 94px 0;
+    //height: initial;
+    //padding: 94px 0;
 
     h2{
-      margin-bottom: 150px;
+      height: 14vh;
+      line-height: 14vh;
+      margin: 0;
     }
-    .teammate-card{
-      cursor: pointer;
-      text-align: center;
-      img{
-        max-width: 239px;
-        min-height: 238px;
-        margin-bottom: 16px;
+
+    .gallery{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 86vh;
+
+      .gallery-imgs{
+        max-width: 96vh;
+
+        .cards-tray{
+          display: flex;
+
+          .cards-grid{
+            padding: 3vh;
+            box-sizing: content-box;
+            max-height: 86vh;
+            display: grid;
+            grid-template-columns: repeat(3, 26vh);
+            grid-template-rows: repeat(2, 36vh);
+            grid-gap: 6vh;
+          }
+        }
+
+      }
+
+      &-controls{
+        .control{
+          height: 8vh;
+          bottom: 46vh;
+        }
       }
     }
 
-    .grid{
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 60px;
-      max-width: 846px;
-      margin: 0 auto ;
+    .teammate-card{
+      height: 100%;
+      width: 100%;
+      position: relative;
+      cursor: pointer;
+      text-align: center;
+      .block-link{
+        display: block;
+        font-weight: bold;
+        font-size: 26px;
+        position: absolute;
+        text-decoration: underline;
+        top: 0;
+        width: 100%;
+        height: 26vh;
+        line-height: 26vh;
+        background: rgba(92, 93, 177, 0.9);
+        color: $white
+      }
+      img{
+        max-width: 239px;
+        width: 100%;
+        //min-height: 238px;
+        margin-bottom: 16px;
+
+        &.click{
+          position: absolute;
+          top: 2vh;
+          left: -5vh;
+        }
+      }
 
     }
   }

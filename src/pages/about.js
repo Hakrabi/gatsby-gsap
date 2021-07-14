@@ -11,6 +11,7 @@ import '../scss/pages/about.scss'
 import FooterContact from "../parts/Footer/FooterContact";
 import FooterMenu from "../parts/Footer/FooterMenu";
 import Album from "../parts/Album";
+import Cards from "../parts/Cards";
 
 
 import InfoVetal from "../imgs/about/info/Vetal.svg"
@@ -67,26 +68,37 @@ import Photo21 from "../imgs/about/album/21.png"
 import Photo22 from "../imgs/about/album/22.png"
 import Photo23 from "../imgs/about/album/23.png"
 
+import JoinUs from  "../imgs/about/team/join.png"
+import Click from  "../imgs/about/team/click.svg"
+
 var TeammateCards = [
-    [Yaro,     "Yaro",     "Developer"],
-    [Roman,    "Roman",    "Designer"],
-    [Elvis,    "Elvis",    "Developer"],
-    [Alex,     "Alex",     "Developer"],
-    [Valeron,  "Valeron",  "Designer"],
-    [Misha,    "Misha",    "Developer"],
-    [Slavik,   "Slavik",   "Developer"],
-    [Ernesto,  "Ernesto",  "Designer"],
-    [Vitalik,  "Vitalik",  "Manager"],
-    [Ira,      "Ira",      "Developer"],
-    [Slava,    "Slava",    "Designer"],
-    [Olga,     "Olga",     "Developer"],
-    [Dima,     "Dima",     "Developer"],
-    [Sasha,    "Sasha",    "Project Manager"],
-    [Anna,     "Anna",     "Content Manager"],
-    [Dimas,    "Dima",     "Developer"],
-    [Alexander,"Alexander","Developer"],
-    [Iurii,    "Iurii",    "Developer"],
-    [Vasilyi,  "Vasilyi",  "Developer"],
+    [
+        [Yaro,     "Yaro",     "Developer"],
+        [Roman,    "Roman",    "Designer"],
+        [Elvis,    "Elvis",    "Developer"],
+        [Alex,     "Alex",     "Developer"],
+        [Valeron,  "Valeron",  "Designer"],
+        [Misha,    "Misha",    "Developer"],
+    ],
+    [
+        [Slavik,   "Slavik",   "Developer"],
+        [Ernesto,  "Ernesto",  "Designer"],
+        [Vitalik,  "Vitalik",  "Manager"],
+        [Ira,      "Ira",      "Developer"],
+        [Slava,    "Slava",    "Designer"],
+        [Olga,     "Olga",     "Developer"],
+    ],
+    [
+        [Dima,     "Dima",     "Developer"],
+        [Sasha,    "Sasha",    "Project Manager"],
+        [Anna,     "Anna",     "Content Manager"],
+        [Dimas,    "Dima",     "Developer"],
+        [Alexander,"Alexander","Developer"],
+        [Iurii,    "Iurii",    "Developer"],
+    ],
+    [
+        [Vasilyi,  "Vasilyi",  "Developer"],
+    ]
 ]
 
 var AlbumPhotos = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6, Photo7, Photo8, Photo9, Photo10, Photo11, Photo12, Photo13, Photo14, Photo15, Photo16, Photo17, Photo18, Photo19, Photo20, Photo21, Photo22, Photo23,
@@ -164,7 +176,7 @@ class about extends Component {
         }
 
         this.CustomScroll = {
-            Refs: [this.History.rows, this.Team.cards]
+            Refs: [this.History.rows]
 
         }
 
@@ -244,7 +256,6 @@ class about extends Component {
             start: "top center",
             end: "bottom center",
             scrub: 1,
-            markers: true,
             invalidateOnRefresh: true
         });
 
@@ -258,20 +269,20 @@ class about extends Component {
                 start: "top center",
                 end: "center center",
                 toggleActions: "play none none reverse",
-                markers: true,
                 animation: this.History.rowsAnim[index]
             });
         })
 
         this.Team.anim
             .from(this.Team.head, 0.5, {x: "-100%"}, 0.5)
+            .from(this.Team.gallery, 0.5, {opacity: 0}, 0.5)
+
 
         this.Album.anim
             .from(this.Album.realSection, 0.5, {x: -100, opacity: 0}, 0.3)
             .from(this.Album.photos, 0.5, {opacity: 0}, 1.3)
             .from(this.Album.head, 0.5, {opacity: 0, y: 100}, 0.8)
             .from(this.Album.text, 0.5, {opacity: 0}, 0.9)
-
 
         this.Contact.anim
             .add(this.Contact.timeline)
@@ -363,14 +374,32 @@ class about extends Component {
                             </div>
                         </section>
                         <section className="team" ref={el => this.Team.section = el}>
-                            <h2 className="mb" ref={el => this.Team.head = el}>Our team</h2>
-                            {/*<Gallery>*/}
-                                <div className="grid">
-                                    {TeammateCards.map((card,index)=>{
-                                        return <div key={index} ref={el => this.Team.cards[index] = el}><TeammateCard  img={card[0]} name={card[1]} pos={card[2]}/></div>
+                            <h2 ref={el => this.Team.head = el}>Our team</h2>
+                            <Cards refs={this.Team}>
+                                <div className="cards-tray">
+                                    {TeammateCards.map((block,index)=>{
+                                        if(index === TeammateCards.length-1 ){
+                                            return (
+                                                <div className="cards-grid" key={index} ref={el => this.Team.cards[index] = el}>
+                                                    {block.map((card, index)=> {
+                                                        return <div key={index}><TeammateCard  img={card[0]} name={card[1]} pos={card[2]}/></div>
+                                                    })}
+
+                                                    <div><TeammateCard  img={JoinUs} name="You" pos="WANNA JOIN OUR TEAM?" type='join'/></div>
+                                                    <div><TeammateCard  img={Click} type='click'/></div>
+                                                </div>
+                                            )
+                                        }
+                                        return (
+                                            <div className="cards-grid" key={index}  ref={el => this.Team.cards[index] = el}>
+                                                {block.map((card, index)=> {
+                                                    return <div key={index}><TeammateCard  img={card[0]} name={card[1]} pos={card[2]}/></div>
+                                                })}
+                                            </div>
+                                        )
                                     })}
                                 </div>
-                            {/*</Gallery>*/}
+                            </Cards>
                         </section>
 
                         <section className="album" ref={el => this.Album.section = el}>

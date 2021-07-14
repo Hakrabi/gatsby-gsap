@@ -8,7 +8,6 @@ class Dots extends Component {
         super(props);
 
         this.state ={
-            count: props.count,
             hidden: false
         }
 
@@ -30,7 +29,7 @@ class Dots extends Component {
 
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.currentSection === this.state.count-1){
+        if(this.props.currentSection === this.props.count-1){
             if(!this.state.hidden){
                 this.hide.restart()
                 this.setState({
@@ -56,7 +55,7 @@ class Dots extends Component {
 
     render() {
         let dots = [];
-        for (let i = 0; i < this.state.count; i++) {
+        for (let i = 0; i < this.props.count; i++) {
             dots.push(
                 <div className="dot-cont" key={i}>
                     <div className="dot"

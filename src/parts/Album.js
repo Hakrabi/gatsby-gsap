@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {gsap} from "gsap";
 
-class Gallery extends Component {
+class Album extends Component {
     constructor(props) {
         super(props);
 
@@ -59,9 +59,9 @@ class Gallery extends Component {
                         }
                     });
                 } else {
-                    let offsetX = (window.innerWidth - this.Album.photos[index].clientWidth) / 2;
+                    let offsetX = (window.innerWidth - this.photos[index].clientWidth) / 2;
 
-                    gsap.to(this.Gallery,{scrollTo:{x: this.Album.photos[index], offsetX: offsetX},
+                    gsap.to(this.Gallery,{scrollTo:{x: this.photos[index], offsetX: offsetX},
                         onComplete:()=>{
                             this.setState({
                                 scrollActive:true,
@@ -86,9 +86,9 @@ class Gallery extends Component {
                 if (index === 1) {
                     this.wrapSectionAnim.reversed(!this.wrapSectionAnim.reversed())
                 } else {
-                    let offsetX = (window.innerWidth - this.Album.photos[index].clientWidth) / 2;
+                    let offsetX = (window.innerWidth - this.photos[index].clientWidth) / 2;
 
-                    gsap.to(this.Gallery,{scrollTo:{x: this.Album.photos[index], offsetX: offsetX},
+                    gsap.to(this.Gallery,{scrollTo:{x: this.photos[index], offsetX: offsetX},
                         onComplete:()=>{
                             this.setState({
                                 scrollActive:true,
@@ -123,4 +123,4 @@ class Gallery extends Component {
     }
 }
 
-export default Gallery;
+export default Album;
