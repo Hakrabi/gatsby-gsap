@@ -234,6 +234,7 @@ class Home extends Component {
             .fromTo(this.Header.text[1], 0.3, {opacity: 0, y: 20}, {opacity: 1, y: 0}, "-=0.25")
             .fromTo(this.Header.text[2], 0.3, {opacity: 0, y: 20}, {opacity: 1, y: 0}, "-=0.25")
             .fromTo(this.Welcome.bottom, 0.4, {opacity: 0, y: 50}, {opacity: 1, y: 0})
+            .fromTo(this.Welcome.bottomArrow, 0.4, {opacity: 0, y: 50}, {opacity: 1, y: 0})
             .fromTo(this.Header.box, 1, {scale: 0, y: -100}, {scale: 1, y: 0})
             .to(this.Header.letters[0], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
@@ -300,7 +301,7 @@ class Home extends Component {
             .from(this.Webdev.head[2], 0.4, {x: '101%'}, "-=0.2")
             .from(this.Webdev.head[3], 0.4, {x: '101%'}, "-=0.2")
             .fromTo(this.Webdev.outline, 1.5, {drawSVG: "0%"}, {ease: "power1.inOut", drawSVG: "100%"})
-            .from(this.Webdev.link, 1, {opacity: 0}, "+=1")
+            .from(this.Webdev.link, 1, {opacity: 0}, 0)
             .fromTo(this.Webdev.text, 0.5, {x: '-60vw'}, {x: '0%'}, 0)
             .add(this.Webdev.imgAnim, 0.4)
 
@@ -318,7 +319,7 @@ class Home extends Component {
                 drawSVG: "100%",
                 stagger: 0.1
             })
-            .from(this.Design.link, 1, {opacity: 0}, 1.6)
+            .from(this.Design.link, 1, {opacity: 0}, 0.6)
 
         // gsap.to(this.Design.circle, {
         //     // borderRadius: 0,
@@ -351,7 +352,7 @@ class Home extends Component {
             .from(this.Mobdev.head[1], 0.4, {ease: "power3.easeOut", x: '+101%'}, "-=0.2")
             .from(this.Mobdev.head[2], 0.4, {ease: "power3.easeOut", x: '+101%'}, "-=0.2")
             .from(this.Mobdev.outline, 1, {ease: "power1.inOut", drawSVG: 0, stagger: 0.1},)
-            .from(this.Mobdev.link, 1, {opacity: 0}, "+=1")
+            .from(this.Mobdev.link, 1, {opacity: 0}, 0)
             .from(this.Mobdev.text, 0.5, {x: '-60vw'}, 0)
             .add(this.Mobdev.imgAnim, 0.5)
 
@@ -361,7 +362,7 @@ class Home extends Component {
             .from(this.WhyCCL.head, 0.5, {height: 0, stagger: 0.1},0.3)
             .from(this.WhyCCL.text, 0.5, {y: '10vh', opacity: 0}, 0.3)
             .from(this.WhyCCL.bottom, 0.4, {opacity: 0, x: -50},)
-            .from(this.WhyCCL.link, 1, {opacity: 0}, "+=1")
+            .from(this.WhyCCL.link, 1, {opacity: 0}, 0.3)
             .fromTo(this.WhyCCL.section, 0.8,
                 {backgroundPosition: '0vw 0%, top center, bottom center '},
                 {backgroundPosition: '-120vw 0%, top center, bottom center '},
@@ -475,8 +476,9 @@ class Home extends Component {
                         </div>
                         <h1 ref={h1 => this.Welcome.H1 = h1}>We build the best brands and websites in the world.
                             Just <AniLink paintDrip hex="#525375" to='/contact'>ask us</AniLink>.</h1>
-                        <img className='bottom-text' src={WelcomeBottomText} alt=""
+                        <img className='bottom-bg' src={WelcomeBottomText} alt=""
                              ref={img => this.Welcome.bottom = img}/>
+                        <p ref={el => this.Welcome.bottomArrow = el} className="big bottom-text">Scroll down</p>
                     </section>
 
                     <section className="what-we-do">

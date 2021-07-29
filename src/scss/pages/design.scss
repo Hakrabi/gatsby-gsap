@@ -32,25 +32,7 @@ body.design{
     h1 {
       transform: translateX(-5%);
     }
-    .bottom-text{
-      position: absolute;
-      margin: auto;
-      bottom: 50px;
-      left: 0;
-      right: 0;
-      width: 150px;
-      &:before{
-        content: '';
-        background-image: url('../../imgs/design/welcome/arrow.svg');
-        display: block;
-        position: absolute;
-        left: -76px;
-        background-repeat: no-repeat;
-        width: 68px;
-        height: 68px;
-        margin-right: 8px;
-      }
-    }
+
   }
 
   section.illustrations{
@@ -73,20 +55,20 @@ body.design{
     .gallery{
       .grid{
         grid-template-columns: auto auto auto auto auto auto auto auto auto;
-        grid-gap: 40px;
+        grid-gap: 5vh;
         &:first-child{
-          grid-template-rows: 326px;
-          margin-bottom: 40px;
+          grid-template-rows: 43vh;
+          margin-bottom: 5vh;
         }
         &:last-child{
-          grid-template-rows:263px;
+          grid-template-rows: 35vh;
 
         }
       }
     }
     .mini-contact{
       height: 100%;
-      width: 440px;
+      width: 65vh;
       border-radius: 10px;
       background: $violet;
       display: flex;
@@ -219,6 +201,8 @@ body.design{
     margin-bottom: -1px;
 
     .oval{
+      border-top-left-radius: 0;
+      //border-top-right-radius: 0;
       background-color: $red;
     }
     .grid{
@@ -233,26 +217,35 @@ body.design{
       height: 450px;
       img{
         position: absolute;
-        &:nth-child(1){
+        cursor: pointer;
+
+        &.img0{
+          width: 311px;
           top: 76px;
           right: 0;
           z-index: 5;
         }
-        &:nth-child(2){
+        &.img1{
+          width: 413px;
           right: 76px;
           bottom: 0;
           z-index: 4;
         }
-        &:nth-child(3){
+        &.img2{
+          width: 259px;
           left: 0;
           bottom: 100px;
           z-index: 3;
 
         }
-        &:nth-child(4){
+        &.img3{
+          width: 367px;
           top: 0;
           left: 70px;
           z-index: 2;
+        }
+        &.fict{
+          z-index: 7;
         }
       }
     }

@@ -26,14 +26,13 @@ body{
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  //
-  //&::-webkit-scrollbar {
-  //  display: none;
-  //}
-  //-ms-overflow-style: none;  /* IE and Edge */
-  //scrollbar-width: none;  /* Firefox */
+  @media(max-width: 500px){
+    height: initial;
+  }
 }
-
+.tl-edges {
+  overflow: hidden;
+}
 h1,h2,p{
   margin: 0;
 }
@@ -70,6 +69,26 @@ h1{
     &.vertical-move{
       span{
         height: 96px;
+      }
+    }
+  }
+  @media(max-width: 500px){
+    font-size: 40px;
+    &.vertical-move {
+      span {
+        height: 52px;
+      }
+    }
+    &.brackets{
+      margin-bottom: 64px;
+    }
+    &.big{
+      font-size: 60px;
+      line-height: 78px;
+      &.vertical-move{
+        span{
+          height: 78px;
+        }
       }
     }
   }
@@ -179,6 +198,27 @@ section{
   background-color: $grey-bg;
   &.init{
     height: initial;
+  }
+  &.welcome{
+    .bottom-text{
+      position: absolute;
+      margin: auto;
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      width: 150px;
+      &:before{
+        content: '';
+        background-image: url('../imgs/design/welcome/arrow.svg');
+        display: block;
+        position: absolute;
+        left: -76px;
+        background-repeat: no-repeat;
+        width: 68px;
+        height: 68px;
+        margin-right: 8px;
+      }
+    }
   }
 }
 
@@ -307,15 +347,21 @@ section{
 
 .behance{
   height: 8vh;
-  margin: 0 auto;
-  font-size: 14px;
-  line-height: 140%;
+  //margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
+  line-height: 140%;
   z-index: 20;
   position: relative;
   a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  span{
+    text-decoration: underline;
     font-weight: 700;
   }
   .icon{
@@ -331,7 +377,7 @@ section{
     bottom: 0;
     left: 0;
     right: 0;
-    a{
+    span{
       color: $red;
     }
     .icon{
@@ -339,7 +385,7 @@ section{
     }
   }
   &.white{
-    a{
+    span{
       color: $yellow;
     }
     .icon{
@@ -360,6 +406,9 @@ section{
   .gallery-imgs{
     width: 100vw;
     overflow: hidden;
+    img{
+      height: 100%;
+    }
   }
   .grid {
     width: max-content;

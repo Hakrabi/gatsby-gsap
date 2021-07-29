@@ -15,6 +15,7 @@ import text3 from "../imgs/header/logo/text/3.svg"
 import Scrollbar from "smooth-scrollbar";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import CustomLink from "./CustomComponents/CustomLink";
+import FooterLink from "./Footer/FooterLink";
 
 gsap.registerPlugin(TimelineLite, TweenLite, ScrollTrigger, ExpoScaleEase);
 
@@ -251,32 +252,26 @@ class Header extends Component {
                             <div className="socials-column">
                                 <div className="inner-box" ref={link => this.sLink = link}>
                                     <CustomLink type="link"
-                                                className="social-link" to='/'>Home</CustomLink>
+                                                className="social-link" to='https://www.facebook.com/clevercodelab'>FACEBOOK</CustomLink>
                                     <CustomLink type="link"
-                                                className="social-link" to='/'>Our Work</CustomLink>
+                                                className="social-link" to='https://www.instagram.com/clevercodelab/'>INSTAGRAM</CustomLink>
                                     <CustomLink type="link"
-                                                className="social-link" to='/'>Services</CustomLink>
+                                                className="social-link" to='https://www.linkedin.com/company/clevercodelab/'>LINKEDIN</CustomLink>
                                     <CustomLink type="link"
-                                                className="social-link" to='/'>About Us</CustomLink>
-                                    <CustomLink type="link"
-                                                className="social-link" to='/'>Careers</CustomLink>
+                                                className="social-link" to='https://www.behance.net/clevercodelab'>BEHANCE</CustomLink>
                                 </div>
                             </div>
                             <div className="nav-column">
                                 <div className="inner-box" ref={link => this.navLinks = link}>
                                     <CustomLink paintDrip hex="#D16978" to='/'
                                                 className="nav-link-header">Home</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
-                                                className="nav-link-header">Our
-                                        Work</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
-                                                className="nav-link-header">Services</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
-                                                className="nav-link-header">About
-                                        Us</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
-                                                className="nav-link-header">Careers</CustomLink>
-                                    <CustomLink paintDrip hex="#D16978" to='/'
+                                    <CustomLink paintDrip hex="#D16978" to='/design'
+                                                className="nav-link-header">Design</CustomLink>
+                                    <CustomLink paintDrip hex="#D16978" to='/webdev'
+                                                className="nav-link-header">Web Dev</CustomLink>
+                                    <CustomLink paintDrip hex="#D16978" to='/about'
+                                                className="nav-link-header">About Us</CustomLink>
+                                    <CustomLink paintDrip hex="#D16978" to='/contact'
                                                 className="nav-link-header">Contact</CustomLink>
                                 </div>
                             </div>

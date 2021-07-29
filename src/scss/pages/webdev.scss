@@ -170,11 +170,30 @@
   }
 
   section.mobile{
-    .col2{
+    .pages-cont{
+      position: relative;
+      width: 546px;
+      height: 370px;
+      margin-bottom: 26px;
+
       img{
-        max-width: 546px;
-        width: 100%;
-        margin-bottom: 26px;
+        width: 384px;
+        position: absolute;
+        cursor: pointer;
+
+        &.img0{
+          top: 0;
+          left: 0;
+          z-index: 5;
+        }
+        &.img1{
+          right: 0;
+          bottom: 0;
+          z-index: 4;
+        }
+        &.fict{
+          z-index: 7;
+        }
       }
     }
   }

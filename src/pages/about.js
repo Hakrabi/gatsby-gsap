@@ -248,7 +248,9 @@ class about extends Component {
 
 
         this.History.anim
-            .from(this.History.head, 0.5, {opacity: 0, y: 100}, 0.5)
+            .from(this.History.head, 0.5, {opacity: 0, y: 100}, 0.2)
+            .from(this.History.parts[0][0], 0.5, {xPercent: 100}, 0.5)
+            .from(this.History.parts[0][1], 0.5, {xPercent: -100}, 0.5)
 
         ScrollTrigger.create({
             animation: this.History.wayAnim,
@@ -259,19 +261,33 @@ class about extends Component {
             invalidateOnRefresh: true
         });
 
-        this.History.rows.forEach((row, index) => {
-            this.History.rowsAnim[index] = new TimelineLite()
-                .from(this.History.parts[index][0], 0.5, {xPercent: 100})
-                .from(this.History.parts[index][1], 0.5, {xPercent: -100}, 0)
+        for (let i = 1; i < this.History.rows.length; i++) {
+            this.History.rowsAnim[i] = new TimelineLite()
+                .from(this.History.parts[i][0], 0.5, {xPercent: 100})
+                .from(this.History.parts[i][1], 0.5, {xPercent: -100}, 0)
 
             ScrollTrigger.create({
-                trigger: row,
+                trigger: this.History.rows[i],
                 start: "top center",
                 end: "center center",
                 toggleActions: "play none none reverse",
-                animation: this.History.rowsAnim[index]
+                animation: this.History.rowsAnim[i]
             });
-        })
+        }
+
+        // this.History.rows.forEach((row, index) => {
+        //     this.History.rowsAnim[index] = new TimelineLite()
+        //         .from(this.History.parts[index][0], 0.5, {xPercent: 100})
+        //         .from(this.History.parts[index][1], 0.5, {xPercent: -100}, 0)
+        //
+        //     ScrollTrigger.create({
+        //         trigger: row,
+        //         start: "top center",
+        //         end: "center center",
+        //         toggleActions: "play none none reverse",
+        //         animation: this.History.rowsAnim[index]
+        //     });
+        // })
 
         this.Team.anim
             .from(this.Team.head, 0.5, {x: "-100%"}, 0.5)

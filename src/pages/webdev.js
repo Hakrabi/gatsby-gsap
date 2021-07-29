@@ -8,6 +8,7 @@ import Header_old from "../parts/Header";
 import WelcomeImg from "../parts/CoolImgs/webdev/WelcomeImg";
 import CustomImg from "../parts/CoolImgs/webdev/CustomImg";
 import MobileImg from "../parts/CoolImgs/webdev/MobileImg";
+import MobilePages from "../parts/CoolImgs/webdev/MobilePages";
 import ProductImg from "../parts/CoolImgs/webdev/ProductImg";
 import LandingImg from "../parts/CoolImgs/webdev/LandingImg";
 
@@ -21,10 +22,6 @@ import natucan from "../imgs/webdev/landing/Natucan.png";
 import tiktok from "../imgs/webdev/landing/TikTok.png";
 import tester from "../imgs/webdev/landing/Tester.png";
 import LandingBottom from "../imgs/webdev/landing/bottom.svg";
-
-
-
-import MobileIll from "../imgs/webdev/mobile/sites.png";
 
 
 import '../scss/pages/webdev.scss'
@@ -57,7 +54,8 @@ class Webdev extends Component {
             lt: null,
             gt: null,
             head: null,
-            imgAnim: null
+            imgAnim: null,
+            bottom: null
         }
         this.Custom = {
             anim: null,
@@ -173,6 +171,8 @@ class Webdev extends Component {
             .to(this.Header.letters[1], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .to(this.Header.letters[2], 0.4, {opacity: 1, x: 0}, "+=0.15")
             .add(this.Welcome.imgAnim, 1)
+            .from(this.Welcome.bottom, 0.4, {opacity: 0, y: 50}, 1)
+
             .add(this.Dots.anim, 0.5)
 
         this.Custom.anim
@@ -247,15 +247,15 @@ class Webdev extends Component {
             .add(this.Mobile.imgAnim)
             .from(this.Mobile.head, 0.5, {opacity: 0, y: 50}, 0 )
             .from(this.Mobile.text, 0.5, {opacity: 0}, 0.5)
-            .from(this.Mobile.look, 1, {xPercent: -100, ease:  "power1.inOut"}, 1)
-            .from(this.Mobile.img, 1, {xPercent: -100, ease:  "power1.inOut"}, 1.5)
-            .from(this.Mobile.button, 0.5, {opacity: 0}, )
+            .from(this.Mobile.look, 1, {xPercent: -100, ease:  "power1.inOut"}, 0)
+            .from(this.Mobile.img, 1, {xPercent: -100, ease:  "power1.inOut"}, 0.3)
+            .from(this.Mobile.button, 0.5, {opacity: 0}, 0.5)
 
 
         this.Product.anim
             .from(this.Product.head, 0.5, {opacity: 0, y: 50})
             .add(this.Product.imgAnim)
-            .from(this.Product.text, 0.5, {opacity: 0, y: 20})
+            .from(this.Product.text, 0.5, {opacity: 0, y: 20}, 1)
 
 
         this.Contact.anim
@@ -274,6 +274,7 @@ class Webdev extends Component {
                                 <span ref={el => this.Welcome.lt = el}>&lt;</span> Web development <span ref={el => this.Welcome.gt = el}>&gt;</span>
                             </h1>
                             <WelcomeImg anim={this.Welcome}/>
+                            <p ref={el => this.Welcome.bottom = el} className="big bottom-text">Scroll down</p>
                         </section>
 
                         <div className="relative-wrapper">
@@ -357,7 +358,9 @@ class Webdev extends Component {
                                         <p className="just-look" ref={el => this.Mobile.look = el}>
                                             Just look at out our awesome <span>recent projects</span>
                                         </p>
-                                        <img src={MobileIll} ref={el => this.Mobile.img = el} alt=""/>
+                                        <div ref={el => this.Mobile.img = el}>
+                                            <MobilePages />
+                                        </div>
                                     </div>
                                     <div ref={el => this.Mobile.button = el}>
                                         <CoolButton to="#">See all</CoolButton>

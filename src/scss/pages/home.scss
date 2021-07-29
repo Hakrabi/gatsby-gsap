@@ -23,11 +23,13 @@ body.home{
       text-decoration: none;
       border-bottom: solid $red 4px;
     }
-    .bottom-text{
+    .bottom-bg{
       position: absolute;
       bottom: 20%;
       right: 145px;
     }
+
+
   }
 
   section.what-we-do {
@@ -62,8 +64,6 @@ body.home{
         right: 30px;
       }
     }
-
-
 
     .row {
       height: 30%;
@@ -156,6 +156,7 @@ body.home{
     position: relative;
 
     .circle {
+      border-top-left-radius: 0;
       background-color: $red;
     }
 

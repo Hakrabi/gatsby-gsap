@@ -155,9 +155,9 @@ class FooterMenu extends Component {
                 <div className="menu wrapper closed" ref={div => this.Menu.block = div}>
                     <div className="link-block">
                         <FooterLink to='/'>Home</FooterLink>
-                        <FooterLink to='/'>Our Work</FooterLink>
-                        <FooterLink to='/'>Services</FooterLink>
-                        <FooterLink to='/'>About Us</FooterLink>
+                        <FooterLink to='/design'>Design</FooterLink>
+                        <FooterLink to='/webdev'>Web Dev</FooterLink>
+                        <FooterLink to='/about'>About Us</FooterLink>
                         <FooterLink to='/contact'>Contact</FooterLink>
                     </div>
                 </div>

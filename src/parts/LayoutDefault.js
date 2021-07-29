@@ -175,9 +175,9 @@ class LayoutDefault extends Component{
                     <title>Clever Code Lab</title>
                 </Helmet>
 
-                <div >
+                {/*<div >*/}
                     {this.props.children}
-                </div>
+                {/*</div>*/}
                 <Dots Dots={this.props.Dots}
                       currentSection={this.state.currentSection}
                       count={this.state.count}

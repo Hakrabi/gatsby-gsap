@@ -399,8 +399,10 @@ class Design extends Component{
                     <section className="animation" ref={el => this.Animation.paintBack = el}>
                         <div className="oval" ref={el => this.Animation.paintFront = el}>
                             <div className="behance white">
-                                You can see our portfolio on the&nbsp; <Link to="https://www.behance.net/clevercodelab">Behance</Link>
-                                <div className="icon"/>
+                                <a href="https://www.behance.net/clevercodelab">
+                                    You can see our portfolio on the&nbsp; <span>Behance</span>
+                                    <div className="icon"/>
+                                </a>
                             </div>
                             <div className="grid mw900" ref={div => this.Animation.section = div}>
                                 <div className="col1">
@@ -463,8 +465,10 @@ class Design extends Component{
                     <section className="page-404">
                         <div className="oval">
                             <div className="behance white">
-                                You can see our portfolio on the&nbsp; <Link to="https://www.behance.net/clevercodelab">Behance</Link>
-                                <div className="icon"/>
+                                <a href="https://www.behance.net/clevercodelab">
+                                    You can see our portfolio on the&nbsp; <span>Behance</span>
+                                    <div className="icon"/>
+                                </a>
                             </div>
                             <div className="grid" ref={div => this.Page404.section = div}>
                                 <div className="col1 col-center">
@@ -506,8 +510,10 @@ class Design extends Component{
                                 </div>
                             </div>
                             <div className="behance black" ref={el => this.Presentation.behance = el}>
-                                You can see our portfolio on the&nbsp;<Link to="https://www.behance.net/clevercodelab">Behance</Link>
-                                <div className="icon"/>
+                                <a href="https://www.behance.net/clevercodelab">
+                                    You can see our portfolio on the&nbsp; <span>Behance</span>
+                                    <div className="icon"/>
+                                </a>
                             </div>
                         </div>
                     </section>
